@@ -1,0 +1,14 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'custom-bootstrap';
+@import './BottomNav.scss';
+@import './BodyCard.scss';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #EAF1FF;
+}

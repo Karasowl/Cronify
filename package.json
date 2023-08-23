@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev:server": "cd server && tsc --watch",
+    "start:server": "cd server && npm start",
+    "dev:client": "cd client && yarn dev --host",
+    "dev": "concurrently \"npm run dev:server\" \"npm run start:server\" \"npm run dev:client\" \"npm run open-nav:server\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
