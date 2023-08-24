@@ -8,3 +8,4 @@ mongoose.connect(URI).then( db => console.log(`Database is connected`)
 
 ).catch(err => console.log(`Error ${err.message} from Database`)
 )
+
