@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import PORT from './config/app-port'
+import './database/db'
 
 const server = express()
 
