@@ -13,9 +13,9 @@ const UserSchema:Schema = new Schema({
     username:{type: String, required:true},
     password:{type: String, required:true},
     email:String,
-    cards:Array,
+    cards:[{type: Schema.Types.ObjectId, ref:'Card'}],
     appTime:Date,
 }, {timestamps:true})
 
 
-const User = model<IUser>('User', UserSchema)
+export default model<IUser>('User', UserSchema)

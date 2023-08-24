@@ -1,28 +1,25 @@
 import {Schema, model, Document } from "mongoose";
 
-enum TypeOfCard{
-    DO,
-    STOP
-}
-
-type Card = TypeOfCard
+type Card = 'DO'|'STOP'
 
 
 interface ICard extends Document{
     title:string,
-    type: TypeOfCard
+    type: Card
     starTime:number,
     days: object[],
     goals:object[],
+    user: string
 }
 
 const UserSchema:Schema = new Schema({
-    title:{type: TypeOfCard, required:true},
+    title:{type: String, required:true},
     type:{type: String, required:true},
     starTime:{type: Number, required:true},
     days:Array,
-    goals:Array
+    goals:Array,
+    user: {type: Schema.Types.ObjectId, ref:'User'}
 }, {timestamps:true})
 
 
-const Card = model<ICard>('Card', UserSchema)
+export default model<ICard>('Card', UserSchema)
