@@ -3,15 +3,15 @@
 
 export default function BodyCard() {
   return (
-    <article className="p-3">BodyCard
-        <div className="">
-        </div>Header
-        <div>body   
+    <article className="">
+        <div className="card-header">
         </div>
-        <div>buttons   
+        <div className="card-body">
         </div>
-        <div>date   
+        <div className="card-buttons">  
         </div>
+        <p className="card-footer">creado - */*/*
+        </p>
     </article>
   )
 }
