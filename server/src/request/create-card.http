@@ -1,0 +1,26 @@
+### Crear una nueva tarjeta
+POST http://localhost:9785/api/create-card HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Lisi te Amo",
+    "user": "64e926a281f55b8c60b0a011",
+    "cardType": {
+        "type":"STOP",
+        "totalTime": 3000,
+        "stops": ["2023-08-25T22:05:49.147Z", "2023-08-25T22:05:49.147Z"],
+        "days": [{
+            "Ischeck": false,
+            "date": "2023-08-25T22:05:49.147Z"
+        }],
+     "starTime":"2023-08-25T22:05:49.147Z",
+    "goals": {
+        "achieved": false,
+        "startDate": "2023-08-25T22:05:49.147Z",
+        "totalTime": 334566
+    }
+
+
+    },
+    "appTime": ""
+}

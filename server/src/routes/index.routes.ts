@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import '../controllers/index.controllers'
-import {createCard, getCards} from '../controllers/index.controllers'
+import {createCard, createUser, getCards} from '../controllers/index.controllers'
 
 const router = Router();
 
@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
 })
 
 //GetCards
-router.get('/home/get-cards',getCards)
-router.get('/home/create-card',createCard)
+router.get('/api/get-cards',getCards)
+router.post('/api/create-card',createCard)
+router.post('/api/create-user',createUser)
 
 export default router

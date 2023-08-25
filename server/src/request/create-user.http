@@ -1,0 +1,9 @@
+### Crear un nuevo usuario
+POST http://localhost:9785/api/create-user HTTP/1.1
+content-type: application/json
+
+{
+    "username": "Karasowl",
+    "password": "@Karasowl0",
+    "email": "karasowl@email.com"
+}

@@ -12,7 +12,7 @@ export default function BodyApp() {
 
   async function fetchCards() {
     try {
-      const response = await fetch(`http://localhost:9785/home/get-cards`)
+      const response = await fetch(`http://localhost:9785/api/get-cards`)
       const data = await response.json()
       const cardTitles = data.map((obj: TCard) => obj.title);
       setCards(cardTitles);
@@ -23,7 +23,13 @@ export default function BodyApp() {
 
   return (
     <div className='container col-12 d-flex justify-content-end align-items-center flex-column mb-5'>
-      {cards.length > 0 && cards.map((title) => <BodyCard key={title} title={title}/>)}
+      {cards.length > 0 && cards.map((title) => {
+      return (
+      <div className="body-card">
+      <BodyCard key={title} title={title}/>
+      </div>
+      )
+      })}
       <Button onClick={fetchCards}>Fetch</Button>
       <BottomNav/>
     </div>
