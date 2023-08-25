@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { urlencoded } from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import PORT from './config/app-port'
@@ -8,6 +8,7 @@ import routes from './routes/index.routes'
 const server = express()
 
 server.use(express.json())
+server.use(express.urlencoded({extended:false}))
 server.use(cors())
 server.use(morgan('dev'))
 //rutas
