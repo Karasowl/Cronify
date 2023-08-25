@@ -13,5 +13,6 @@
 use('Cronify');
 
 // Insert a few documents into the sales collection.
-db.getCollection('users').deleteMany({})
-db.getCollection('cards').deleteMany({})
+// db.getCollection('users').deleteMany({})
+// db.getCollection('cards').deleteMany({})
+db.dropDatabase()

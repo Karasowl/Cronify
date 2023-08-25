@@ -1,16 +1,6 @@
 import {Schema, model, Document } from "mongoose";
+import {ICard} from '../types'
 
-type Card = 'DO'|'STOP'
-
-
-interface ICard extends Document{
-    title:string,
-    type: Card
-    starTime:number,
-    days: object[],
-    goals:object[],
-    user: string
-}
 
 const UserSchema:Schema = new Schema({
     title:{type: String, required:true},

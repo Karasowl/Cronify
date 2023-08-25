@@ -10,3 +10,7 @@ mongoose.connect(URI)
 .then( db => console.log(`Database is connected`))
 .catch(err => console.log(`Error ${err.message} from Database`))
 
+mongoose.connection.on('error',(err)=>{
+console.log(`Error de base de datos: ${err}`)
+})
+
