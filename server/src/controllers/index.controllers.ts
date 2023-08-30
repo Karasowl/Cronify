@@ -37,6 +37,12 @@ export const createUser = async (req: Request, res:Response) =>{
             appTime
         })
         await newUser.save()
+        .then((result) => {
+            console.log(`Usuario guardado: ${result}`)
+        })
+        .catch((err)=>{
+            console.log(`Error al guardar usuario: ${err} `)
+        })
         res.status(200).send(newUser)
     }catch(error){
         console.log(error)

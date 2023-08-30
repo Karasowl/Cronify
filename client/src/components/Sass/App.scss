@@ -13,3 +13,12 @@
 body{
     background-color: #EAF1FF;
 }
+
+#app {
+    display: grid;
+    place-items: center;
+}
+
+.loading{
+  filter: grayscale(100%);  
+}

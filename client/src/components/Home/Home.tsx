@@ -1,5 +1,4 @@
-import { Button } from "react-bootstrap";
-import BottomNav from "../BottomNav/BottomNav"
+import { Button } from "react-bootstrap"
 import BodyCard from "../Cards/BodyCard"
 import {useState } from 'react'
 
@@ -7,7 +6,7 @@ type TCard = {
 title:string
 }
 
-export default function BodyApp() {
+export default function Home() {
   const [cards, setCards] = useState<string[]>([]);
 
   async function fetchCards() {
@@ -31,7 +30,6 @@ export default function BodyApp() {
       )
       })}
       <Button onClick={fetchCards}>Fetch</Button>
-      <BottomNav/>
     </div>
   );
 }

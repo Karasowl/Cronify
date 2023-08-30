@@ -2,8 +2,6 @@
     position: absolute;
     bottom: 15%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-
     background-color: $light;
     min-width: 15rem;
     max-width: 25rem;
@@ -23,7 +21,7 @@
         width: 100%;
         z-index: 3;
 
-        button{
+        .nav-button{
             all: unset;
             height: 100% !important;
             width: 100%;

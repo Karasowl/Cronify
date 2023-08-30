@@ -1,20 +1,20 @@
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
+// import Form from 'react-bootstrap/Form';
+// import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+// import NavDropdown from 'react-bootstrap/NavDropdown';
+// import Offcanvas from 'react-bootstrap/Offcanvas';
 
 function OffcanvasExample() {
-    const expand = "lg"
+    const expand = ""
   return (
     <>
-        <Navbar data-bs-theme='dark' key={expand} expand={expand} className="bg-primary mb-3">
+        <Navbar data-bs-theme='dark' key={expand} expand={expand} className="bg-primary mb-3 w-100">
           <Container fluid>
             <Navbar.Brand href="#">CRONI.FY</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
+            {/* <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
@@ -26,7 +26,7 @@ function OffcanvasExample() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
+                  <Nav.Link href="#action1">About</Nav.Link>
                   <Nav.Link href="#action2">Link</Nav.Link>
                   <NavDropdown
                     title="Dropdown"
@@ -52,7 +52,7 @@ function OffcanvasExample() {
                   <Button variant="outline-light opacity-50">Search</Button>
                 </Form>
               </Offcanvas.Body>
-            </Navbar.Offcanvas>
+            </Navbar.Offcanvas> */}
           </Container>
         </Navbar>
     </>
