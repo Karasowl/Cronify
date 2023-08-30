@@ -10,7 +10,7 @@ function OffcanvasExample() {
     const expand = ""
   return (
     <>
-        <Navbar data-bs-theme='dark' key={expand} expand={expand} className="bg-primary mb-3 w-100">
+        <Navbar data-bs-theme='dark' key={expand} expand={expand} className="bg-primary mb-3">
           <Container fluid>
             <Navbar.Brand href="#">CRONI.FY</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />

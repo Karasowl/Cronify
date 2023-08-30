@@ -25,7 +25,7 @@ export default function Home() {
 
 
   return (
-    <div className='container col-12 d-flex justify-content-end align-items-center flex-column mb-5'>
+    <div id="home" className='container col-12 d-flex justify-content-end align-items-center flex-column mb-5'>
       {cards.length > 0 && cards.map((title) => {
       return (
       <div className="body-card">

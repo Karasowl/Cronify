@@ -2,7 +2,7 @@
 
 function Settings() {
   return (
-    <div>Config</div>
+    <div id="settings">Config</div>
   )
 }
 

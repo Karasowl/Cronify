@@ -5,7 +5,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Statistics from './Statistics/Statistics'
 import Home from './Home/Home'
 import User from './User/User'
-import Settings from './settings/Settings'
+import Settings from './Settings/Settings'
 
 const  router = createBrowserRouter([
     { path:"/",

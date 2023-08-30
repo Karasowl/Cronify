@@ -3,6 +3,9 @@
 @import './BottomNav.scss';
 @import './BodyCard.scss';
 @import './Home.scss';
+@import './Statistics.scss';
+@import './User.scss';
+@import './Settings.scss';
 
 *{
     margin: 0;
@@ -17,7 +20,21 @@ body{
 #app {
     display: grid;
     place-items: center;
+    
+    #nav-app {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+
+    #bottom-nav {
+        position: sticky;
+        bottom: 5%;
+        width: max-content;
+    }
+    
 }
+
 
 .loading{
   filter: grayscale(100%);  
