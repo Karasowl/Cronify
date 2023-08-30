@@ -1,14 +1,18 @@
-import { useState, useRef, useEffect} from "react"
-import { Link } from "react-router-dom"
+import { useState, useRef, useEffect } from "react"
+import { Link, useLocation } from "react-router-dom"
 
 
 export default function BottomNav() {
   const [buttonElements, setButtonElements] = useState<Element[]>([])
+  const location = useLocation()
+  const [inLoginPage, setInLoginPage] = useState<boolean>(false)
 
   useEffect(() => {
     const buttons = Array.from(rootDiv.current?.querySelectorAll('.nav-button') || [])
     setButtonElements(buttons)
   }, [])
+
+  
   
 
   const backDiv = useRef<HTMLDivElement>(null)
@@ -16,21 +20,23 @@ export default function BottomNav() {
 
   const [pastPosition, setPastPosition] = useState<number>(1)
   const [pastMovement, setPastMovement] = useState<number>(0)
-
-
-
-  function handleClick(e:MouseEventHandler<HTMLElement>) {
-    const {target} = e
-
+  
+  
+  useEffect(() => {
     buttonElements.forEach((element: Element) => {
-      const icon = element.querySelector('i')
-      if (element === target) {
-        icon?.classList.add('text-light')
+      const icon = element.querySelector('i');
+      if (element.getAttribute('custom-position') === String(pastPosition)) {
+        icon?.classList.add('text-light');
       } else {
-        icon?.classList.remove('text-light')
+        icon?.classList.remove('text-light');
       }
-    })
-    const newPosition = parseInt(target.getAttribute('custom-position'))
+    });
+  }, [buttonElements, pastPosition]);
+
+  function handleClick(e: React.MouseEvent<HTMLElement>) {
+    const target = e.currentTarget as HTMLElement
+    
+    const newPosition = parseInt(target.getAttribute('custom-position') || '0')
     if (backDiv.current){
       if (newPosition > pastPosition) {
         const movement = ((newPosition - pastPosition) * 100) + pastMovement
@@ -50,7 +56,7 @@ export default function BottomNav() {
   
 
   return (
-    <div ref={rootDiv} className="bottom-nav">
+    inLoginPage? null : (<div ref={rootDiv} className="bottom-nav">
         <div className="active-button-nav-container">
           <div ref={backDiv} className="active-button-nav"></div>
         </div>
@@ -60,6 +66,6 @@ export default function BottomNav() {
         <Link to='user'  custom-position='3' onClick={handleClick} className="nav-button"><i className="bi bi-person button"></i></Link>
         <Link to='settings'   custom-position='4' onClick={handleClick} className="nav-button"><i className="bi bi-gear button"></i></Link>
         </div>
-    </div>
+    </div>)
   )
 }

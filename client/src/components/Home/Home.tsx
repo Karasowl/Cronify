@@ -1,9 +1,10 @@
 import BodyCard from "../Cards/BodyCard"
 import {useEffect, useState } from 'react'
-import {fetching} from '../../helpers/Fetch'
+import {fetching} from '../../helpers/fetch'
 
 type TCard = {
 title:string
+_id:string
 }
 
 const url = `http://localhost:9785/api/get-cards`
@@ -15,8 +16,8 @@ export default function Home() {
   const fetchCards = async () => {
     const data = await fetching(url)
     console.log(data)
-    const cardTitles = data.map((obj: TCard) => obj.title);
-    setCards(cardTitles)
+    const cardData = data.map(({title, _id}: TCard) => [_id, title]);
+    setCards(cardData)
   }
   
   useEffect(() => {
@@ -25,11 +26,13 @@ export default function Home() {
 
 
   return (
-    <div id="home" className='container col-12 d-flex justify-content-end align-items-center flex-column mb-5'>
-      {cards.length > 0 && cards.map((title) => {
+    <div id="home" className=''>
+      {cards.length > 0 && cards.map((data) => {
+      const [_id, title] = data
+      
       return (
-      <div className="body-card">
-      <BodyCard key={title} title={title}/>
+      <div key={_id} className="body-card">
+      <BodyCard key={_id} title={title}/>
       </div>
       )
       })}

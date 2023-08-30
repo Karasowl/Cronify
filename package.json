@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "@types/is-online": "^8.1.0",
     "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "is-online": "^10.0.0"
   }
 }
