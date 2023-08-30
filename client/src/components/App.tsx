@@ -1,4 +1,4 @@
-import './Sass/App.scss'
+import '../Sass/App.scss'
 import NavApp from './NavApp/NavApp'
 import BottomNav from './BottomNav/BottomNav'
 import {Outlet, useNavigation, useNavigate} from 'react-router-dom'

@@ -10,6 +10,7 @@ import Settings from './settings/Settings'
 const  router = createBrowserRouter([
     { path:"/",
     element: <App/>,
+    errorElement: <h1>Error</h1>,
     children:[
         {
         path:"home",

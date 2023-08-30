@@ -1,24 +1,28 @@
-import { Button } from "react-bootstrap"
 import BodyCard from "../Cards/BodyCard"
-import {useState } from 'react'
+import {useEffect, useState } from 'react'
+import {fetching} from '../../helpers/Fetch'
 
 type TCard = {
 title:string
 }
 
+const url = `http://localhost:9785/api/get-cards`
+
+
 export default function Home() {
   const [cards, setCards] = useState<string[]>([]);
-
-  async function fetchCards() {
-    try {
-      const response = await fetch(`http://localhost:9785/api/get-cards`)
-      const data = await response.json()
-      const cardTitles = data.map((obj: TCard) => obj.title);
-      setCards(cardTitles);
-    } catch(err){
-      console.log(err)
-    }
+  
+  const fetchCards = async () => {
+    const data = await fetching(url)
+    console.log(data)
+    const cardTitles = data.map((obj: TCard) => obj.title);
+    setCards(cardTitles)
   }
+  
+  useEffect(() => {
+    fetchCards()
+  },[])
+
 
   return (
     <div className='container col-12 d-flex justify-content-end align-items-center flex-column mb-5'>
@@ -29,7 +33,6 @@ export default function Home() {
       </div>
       )
       })}
-      <Button onClick={fetchCards}>Fetch</Button>
     </div>
   );
 }
