@@ -1,6 +1,6 @@
 import BodyCard from "../Cards/BodyCard"
 import {useEffect, useState } from 'react'
-import {fetching} from '../../helpers/fetch'
+import {fetcherGET} from '../../helpers/fetch'
 
 type TCard = {
 title:string
@@ -14,7 +14,8 @@ export default function Home() {
   const [cards, setCards] = useState<string[]>([]);
   
   const fetchCards = async () => {
-    const data = await fetching(url)
+    const response = await fetcherGET({url}) as Response
+    const data = await response.json()
     console.log(data)
     const cardData = data.map(({title, _id}: TCard) => [_id, title]);
     setCards(cardData)

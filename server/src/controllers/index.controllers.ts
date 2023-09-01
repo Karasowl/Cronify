@@ -53,4 +53,25 @@ export const createUser = async (req: Request, res:Response) =>{
 
 
 }
+
+
+export const getUser = async (req: Request, res:Response) =>{
+    
+    try{
+        const userId = req.params.id
+        const user = await UserModel.findById(userId)
+        res.status(200).send(user)
+    
+
+       
+    }catch(error){
+        console.log(error)
+        res.status(500).send(`Error deleting user: ${error}`)
+        return
+    }
+
+
+
+}
+
     

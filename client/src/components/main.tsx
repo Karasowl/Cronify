@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import UserProvider from '../context/UserProvider'
 import App from './App'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Statistics from './Statistics/Statistics'
@@ -41,6 +42,8 @@ const  router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
-        <RouterProvider router={router}/>
+        <UserProvider>
+            <RouterProvider router={router}/>
+        </UserProvider>
     </React.StrictMode>
 )
