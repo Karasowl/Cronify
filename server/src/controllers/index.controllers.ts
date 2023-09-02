@@ -60,7 +60,12 @@ export const getUser = async (req: Request, res:Response) =>{
     try{
         const userId = req.params.id
         const user = await UserModel.findById(userId)
-        res.status(200).send(user)
+        
+        if(user){
+            res.status(200).send(user)
+        } else{
+            res.status(404).send(user)
+        }
     
 
        

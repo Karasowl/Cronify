@@ -27,6 +27,23 @@ body{
         position: sticky;
         top: 0;
         z-index: 999;
+        
+        button{
+            background-color: #ffffff;
+            padding: 0.2em 0.5;
+
+            transition: all 0.2s ease-in-out;
+
+            i{
+                font-size: larger;
+                color:#000000;
+                opacity: 60%&
+            }
+
+            &:hover{
+                opacity: 60% !important;
+            }
+        }
     }
 
     #bottom-nav {

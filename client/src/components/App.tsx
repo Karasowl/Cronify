@@ -3,17 +3,13 @@ import NavApp from './NavApp/NavApp'
 import BottomNav from './BottomNav/BottomNav'
 import {Outlet} from 'react-router-dom'
 import useLogin from '../Hooks/useLogin'
-import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+// import { useNavigate } from 'react-router-dom'
+// import { useEffect } from 'react'
+import useRedirect from '../Hooks/useRedirect'
 
 function App () {
-const navigate = useNavigate()
-
-const logged = useLogin()
-useEffect(() => {
-    logged ? navigate('/home', { replace: true }) : navigate('/login', { replace: true });
-  }, [logged, navigate]);
-
+const loggued = useLogin()
+useRedirect(loggued, '/home', '/login')
 
 return(
 <div id='app'>

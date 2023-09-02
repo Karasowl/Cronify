@@ -1,4 +1,4 @@
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 // import Form from 'react-bootstrap/Form';
 // import Nav from 'react-bootstrap/Nav';
@@ -6,50 +6,63 @@ import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 // import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useLocation } from 'react-router-dom';
+import userContext from '../../context/user-context';
+import { useContext } from 'react';
 
 type TNavBarPage = {
-    title: string,
-    containerClassName: string,
-    toggleClassName: string
+  title: string,
+  containerClassName: string,
+  toggleClassName: string,
+  buttonClassName:string
 }
 
 type TNavBarPages = {
-  [key:string] : TNavBarPage
+  [key: string]: TNavBarPage
 }
 
 function OffcanvasExample() {
 
+  const userState = useContext(userContext)
   const location = useLocation()
 
-  const titlesPage:TNavBarPages = {
+  const titlesPage: TNavBarPages = {
     login: {
       title: 'LOGIN',
       containerClassName: 'd-flex justify-content-center align-items-center',
       toggleClassName: 'd-none',
-  },
+      buttonClassName: 'd-none'
+    },
     else: {
       title: 'CRONI.FY',
       containerClassName: '',
-      toggleClassName: ''
+      toggleClassName: '',
+      buttonClassName: 'opacity-25'
+    }
   }
-  }
-  
-  const currentNavBar = ():TNavBarPage => {
-    
-    const currentPath = location.pathname.replace("/","")
-    if(currentPath === "login") return titlesPage.login
+  //cambiar eleemntos del Navbar según la url
+  const currentNavBar = (): TNavBarPage => {
+    const currentPath = location.pathname.replace("/", "")
+    if (currentPath === "login") return titlesPage.login
     return titlesPage.else
-  
   }
-    const expand = ""
+  ///
+
+  //desloguearse 
+  const logout = () => {
+      userState.loginState.setLogged(false)
+  }
+  ///
+
+  const expand = ""
   return (
     <>
-        <Navbar data-bs-theme='dark' key={expand} expand={expand} className="bg-primary mb-3">
-          <Container fluid className={currentNavBar().containerClassName}>
-            <Navbar.Brand href="#">{currentNavBar().title}</Navbar.Brand>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className={currentNavBar().toggleClassName}/>
-          </Container>
-        </Navbar>
+      <Navbar data-bs-theme='dark' key={expand} expand={expand} className="bg-primary mb-3">
+        <Container fluid className={currentNavBar().containerClassName}>
+          <Navbar.Brand href="#">{currentNavBar().title}</Navbar.Brand>
+          <Button onClick={()=> {logout()}} className={currentNavBar().buttonClassName}><i className='bi bi-x'></i></Button>
+          {/* <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className={currentNavBar().toggleClassName}/> */}
+        </Container>
+      </Navbar>
     </>
   );
   {/* <Navbar.Offcanvas
