@@ -49,5 +49,5 @@ export interface IUser extends Document{
     password:string,
     email:string,
     cards:object[],
-    appTime: Date,
+    appTime: Date
 }

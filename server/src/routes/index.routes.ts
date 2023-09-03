@@ -8,9 +8,10 @@ router.get('/', (req, res) => {
     res.status(200).send('server active')
 })
 
-//GetCards
+//Cards
 router.get('/api/get-cards',getCards)
 router.post('/api/create-card',createCard)
+//Users
 router.post('/api/create-user',createUser)
 router.get('/api/get-user/:id',getUser)
 

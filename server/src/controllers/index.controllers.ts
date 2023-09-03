@@ -30,6 +30,7 @@ export const createUser = async (req: Request, res:Response) =>{
     
     try{
         const {username, password, email, appTime } = req.body
+
         const newUser = new UserModel({
             username,
             email,
