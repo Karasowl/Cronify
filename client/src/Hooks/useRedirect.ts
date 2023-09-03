@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import {useEffect} from 'react'
 
-export const useRedirect = (condition:boolean, urlTrue:string, urlFalse:string, exemptions:string[] = []) => {
+export const useRedirect = (condition:boolean, urlTrue:string, urlFalse:string = "", exemptions:string[] = []) => {
     const navigate = useNavigate()
     const location = useLocation().pathname
 

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import '../controllers/index.controllers'
-import {createCard, createUser, getCards, getUser} from '../controllers/index.controllers'
+import {createCard, createUser, getCards, login} from '../controllers/index.controllers'
 
 const router = Router();
 
@@ -13,6 +13,6 @@ router.get('/api/get-cards',getCards)
 router.post('/api/create-card',createCard)
 //Users
 router.post('/api/create-user',createUser)
-router.get('/api/get-user/:id',getUser)
+router.post('/api/login',login)
 
 export default router

@@ -1,5 +1,5 @@
-import {Schema, model, Document } from "mongoose";
-import { IUser } from "../types";
+import { IUser } from './../types.d'
+import {Schema, model, Document } from "mongoose"
 import bcrypt from 'bcrypt'
 
 
@@ -47,7 +47,7 @@ UserSchema.pre<IUser>('save', async function(next){
 
 UserSchema.methods.comparePass = async function (hashPass:string) {
     const user = this as IUser
-    return await bcrypt.compare(user.password, hashPass)
+    return await bcrypt.compare(hashPass, user.password)
 }
 
 export default model<IUser>('User', UserSchema)

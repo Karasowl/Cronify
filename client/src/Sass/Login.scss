@@ -4,8 +4,8 @@
     min-height: 100vh;
     margin-top: 2em;
 
-
-        .img-container{
+    
+    .img-container{
             color: #008AD8;
             font-family: $bak-font;
             font-size: 1.5rem;
@@ -17,13 +17,13 @@
             flex-direction: column;
             align-items: center;
             gap: -0.25rem;
-        
+            
             img {
                 width: 5em;
             }
 
         }
-
+        
         form{
             min-width: 16.3rem;
 
@@ -31,5 +31,16 @@
                 min-width: 24rem;
             }
         }
-    
+        
+        .check-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            button{
+                background-color: unset;
+                color:$primary;
+                border: none;
+                text-decoration: underline;
+            }
+        }
  }

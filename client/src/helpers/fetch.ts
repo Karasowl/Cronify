@@ -4,7 +4,7 @@
     try {
 
       const response = await fetch(url)
-      return await response
+      return response
 
     } catch(err){
 
@@ -18,7 +18,7 @@
     try {
 
       const response = await fetch(url, options)
-      return await response.json()
+      return response
 
     } catch(err){
 

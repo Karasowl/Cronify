@@ -2,18 +2,19 @@ import '../Sass/App.scss'
 import NavApp from './NavApp/NavApp'
 import BottomNav from './BottomNav/BottomNav'
 import {Outlet} from 'react-router-dom'
-import useLogin from '../Hooks/useLogin'
 // import { useNavigate } from 'react-router-dom'
 // import { useEffect } from 'react'
 import useRedirect from '../Hooks/useRedirect'
 import { useLocation } from 'react-router-dom'
 import routes from '../helpers/routes'
+import userContext from '../context/user-context'
+import { useContext } from 'react'
 
 function App () {
-const loggued = useLogin()
+const userState = useContext(userContext)
 const location = useLocation().pathname
 
-useRedirect(loggued, routes.home, routes.login, [routes.register])
+useRedirect(userState.loginState.isLogged, routes.home, routes.login, [routes.register])
 
 return(
 <div id='app'>
