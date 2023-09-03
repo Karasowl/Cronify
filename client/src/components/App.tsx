@@ -6,10 +6,13 @@ import useLogin from '../Hooks/useLogin'
 // import { useNavigate } from 'react-router-dom'
 // import { useEffect } from 'react'
 import useRedirect from '../Hooks/useRedirect'
+import { useLocation } from 'react-router-dom'
+import routes from '../helpers/routes'
 
 function App () {
 const loggued = useLogin()
-useRedirect(loggued, '/home', '/login')
+const location = useLocation().pathname
+useRedirect(loggued, routes.home, routes.login)
 
 return(
 <div id='app'>
@@ -22,7 +25,7 @@ return(
 </div>
 
 <div id='bottom-nav' className='d-fex justify-content-center align-items-center'>
-<BottomNav/>
+{location === routes.login ? '' : <BottomNav/>}
 </div>
 
 </div>

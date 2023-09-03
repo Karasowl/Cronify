@@ -8,24 +8,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useLocation } from 'react-router-dom';
 import userContext from '../../context/user-context';
 import { useContext } from 'react';
-
-type TNavBarPage = {
-  title: string,
-  containerClassName: string,
-  toggleClassName: string,
-  buttonClassName:string
-}
-
-type TNavBarPages = {
-  [key: string]: TNavBarPage
-}
+import routes from '../../helpers/routes';
+import.meta.env
 
 function OffcanvasExample() {
 
   const userState = useContext(userContext)
   const location = useLocation()
 
-  const titlesPage: TNavBarPages = {
+  const titlesPage: INavBarPages = {
     login: {
       title: 'LOGIN',
       containerClassName: 'd-flex justify-content-center align-items-center',
@@ -40,9 +31,9 @@ function OffcanvasExample() {
     }
   }
   //cambiar eleemntos del Navbar según la url
-  const currentNavBar = (): TNavBarPage => {
-    const currentPath = location.pathname.replace("/", "")
-    if (currentPath === "login") return titlesPage.login
+  const currentNavBar = (): INavBarPage => {
+    const currentPath = location.pathname
+    if (currentPath === routes.login) return titlesPage.login
     return titlesPage.else
   }
   ///

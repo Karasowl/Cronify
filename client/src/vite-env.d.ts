@@ -27,3 +27,16 @@ interface IFetchOptions {
         body?: string
     }
 }
+
+//NavBar
+
+type INavBarPage = {
+    title: string,
+    containerClassName: string,
+    toggleClassName: string,
+    buttonClassName:string
+  }
+  
+  interface INavBarPages {
+    [key: string]: TNavBarPage
+  }

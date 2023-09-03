@@ -8,6 +8,7 @@ import Home from './Home/Home'
 import User from './User/User'
 import Settings from './Settings/Settings'
 import Login from './Login'
+import routes from '../helpers/routes'
 
 const  router = createBrowserRouter([
     { path:"/",
@@ -15,23 +16,23 @@ const  router = createBrowserRouter([
     errorElement: <h1>Error</h1>,
     children:[
         {
-        path:"home",
+        path:routes.home,
         element: <Home/>,  
         },
         {
-        path:"statistics",
+        path:routes.statistics,
         element: <Statistics/>,  
         },
         {
-        path:"user",
+        path:routes.user,
         element: <User/>,  
         },
         {
-        path:"settings",
+        path:routes.settings,
         element: <Settings/>,  
         },
         {
-        path:"login",
+        path:routes.login,
         element: <Login/>,  
         }
              ]
