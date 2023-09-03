@@ -5,6 +5,7 @@
     user = '/user',
     settings = '/settings',
     login = '/login',
+    register = '/register',
   }
 
   export default routes;

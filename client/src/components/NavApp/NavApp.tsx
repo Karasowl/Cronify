@@ -33,7 +33,7 @@ function OffcanvasExample() {
   //cambiar eleemntos del Navbar según la url
   const currentNavBar = (): INavBarPage => {
     const currentPath = location.pathname
-    if (currentPath === routes.login) return titlesPage.login
+    if (currentPath === routes.login || currentPath === routes.register) return titlesPage.login
     return titlesPage.else
   }
   ///

@@ -12,7 +12,8 @@ import routes from '../helpers/routes'
 function App () {
 const loggued = useLogin()
 const location = useLocation().pathname
-useRedirect(loggued, routes.home, routes.login)
+
+useRedirect(loggued, routes.home, routes.login, [routes.register])
 
 return(
 <div id='app'>
@@ -25,7 +26,7 @@ return(
 </div>
 
 <div id='bottom-nav' className='d-fex justify-content-center align-items-center'>
-{location === routes.login ? '' : <BottomNav/>}
+{location === routes.login || location === routes.register ? '' : <BottomNav/>}
 </div>
 
 </div>

@@ -1,6 +1,10 @@
-import { Button, Image, Form } from "react-bootstrap";
+
+import { Button, Image, Form } from "react-bootstrap"
+import routes from "../helpers/routes";
 
 const Login = () => {
+
+  
   return (
     <div id="login">
         <div className="img-container container w-75 d-flex justify-content-center align-items-center flex-column ">
@@ -25,7 +29,7 @@ const Login = () => {
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
+            <Form.Check type="checkbox" label=" Stay logged in" />
           </Form.Group>
           <Button
             onClick={(event) => {
@@ -34,7 +38,7 @@ const Login = () => {
             variant="primary"
             type="submit"
           >
-            Submit
+            {location.pathname === routes.login ? "Login" : "Register"}
           </Button>
         </Form>
       </div>
