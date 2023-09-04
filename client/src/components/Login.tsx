@@ -2,15 +2,19 @@
 import { Button, Image, Form } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import {useContext, useState} from 'react'
+import UserContext from "../context/User-context"
 import routes from "../helpers/routes"
 import {fetcherPOST } from "../helpers/fetch"
-import userContext from "../context/user-context"
+import Error from "./Error/Error"
+import ErrorContext from "../context/error-context/Error-context"
+import.meta.env
 
 
 
 const Login = () => {
   const areWeInLogin = location.pathname === routes.login
-  const userState = useContext(userContext)
+  const userState = useContext(UserContext)
+  const errorState = useContext(ErrorContext)
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,6 +22,9 @@ const Login = () => {
   const navigate = useNavigate()
   return (
     <div id="login">
+      <Error
+      showErr = {errorState.showErr()}
+      ></Error>
         <div className="img-container container w-75 d-flex justify-content-center align-items-center flex-column ">
           <Image
             className="img-fluid img-logo"
@@ -50,6 +57,7 @@ const Login = () => {
             }} className="">Sin Up</Button> : ""}
           </Form.Group>
           <Button
+          //login
             onClick={(event) => {
               event.preventDefault()
               if(areWeInLogin){
@@ -68,11 +76,13 @@ const Login = () => {
                     userState.loginState.setLogged(true)
                     navigate(routes.home)
                   } else{
-                    console.log(`Ocurrión un error al loguearse: ${(response as Response).status}`)
+                    
+                    console.log(`Ocurrió un error al loguearse: ${(response as Response).status}`)
                   }
                 })
                 .catch(err => console.log(err))
               } else{
+                //register
                 fetcherPOST(
                   {url:'http://localhost:9785/api/create-user', 
                   options:{
@@ -88,7 +98,10 @@ const Login = () => {
                   if((response as Response).status === 200){
                     navigate(routes.login)
                   } else{
-                    console.log(`Ocurrión un error al registrarse: ${(response as Response).status}`)
+                   errorState.addError({errorMessage:response.msg, errorStatus:200})
+                   errorState.showErr()
+                    console.log(`Ocurrió un error al registrarse: ${(response as Response).status}`, errorState.showErr())
+                    
                   }
                 })
                 .catch(err => console.log(err))
@@ -104,11 +117,4 @@ const Login = () => {
       </div>
   );
 };
-
-{
-  /* <Button onClick={()=>{
-    context.isLoggedState = true
-    setLogued(true)
-}}>Login</Button> */
-}
 export default Login;

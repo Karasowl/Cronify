@@ -45,9 +45,9 @@ UserSchema.pre<IUser>('save', async function(next){
     return next()
 })
 
-UserSchema.methods.comparePass = async function (hashPass:string) {
+UserSchema.methods.comparePass = async function (password:string) {
     const user = this as IUser
-    return await bcrypt.compare(hashPass, user.password)
+    return await bcrypt.compare(password, user.password)
 }
 
 export default model<IUser>('User', UserSchema)

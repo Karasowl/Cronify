@@ -40,3 +40,18 @@ type INavBarPage = {
   interface INavBarPages {
     [key: string]: TNavBarPage
   }
+
+  //Error
+  type TError = {
+    errorMessage: string,
+    errorStatus: number | null
+
+}
+
+interface IErrorContext {
+    err: TError[],
+    showErr: () => boolean,
+    addError: (value:TError) => void,
+    clearError: (index:number) => void
+  }
+  

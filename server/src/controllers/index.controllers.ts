@@ -25,35 +25,31 @@ export const createCard = async (req: Request, res:Response) =>{
     res.status(200).send(newCard)
 
 }
-
-export const createUser = async (req: Request, res:Response) =>{
-    
-    try{
-        const {username, password, email} = req.body
-        console.log(username, password, email)
-
-        const newUser = new UserModel({
-            username,
-            email,
-            password
+export const createUser = async (req: Request, res: Response) => {
+    const { username, password, email } = req.body
+  
+    const newUser = new UserModel({
+      username: username,
+      email: email,
+      password: password,
+    });
+  
+    newUser
+      .save()
+      .then((result) => {
+        console.log(`Usuario guardado: ${result}`)
+        return res.status(200).send(newUser)
+      })
+      .catch((err) => {
+        console.error(`Error al guardar usuario: ${err}`)
+        return res.status(500).json({
+          auth: false,
+          msg: `Error creating user: ${err}`,
+          err: err,
         })
-        await newUser.save()
-        .then((result) => {
-            console.log(`Usuario guardado: ${result}`)
-        })
-        .catch((err)=>{
-            console.log(`Error al guardar usuario: ${err} `)
-        })
-        res.status(200).send(newUser)
-    }catch(error){
-        console.log(error)
-        res.status(500).send(`Error creating user: ${error}`)
-        return;
-    }
-
-
-
-}
+      })
+  }
+  
 
 
 export const login = async (req: Request, res:Response) =>{
@@ -73,7 +69,7 @@ export const login = async (req: Request, res:Response) =>{
 
         //
         if(!user){
-           return res.status(404).send({
+           return res.status(404).json({
                 auth: false,
                 msg: `El email ${email} no se encuentra registrado`,
             })

@@ -1,4 +1,4 @@
-import userContext from "./user-context"
+import UserContext from "./User-context"
 import {useState} from "react"
 import.meta.env
 
@@ -18,7 +18,7 @@ const UserProvider = ({children}:TProps) => {
 
  
   return (
-    <userContext.Provider value={User}>{children}</userContext.Provider>
+    <UserContext.Provider value={User}>{children}</UserContext.Provider>
   )
 }
 

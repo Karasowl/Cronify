@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 // import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useLocation } from 'react-router-dom';
-import userContext from '../../context/user-context';
+import userContext from '../../context/User-context';
 import { useContext } from 'react';
 import routes from '../../helpers/routes';
 import.meta.env
@@ -19,13 +19,13 @@ function OffcanvasExample() {
   const titlesPage: INavBarPages = {
     login: {
       title: 'LOGIN',
-      containerClassName: 'd-flex justify-content-center align-items-center',
+      containerClassName: 'd-flex mx-3',
       toggleClassName: 'd-none',
       buttonClassName: 'd-none'
     },
     else: {
       title: 'CRONI.FY',
-      containerClassName: '',
+      containerClassName: 'mx-3',
       toggleClassName: '',
       buttonClassName: 'opacity-25'
     }

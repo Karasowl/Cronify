@@ -4,11 +4,11 @@
     try {
 
       const response = await fetch(url)
-      return response
+      return response.json()
 
     } catch(err){
 
-      console.log(err)
+      console.log(`Dessde el fetchGET:${err}`)
       return err
       
     }
@@ -18,11 +18,12 @@
     try {
 
       const response = await fetch(url, options)
-      return response
+      console.log(response)
+      return response.json()
 
     } catch(err){
 
-      console.log(err)
+      console.log(`Dessde el fetchPost:${err}`)
       return err
       
     }

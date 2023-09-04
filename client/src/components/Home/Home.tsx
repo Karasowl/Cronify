@@ -1,7 +1,7 @@
 import BodyCard from "../Cards/BodyCard"
 import {useEffect, useState, useContext } from 'react'
 import {fetcherGET} from '../../helpers/fetch'
-import userContext from "../../context/user-context"
+import userContext from "../../context/User-context"
 import useRedirect from "../../Hooks/useRedirect"
 
 type TCard = {

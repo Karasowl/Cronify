@@ -7,7 +7,7 @@ import {Outlet} from 'react-router-dom'
 import useRedirect from '../Hooks/useRedirect'
 import { useLocation } from 'react-router-dom'
 import routes from '../helpers/routes'
-import userContext from '../context/user-context'
+import userContext from '../context/User-context'
 import { useContext } from 'react'
 
 function App () {

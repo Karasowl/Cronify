@@ -1,5 +1,5 @@
 import { createContext } from "react"
 import.meta.env
 
-const userContext = createContext({} as IUserContext)
-export default userContext
+const UserContext = createContext({} as IUserContext)
+export default UserContext

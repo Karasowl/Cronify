@@ -9,6 +9,7 @@ import User from './User/User'
 import Settings from './Settings/Settings'
 import Login from './Login'
 import routes from '../helpers/routes'
+import ErrorProvider from '../context/error-context/ErrorProvider'
 
 const  router = createBrowserRouter([
     { path:"/",
@@ -46,9 +47,11 @@ const  router = createBrowserRouter([
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
-        <UserProvider>
-            <RouterProvider router={router}/>
-        </UserProvider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <UserProvider>
+      <ErrorProvider>
+        <RouterProvider router={router} />
+      </ErrorProvider>
+    </UserProvider>
+  </React.StrictMode>
 )
