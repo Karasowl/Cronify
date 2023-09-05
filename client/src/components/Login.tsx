@@ -22,18 +22,18 @@ const Login = () => {
   const navigate = useNavigate()
   return (
     <div id="login">
-      <Error
-      showErr = {errorState.showErr()}
-      ></Error>
         <div className="img-container container w-75 d-flex justify-content-center align-items-center flex-column ">
           <Image
             className="img-fluid img-logo"
-            src="../../public/cronify.svg"
+            src="../../cronify.svg"
             fluid
           />
           <p>CRONI.FY</p>
         </div>
         <Form>
+      <Error
+      showErr = {errorState.showErr()}
+      ></Error>
           {areWeInLogin ? "" : (<Form.Group className="mb-3" controlId="form-text">
             <Form.Label>Username</Form.Label>
             <Form.Control type="email" placeholder="Enter Username" value={username} onChange={(e => setUsername(e.target.value))}/>
@@ -98,7 +98,7 @@ const Login = () => {
                   if((response as Response).status === 200){
                     navigate(routes.login)
                   } else{
-                   errorState.addError({errorMessage:response.msg, errorStatus:200})
+                  //  errorState.addError({errorMessage:response.msg, errorStatus:200})
                    errorState.showErr()
                     console.log(`Ocurrió un error al registrarse: ${(response as Response).status}`, errorState.showErr())
                     
