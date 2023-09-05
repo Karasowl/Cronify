@@ -2,14 +2,14 @@ import {useContext} from 'react'
 import Alert from 'react-bootstrap/Alert'
 import {Button} from 'react-bootstrap';
 import ErrorContext from '../../context/error-context/Error-context'
-import.meta.env
+import * as Types from "./../../types"
 
 interface ErrorProps {
     showErr: boolean;
   }
 
 function Error(showErr:ErrorProps) {
-    const errorState = useContext(ErrorContext)
+    const errorState:Types.IErrorContext = useContext(ErrorContext)
 
     if (showErr) {
       return (

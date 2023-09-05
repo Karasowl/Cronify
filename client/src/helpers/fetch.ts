@@ -1,6 +1,6 @@
- import.meta.env
+import * as Types from "./../types"
 
- export async function fetcherGET({url}:IFetchOptions) {
+ export async function fetcherGET({url}:Types.IFetchOptions) {
     try {
 
       const response = await fetch(url)
@@ -14,7 +14,7 @@
     }
   }
 
- export async function fetcherPOST({url, options}:IFetchOptions) {
+ export async function fetcherPOST({url, options}:Types.IFetchOptions) {
     try {
 
       const response = await fetch(url, options)

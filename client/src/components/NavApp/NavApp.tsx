@@ -9,14 +9,14 @@ import { useLocation } from 'react-router-dom';
 import userContext from '../../context/User-context';
 import { useContext } from 'react';
 import routes from '../../helpers/routes';
-import.meta.env
+import * as Types from "./../../types"
 
 function OffcanvasExample() {
 
   const userState = useContext(userContext)
   const location = useLocation()
 
-  const titlesPage: INavBarPages = {
+  const titlesPage: Types.INavBarPages = {
     login: {
       title: 'LOGIN',
       containerClassName: 'd-flex mx-3',
@@ -31,7 +31,7 @@ function OffcanvasExample() {
     }
   }
   //cambiar eleemntos del Navbar según la url
-  const currentNavBar = (): INavBarPage => {
+  const currentNavBar = (): Types.INavBarPage => {
     const currentPath = location.pathname
     if (currentPath === routes.login || currentPath === routes.register) return titlesPage.login
     return titlesPage.else

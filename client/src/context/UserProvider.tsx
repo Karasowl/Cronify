@@ -1,18 +1,18 @@
 import UserContext from "./User-context"
 import {useState} from "react"
-import.meta.env
+import * as Types from "./../types"
 
 
-const UserProvider = ({children}:TProps) => {
+const UserProvider = ({children}:Types.TProps) => {
 
     const [isLogged, setLogged] = useState(false)
     
-    const loginState:ILoginState = {
+    const loginState:Types.ILoginState = {
         isLogged,
         setLogged
     }
 
-    const User: IUserContext = {
+    const User: Types.IUserContext = {
         loginState,
     }
 

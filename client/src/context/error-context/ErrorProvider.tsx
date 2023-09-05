@@ -1,11 +1,11 @@
 import { useState } from "react"
 import ErrorContext from "./Error-context"
-import.meta.env
+import * as Types from "./../../types"
 
 //[{errorMessage: '', errorStatus: null}]
 
- const ErrorProvider = ({children}:TProps) => {
-    const [err, setErr] = useState<TError[]>([])
+ const ErrorProvider = ({children}:Types.TProps) => {
+    const [err, setErr] = useState<Types.TError[]>([])
 
     const clearError = (index:number):void => {
         setErr(prevErr => prevErr.filter((_, i) =>{
@@ -22,12 +22,12 @@ import.meta.env
         }
     }
 
-    const addError = (error:TError):void => {
+    const addError = (error:Types.TError):void => {
         setErr([...err, error])
     
     }
     
-    const errorState:IErrorContext = {
+    const errorState:Types.IErrorContext = {
         err,
         showErr,
         addError,
