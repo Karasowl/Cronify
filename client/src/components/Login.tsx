@@ -7,7 +7,6 @@ import routes from "../helpers/routes"
 import {fetcherPOST } from "../helpers/fetch"
 import Error from "./Error/Error"
 import ErrorContext from "../context/error-context/Error-context"
-import {} from "../types"
 
 
 
