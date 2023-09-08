@@ -1,5 +1,6 @@
 
 
+
 export type TProps = {
     children: JSX.Element | JSX.Element[]
 }
@@ -24,7 +25,7 @@ export interface IFetchOptions extends RequestInit{
             'Content-Type': string,
             'Authorization'?: string
         },
-        body?: string
+        body?: STRING
     }
 }
 
@@ -42,16 +43,30 @@ export type INavBarPage = {
   }
 
   //Error
-  export type TError = {
-    errorMessage: string,
-    errorStatus: number | null
-
-}
 
 export interface IErrorContext {
-    err: TError[],
-    showErr: () => boolean,
-    addError: (value:TError) => void,
+    err: string[],
+    addError: (value:string) => void,
     clearError: (index:number) => void
   }
   
+// Data of Responses
+
+export interface IResponseData {
+    success:boolean,
+    data?: object
+    message?: string,
+}
+
+interface IUser {
+    username:string,
+    password:string,
+    email:string,
+    cards:object[],
+    appTime: Date,
+    comparePass(hashPass: string): Promise<boolean>
+  }
+  interface IAuthData {
+    auth: string,
+    user: IUser
+  }

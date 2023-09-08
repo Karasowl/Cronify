@@ -8,7 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useLocation } from 'react-router-dom';
 import userContext from '../../context/User-context';
 import { useContext } from 'react';
-import routes from '../../helpers/routes';
+import {routes} from '../../helpers/enums';
 import * as Types from "./../../types"
 
 function OffcanvasExample() {

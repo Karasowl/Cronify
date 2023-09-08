@@ -8,11 +8,11 @@ router.get('/', (req, res) => {
     res.status(200).send('server active')
 })
 
-//Cards
-router.get('/api/get-cards',getCards)
-router.post('/api/create-card',createCard)
 //Users
 router.post('/api/create-user',createUser)
 router.post('/api/login',login)
+//Cards
+router.post('/api/create-card',createCard)
+router.get('/api/get-cards',getCards)
 
 export default router

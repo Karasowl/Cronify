@@ -1,8 +1,7 @@
 import BodyCard from "../Cards/BodyCard"
 import {useEffect, useState, useContext } from 'react'
-import {fetcherGET} from '../../helpers/fetch'
+import fetchCards from "../../helpers/fetch"
 import userContext from "../../context/User-context"
-import useRedirect from "../../Hooks/useRedirect"
 
 type TCard = {
 title:string
@@ -16,19 +15,15 @@ export default function Home() {
   const [cards, setCards] = useState<string[]>([])
 
 const userState = useContext(userContext)
-useRedirect(userState.loginState.isLogged, "/home", "/login")
-
-  
-  const fetchCards = async () => {
-    const response = await fetcherGET({url}) as Response
-    const data = await response.json()
-    console.log(data)
-    const cardData = data.map(({title, _id}: TCard) => [_id, title]);
-    setCards(cardData)
-  }
-  
-  useEffect(() => {
-    fetchCards()
+useEffect(() => {
+    const fetching = async () => {
+      const response = await fetchCards({url})
+      const data = await (response as Response).json()
+      console.log(data)
+      const cardData = data.map(({title, _id}: TCard) => [_id, title]);
+      setCards(cardData)
+    }
+    fetching()
   },[])
 
 

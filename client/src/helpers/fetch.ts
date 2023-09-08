@@ -1,33 +1,29 @@
 import * as Types from "./../types"
 
- export async function fetcherGET({url}:Types.IFetchOptions) {
-    try {
-
-      const response = await fetch(url)
-      return response
-
-    } catch(err){
-
-      console.log(`Dessde el fetchGET:${err}`)
-      return err
-      
-    }
-  }
-
- export async function fetcherPOST({url, options}:Types.IFetchOptions) {
+  async function fetcher({url, options}:Types.IFetchOptions):Promise<Response | Error | unknown>  {
     try {
 
       const response = await fetch(url, options)
-      console.log(response)
-      return response
+      if(!response.ok){
+        console.log(`response is not ok`)
+        const error = await response.json()
+         throw new Error(error.message)
+        }
+        const data:Types.IResponseData = await response.json()
+        return (data as Types.IResponseData).data
 
     } catch(err){
 
-      console.log(`Dessde el fetchPost:${err}`)
-      return err
+      console.log(`Error es instancia de Error: ${err instanceof Error}`)
+      if(err instanceof Error){
+        console.log(err.message)
+        return err.message
+      }
       
     }
   }
+
+  export default fetcher
 
 
 

@@ -4,31 +4,23 @@ import {Button} from 'react-bootstrap';
 import ErrorContext from '../../context/error-context/Error-context'
 import * as Types from "./../../types"
 
-interface ErrorProps {
-    showErr: boolean;
-  }
 
-function Error(showErr:ErrorProps) {
+
+function Error() {
     const errorState:Types.IErrorContext = useContext(ErrorContext)
-
-    if (showErr) {
       return (
         <div id='alert-errors' className='d-flex flex-column justify-content-center'>
-          {errorState.err.map(({errorMessage, errorStatus}, index) =>
+          {errorState.err.map((message:string, index) =>
             <Alert className='alert' variant="danger" onClose={()=> {
-                console.log(index)
-                console.log(`tamaño: ${errorState.err.length}`)
-                console.log(errorState.err)
                 }}key={index+1}>
                 <Button onClick={()=>{errorState.clearError(index)}} className='err-button'><i className='bi bi-x'></i></Button>
-                <Alert.Heading className='alert-heading'>{`Oh snap! You got an error ${errorStatus}!`}</Alert.Heading>
-                <p>{errorMessage}</p>
+                <Alert.Heading className='alert-heading'>{`Oh snap! You got an error`}</Alert.Heading>
+                <p>{message}</p>
             </Alert>
           )}
         </div>
-      );
+      )
     }
-  }
   
   export default Error;
   

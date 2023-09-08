@@ -42,6 +42,7 @@ days: TDay[]
 
 //user
 export interface IUser extends Document{
+    _id?: string,
     username:string,
     password:string,
     email:string,
@@ -49,3 +50,4 @@ export interface IUser extends Document{
     appTime: Date,
     comparePass(hashPass: string): Promise<boolean>
 }
+

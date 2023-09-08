@@ -8,7 +8,7 @@ import Home from './Home/Home'
 import User from './User/User'
 import Settings from './Settings/Settings'
 import Login from './Login'
-import routes from '../helpers/routes'
+import {routes} from '../helpers/enums'
 import ErrorProvider from '../context/error-context/ErrorProvider'
 
 const  router = createBrowserRouter([

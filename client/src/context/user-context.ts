@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import.meta.env
+import * as Types from '../types'
 
-const UserContext = createContext({} as IUserContext)
+const UserContext = createContext({} as Types.IUserContext)
 export default UserContext
