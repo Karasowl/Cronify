@@ -70,3 +70,45 @@ interface IUser {
     auth: string,
     user: IUser
   }
+
+  //Cards
+export enum ECardsType {
+  DO,
+  STOP
+  }
+  
+  type TSegundos = number
+  
+  type TDay = {
+      Ischeck: boolean,
+      date: Date,
+  }
+  
+  
+  interface TGoal extends Document {
+      achieved: boolean,
+      startDate: Date,
+      totalTime: number
+  }
+  
+  type TStopBegin = Date
+  type TStopEnd = Date
+  
+  type TStop = [TStopBegin,TStopEnd]
+  
+  type TCard = {
+  type: ECardsType,
+  totalTime: TSegundos,
+  stops: TStop
+  days: TDay[]
+  }
+
+  export interface ICard{
+    _id?: string,
+    cardType: TCard,
+    createdAt?,
+    goals: TGoal[]
+    starTime:Date,
+    title:string,
+    user: string,
+}

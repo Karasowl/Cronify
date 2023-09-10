@@ -1,6 +1,6 @@
 import * as Types from "./../types"
 
-  async function fetcher({url, options}:Types.IFetchOptions):Promise<Response | Error | unknown>  {
+  async function fetcher<T>({url, options}:Types.IFetchOptions):Promise<T | string> {
     try {
 
       const response = await fetch(url, options)
@@ -10,7 +10,7 @@ import * as Types from "./../types"
          throw new Error(error.message)
         }
         const data:Types.IResponseData = await response.json()
-        return (data as Types.IResponseData).data
+        return (data as Types.IResponseData).data as T
 
     } catch(err){
 
@@ -19,7 +19,7 @@ import * as Types from "./../types"
         console.log(err.message)
         return err.message
       }
-      
+      return 'Unknown error from fetch'
     }
   }
 

@@ -61,38 +61,41 @@ body{
 #alert-errors{
     gap: 10px;
 }
-.alert{
-    padding: 0.5em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    background-color: #f8d7da91;
-   div{
-    font-size: medium !important;
-   }
-   .err-button{
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    align-self: flex-end;
-    padding: 0;
-    margin: 0;
 
-    &:active{
-        background-color: #00000000;
+.error{
+    .alert{
+        padding: 0.5em;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        background-color: #f8d7da91;
+        gap: 0.5em;
+       div{
+        font-size: medium !important;
+       }
+       .err-button{
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        padding: 0;
+        margin: 0;
+    
+        &:active{
+            background-color: #00000000;
+        }
+    
+        i{
+            color: rgba(255, 0, 0, 0.524);
+            font-size: x-large;
+            background-color: #ff9d9d45;
+            border-radius: 4px;
+        }
+       }
+       p{
+        max-width:18em;
+        overflow-wrap: break-word;
+        margin: 0;
     }
-
-    i{
-        color: rgba(255, 0, 0, 0.733);
-        font-size: x-large;
     }
-   }
-   p{
-    max-width:18em;
-    overflow-wrap: break-word;
-    justify-self: baseline;
-    margin: 0;
-}
 }

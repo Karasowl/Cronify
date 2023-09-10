@@ -33,11 +33,12 @@ days: TDay[]
 }
 
  export interface ICard extends Document{
-    title:string,
-    user: IUser,
     cardType: TCard,
-    starTime:Date,
+    createdAt?,
     goals: TGoal[]
+    starTime:Date,
+    title:string,
+    user: string,
 }
 
 //user

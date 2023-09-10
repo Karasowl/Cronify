@@ -1,10 +1,9 @@
 
 import { Button, Image, Form } from "react-bootstrap"
-import { resolvePath, useNavigate } from "react-router-dom"
+import {useNavigate } from "react-router-dom"
 import {useContext, useState, useEffect} from 'react'
 import UserContext from "../context/User-context"
 import {routes, urls} from "../helpers/enums"
-import Error from "./Error/Error"
 import ErrorContext from "../context/error-context/Error-context"
 import * as Types from  '../types'
 import fetcher from "../helpers/fetch"
@@ -96,8 +95,6 @@ return (
       <p>CRONI.FY</p>
     </div>
     <Form>
-  <Error
-  ></Error>
       {areWeInLogin ? "" : (<Form.Group className="mb-3" controlId="form-text">
         <Form.Label>Username</Form.Label>
         <Form.Control type="email" placeholder="Enter Username" value={username} onChange={(e => setUsername(e.target.value))}/>

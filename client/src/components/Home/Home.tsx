@@ -1,27 +1,30 @@
 import BodyCard from "../Cards/BodyCard"
 import {useEffect, useState, useContext } from 'react'
 import fetchCards from "../../helpers/fetch"
-import userContext from "../../context/User-context"
-
-type TCard = {
-title:string
-_id:string
-}
-
-const url = `http://localhost:9785/api/get-cards`
-
+import { urls } from "../../helpers/enums"
+import ErrorContext from "../../context/error-context/Error-context"
+import * as Types from  './../../types'
 
 export default function Home() {
-  const [cards, setCards] = useState<string[]>([])
+  const [cards, setCards] = useState<Types.ICard[]>([])
+  const errorState = useContext(ErrorContext)
 
-const userState = useContext(userContext)
 useEffect(() => {
     const fetching = async () => {
-      const response = await fetchCards({url})
-      const data = await (response as Response).json()
-      console.log(data)
-      const cardData = data.map(({title, _id}: TCard) => [_id, title]);
-      setCards(cardData)
+      try {
+        const response = await fetchCards<Types.ICard[] | string>({url:urls.getCards})
+        if(typeof response === 'string'){
+            errorState.addError(response)
+        } else {
+          console.log(response)
+          setCards(response)
+        }
+      } catch (err) {
+
+          console.log(err)
+
+        
+      }
     }
     fetching()
   },[])
@@ -29,9 +32,8 @@ useEffect(() => {
 
   return (
     <div id="home" className=''>
-      {cards.length > 0 && cards.map((data) => {
-      const [_id, title] = data
-      
+      {cards.length > 0 && cards.map((card) => {
+      const {_id, title} = card
       return (
       <div key={_id} className="body-card">
       <BodyCard key={_id} title={title}/>

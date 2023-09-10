@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom'
 import {routes} from '../helpers/enums'
 import userContext from '../context/User-context'
 import { useContext} from 'react'
+import Error from "./Error/Error"
 
 function App () {
 const userState = useContext(userContext)
@@ -21,6 +22,9 @@ return(
 
 <div id='nav-app' className='w-100'>
 <NavApp/>
+</div>
+<div className='error'>
+<Error></Error>
 </div>
 <div className='d-grid'>
 <Outlet/>

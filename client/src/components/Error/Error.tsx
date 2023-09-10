@@ -11,10 +11,14 @@ function Error() {
       return (
         <div id='alert-errors' className='d-flex flex-column justify-content-center'>
           {errorState.err.map((message:string, index) =>
-            <Alert className='alert' variant="danger" onClose={()=> {
-                }}key={index+1}>
+            <Alert 
+            className='alert' 
+            variant="danger" 
+            onClose={()=>{}}
+            key={index+1}
+            >
                 <Button onClick={()=>{errorState.clearError(index)}} className='err-button'><i className='bi bi-x'></i></Button>
-                <Alert.Heading className='alert-heading'>{`Oh snap! You got an error`}</Alert.Heading>
+                <Alert.Heading className='alert-heading'></Alert.Heading>
                 <p>{message}</p>
             </Alert>
           )}
