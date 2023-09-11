@@ -1,3 +1,4 @@
+import { jwt } from 'jsonwebtoken';
 import {Document} from "mongoose";
 
 //Cards
@@ -50,5 +51,11 @@ export interface IUser extends Document{
     cards:object[],
     appTime: Date,
     comparePass(hashPass: string): Promise<boolean>
+}
+
+//auth
+export interface IAuth extends Document{
+    token: string,
+    createdAt: Date,
 }
 

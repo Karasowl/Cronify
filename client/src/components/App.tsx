@@ -11,6 +11,7 @@ import Error from "./Error/Error"
 
 function App () {
 const userState = useContext(userContext)
+userState.loginState.setLoginState(localStorage.token)
 const location = useLocation().pathname
 useRedirect(!userState.loginState.isLogged, [routes.root], routes.login) //esto se puede refactorizar para que redirija hacia otra ruta en caso de que el valor booleano sea el opuesto
 useRedirect(userState.loginState.isLogged, [routes.root], routes.home)

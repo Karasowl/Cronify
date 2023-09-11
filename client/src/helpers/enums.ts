@@ -12,7 +12,9 @@
   export enum urls {
     createUser = `http://localhost:9785/api/create-user`,
     login = `http://localhost:9785/api/login`,
+    auth = `http://localhost:9785/api/auth`,
     createCard = `http://localhost:9785/api/create-card`,
-    getCards = `http://localhost:9785/api/get-cards`
+    getCards = `http://localhost:9785/api/get-cards`,
+
   }
   

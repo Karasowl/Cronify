@@ -1,6 +1,7 @@
 import { ECardsType, IUser } from '../types'
 import UserModel from '../models/User'
 import CardModel from '../models/Card'
+import AuthModel from '../models/Auth'
 import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
@@ -10,10 +11,15 @@ const JWT_SECRET = process.env.JWT_SECRET as string
 
 export const getCards = async (req: Request, res:Response) =>{
   try {
+    const {auth} = req.headers
+    const authFound = await AuthModel.findOne({token: auth})
+    if(!authFound){
+      return res.status(404).json({ success: false, message: `Ups, necesita loguearse para acceder`})
+    }
     const cards = await CardModel.find()
-    res.status(200).json({ success: true, data: cards })
+    return res.status(200).json({ success: true, data: cards })
   } catch (error) {
-    res.status(500).json({ success: false, message: (error as Error).message })
+    return res.status(500).json({ success: false, message: (error as Error).message })
   }
 }
 
@@ -31,12 +37,12 @@ export const createCard = async (req: Request, res:Response) =>{
     await newCard.validate();
     await newCard.save()
 
-    res.status(201).json({ success: true, data: newCard })
+    return res.status(201).json({ success: true, data: newCard })
   } catch (error) {
     if(error instanceof Error){
-        res.status(400).json({ success: false, message: error.message })
+        return res.status(400).json({ success: false, message: error.message })
     } else {
-        res.status(500).json({ success: false, message: (error as Error).message })
+        return res.status(500).json({ success: false, message: (error as Error).message })
     }
   }
 }
@@ -56,15 +62,20 @@ export const createUser = async (req: Request, res: Response) => {
     id: user._id
    }
     const token = jwt.sign(payload, JWT_SECRET )
-    res.status(201).json({ success: true, data: {
+    const newAuth = new AuthModel({
+      token,
+      createdAt: Date.now()
+    })
+    await newAuth.save()
+    return res.status(201).json({ success: true, data: {
       auth: token,
       user
     } })
   } catch (error) {
     if(error instanceof Error){
-        res.status(400).json({ success: false, message: error.message })
+        return res.status(400).json({ success: false, message: error.message })
     } else {
-        res.status(500).json({ success: false, message: (error as Error).message })
+        return res.status(500).json({ success: false, message: (error as Error).message })
     }
   }
 }
@@ -91,11 +102,35 @@ export const login = async (req: Request, res:Response) =>{
       id: user._id
      }
       const token = jwt.sign(payload, JWT_SECRET )
-      res.status(201).json({ success: true, data: {
+      const newAuth = new AuthModel({
+        token,
+        createdAt: Date.now()
+      })
+      await newAuth.save()
+      return res.status(201).json({ success: true, data: {
         auth: token,
         user
       } })
   } catch(error){
-    res.status(500).json({ success: false, message: `Error getting user: ${error}`})
+    return res.status(500).json({ success: false, message: `Error getting user: ${error}`})
   }
+}
+
+export const auth = async (req: Request, res: Response) => {
+    try {
+      const {auth} = req.headers
+      
+      const authFound = await AuthModel.findOne({token:auth})
+      if(!authFound){
+        return res.status(404).json({ success: false, message: `No tiene autorización para acceder`})
+      }
+      return res.status(201).json({ success: true, data: {
+        auth:authFound,
+      }})
+    } catch (error) {
+      console.log(error)
+      
+      return res.status(404).json({ success: false, message: `Comprobación de autorización no completada: ${error}`})
+    }
+    
 }

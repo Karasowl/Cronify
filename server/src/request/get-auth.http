@@ -1,0 +1,4 @@
+GET http://localhost:9785/api/auth HTTP/1.1
+content-Type: application/json
+auth:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZmU3M2Q1NGY4MGYxODFiYzVlYTJhNiIsImlhdCI6MTY5NDM5NzM5OH0.MIkhUYRinmubt8qxTnj_1OR0UBplV4rllNj-Nu8IGzw
+

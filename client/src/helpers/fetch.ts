@@ -16,7 +16,7 @@ import * as Types from "./../types"
 
       console.log(`Error es instancia de Error: ${err instanceof Error}`)
       if(err instanceof Error){
-        console.log(err.message)
+        console.log(err)
         return err.message
       }
       return 'Unknown error from fetch'

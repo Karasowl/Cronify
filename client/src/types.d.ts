@@ -8,10 +8,12 @@ export type TProps = {
 
 export interface ILoginState {
     isLogged: boolean,
-    setLogged: (value:boolean) => void
+    setLoginState: (value:boolean) => void
 }
 interface IUserContext  {
    loginState : ILoginState
+   user: IUser
+   setUser: (value:IUser) => void
 }
 
 
@@ -22,10 +24,10 @@ export interface IFetchOptions extends RequestInit{
     options?: {
         method: string,
         headers?: {
-            'Content-Type': string,
-            'Authorization'?: string
+            'content-Type'?: string,
+            auth?: string
         },
-        body?: STRING
+        body?: string
     }
 }
 
@@ -58,7 +60,10 @@ export interface IResponseData {
     message?: string,
 }
 
+//User
+
 interface IUser {
+  _id?: string,
     username:string,
     password:string,
     email:string,
@@ -66,9 +71,13 @@ interface IUser {
     appTime: Date,
     comparePass(hashPass: string): Promise<boolean>
   }
+
+
+
+  //Auth
   interface IAuthData {
     auth: string,
-    user: IUser
+    user?: IUser
   }
 
   //Cards

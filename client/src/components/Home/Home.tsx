@@ -4,6 +4,7 @@ import fetchCards from "../../helpers/fetch"
 import { urls } from "../../helpers/enums"
 import ErrorContext from "../../context/error-context/Error-context"
 import * as Types from  './../../types'
+import { Button } from "react-bootstrap"
 
 export default function Home() {
   const [cards, setCards] = useState<Types.ICard[]>([])
@@ -12,7 +13,13 @@ export default function Home() {
 useEffect(() => {
     const fetching = async () => {
       try {
-        const response = await fetchCards<Types.ICard[] | string>({url:urls.getCards})
+        const response = await fetchCards<Types.ICard[] | string>({url:urls.getCards, options:{
+          method: 'GET',
+          headers: {
+            "content-Type": "application/json",
+            auth:localStorage.token
+          }
+        }})
         if(typeof response === 'string'){
             errorState.addError(response)
         } else {
@@ -32,6 +39,15 @@ useEffect(() => {
 
   return (
     <div id="home" className=''>
+      <div id="cards">
+     <div id="cards-opt">
+        <div id="cards-total">
+        <p>Cards</p>
+        <span>{cards.length}</span>
+        </div>
+        <Button><i className="bi bi-plus"></i></Button>
+     </div>
+     <div id="cards-grid">
       {cards.length > 0 && cards.map((card) => {
       const {_id, title} = card
       return (
@@ -40,6 +56,8 @@ useEffect(() => {
       </div>
       )
       })}
+     </div>
+      </div>
     </div>
   );
 }

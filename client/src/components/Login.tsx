@@ -27,7 +27,7 @@ const Login = () => {
       options:{
         method: 'POST',
         headers:{
-            "Content-Type":'application/json'
+            "content-Type":'application/json'
         },
         body: JSON.stringify(
           {
@@ -44,7 +44,7 @@ const Login = () => {
       options:{
         method: 'POST',
         headers:{
-          "Content-Type": 'application/json'
+          "content-Type": 'application/json'
         },
         body: JSON.stringify(
           {
@@ -56,13 +56,9 @@ const Login = () => {
       }
   }
 
-  useEffect(()=>{
-    if(data?.auth){
-      console.log(data)
-      const token = data?.auth
-       localStorage.token = token
-    }
-  }, [data])
+  // useEffect(()=>{
+  //   userState.loginState.setLoginState(true)
+  // }, [data])
 
   const handleButton = async () => {
     setLoading(true)
@@ -75,13 +71,20 @@ const Login = () => {
         if(typeof response === 'string' ){
           errorState.addError(response)
         }else {
-          response ? setData(()=> response as Types.IAuthData) : null
-          userState.loginState.setLogged(true)
+          const responseData = response as Types.IAuthData;
+          if(responseData?.auth){
+            setData(responseData)
+            console.log(responseData, "entro acaaaaaaa")
+            const token = responseData.auth
+            localStorage.token = token
+            userState.loginState.setLoginState(true)
+          }
         }
     }
     
-    setLoading(false)
   }
+  setTimeout(() => { // aún no he logrado convertir a setLoginState en una función que pueda usarse con await en este contexto
+  }, 5)
 }
 
 return (
