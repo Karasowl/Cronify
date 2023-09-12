@@ -87,10 +87,9 @@ useEffect(() => {
      </div>
      <div id="cards-grid">
       {cards.length > 0 && cards.map((card) => {
-      const {_id, title} = card
       return (
-      <div key={_id} className="body-card">
-      <BodyCard key={_id} title={title}/>
+      <div key={card._id} className="body-card">
+      <BodyCard key={card._id} {...card as Types.ICard}/>
       </div>
       )
       })}

@@ -1,19 +1,28 @@
+import * as Types from '../../types'
+import {format, parseISO, formatDistanceToNow} from 'date-fns'
 
+export default function BodyCard({...card}: Types.ICard) {
 
-interface Props {
-  title?: string
-}
+  // function cardResolver (cardType){
+  //     if(cardType.type === Types.ECardsType.DO){
 
-export default function BodyCard({title}: Props) {
+  //     }
+  // }
+
+  const prettyCratedAT = parseISO(card.createdAt)
+
   return (
     <article className="">
-        <div className="card-header">{title}
+        <div className="card-header">{card.title}
         </div>
         <div className="card-body">
         </div>
+        <div className='card-goals-achieved'></div>
+        <div className="stars">
+        </div>
         <div className="card-buttons">
         </div>
-        <p className="card-footer">creado - */*/*
+        <p className="card-footer">{`creado - ${formatDistanceToNow(prettyCratedAT)}`}
         </p>
     </article>
   )
