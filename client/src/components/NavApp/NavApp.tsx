@@ -37,6 +37,7 @@ function OffcanvasExample() {
   const logout = () => {
     console.log(`logout activado`)
     localStorage.removeItem('token')
+    sessionStorage.removeItem('token')
     userState.loginState.setLoginState(false)
   }
   ///

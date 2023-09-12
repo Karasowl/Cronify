@@ -19,7 +19,7 @@ useEffect(() => {
           method: 'GET',
           headers: {
             "content-Type": "application/json",
-            auth:localStorage.token
+            auth:localStorage.token || sessionStorage.token
           }
         }})
         if(typeof response === 'string'){
@@ -35,7 +35,7 @@ useEffect(() => {
         
       }
     }
-    localStorage.token ? fetching() : null
+    localStorage.token || sessionStorage.token ? fetching() : null
   },[cardsCreated])
 
 

@@ -1,4 +1,4 @@
-import UserContext from "./User-context"
+import UserContext from "./user-context"
 import {useState} from "react"
 import * as Types from "./../types"
 import fetcher from "../helpers/fetch"
@@ -13,16 +13,17 @@ const UserProvider = ({children}:Types.TProps) => {
     const setLoginState = async (isLoggedIn:boolean):Promise<boolean> => {
       try {
         if(isLoggedIn){
-        if(typeof localStorage.token === 'undefined'){
-          console.log(`Error: localStorage.token es ${localStorage.token}`)
+        if(typeof localStorage.token === 'undefined' && typeof sessionStorage.token === 'undefined'){
+          console.log(`Error: localStorage.token es ${localStorage.token} y sessionStorage.token es ${sessionStorage.token}`)
           return false
         }else{
           console.log("Token en localStorage:", localStorage.token)
+          console.log("Token en localStorage:", sessionStorage.token)
           const authFound = await fetcher({url: urls.auth, options:{
            method:'GET',
            headers: {
              "content-Type": 'application/json', 
-             auth:localStorage.token
+             auth:localStorage.token || sessionStorage.token
            }
           }})
  

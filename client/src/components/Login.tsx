@@ -2,7 +2,7 @@
 import { Button, Image, Form } from "react-bootstrap"
 import {useNavigate } from "react-router-dom"
 import {useContext, useState} from 'react'
-import UserContext from "../context/User-context"
+import UserContext from "../context/user-context"
 import {routes, urls} from "../helpers/enums"
 import ErrorContext from "../context/error-context/Error-context"
 import * as Types from  '../types'
@@ -33,8 +33,7 @@ const Login = () => {
           {
             username,
             email,
-            password,
-            stayLogged
+            password
           }
         )
       }
@@ -73,7 +72,8 @@ const Login = () => {
           if(responseData?.auth){
             setData(responseData)
             const token = responseData.auth
-              localStorage.token = token
+            console.log(`stayLogged: ${stayLogged}`)
+              stayLogged ? localStorage.token = token : sessionStorage.token = token
               console.log("Token guardado en localStorage:", token);
             userState.loginState.setLoginState(true)
           }
