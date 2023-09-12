@@ -1,7 +1,7 @@
 
 import { Button, Image, Form } from "react-bootstrap"
 import {useNavigate } from "react-router-dom"
-import {useContext, useState, useEffect} from 'react'
+import {useContext, useState} from 'react'
 import UserContext from "../context/User-context"
 import {routes, urls} from "../helpers/enums"
 import ErrorContext from "../context/error-context/Error-context"
@@ -56,11 +56,9 @@ const Login = () => {
       }
   }
 
-  // useEffect(()=>{
-  //   userState.loginState.setLoginState(true)
-  // }, [data])
-
   const handleButton = async () => {
+    
+   try {
     setLoading(true)
     
     if(typeof areWeInLogin !== 'undefined'){
@@ -74,17 +72,21 @@ const Login = () => {
           const responseData = response as Types.IAuthData;
           if(responseData?.auth){
             setData(responseData)
-            console.log(responseData, "entro acaaaaaaa")
             const token = responseData.auth
-            localStorage.token = token
+              localStorage.token = token
+              console.log("Token guardado en localStorage:", token);
             userState.loginState.setLoginState(true)
           }
         }
     }
     
   }
-  setTimeout(() => { // aún no he logrado convertir a setLoginState en una función que pueda usarse con await en este contexto
-  }, 5)
+  setTimeout(() => { setLoading(false)// aún no he logrado convertir a setLoginState en una función que pueda usarse con await en este contexto
+  }, 10)
+   } catch (error) {
+    console.log(error)
+    
+   }
 }
 
 return (
@@ -127,6 +129,9 @@ return (
         onClick={async (e) => {
           e.preventDefault()
           await handleButton()
+         if(typeof data?.user !== 'undefined'){
+          userState.setUser(data.user)
+         }
 
 
         }}

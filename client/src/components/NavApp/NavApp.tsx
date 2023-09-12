@@ -25,7 +25,7 @@ function OffcanvasExample() {
       buttonClassName: 'opacity-25'
     }
   }
-  //cambiar eleemntos del Navbar según la url
+  //cambiar elementos del Navbar según la url
   const currentNavBar = (): Types.INavBarPage => {
     const currentPath = location.pathname
     if (currentPath === routes.login || currentPath === routes.register) return titlesPage.login
@@ -35,18 +35,23 @@ function OffcanvasExample() {
 
   //desloguearse 
   const logout = () => {
-      localStorage.removeItem('token')
-      userState.loginState.setLoginState(false)
+    console.log(`logout activado`)
+    localStorage.removeItem('token')
+    userState.loginState.setLoginState(false)
   }
   ///
-
+  
   const expand = ""
   return (
     <>
       <Navbar data-bs-theme='dark' key={expand} expand={expand} className="bg-primary mb-3">
         <Container fluid className={currentNavBar().containerClassName}>
           <Navbar.Brand href="#">{currentNavBar().title}</Navbar.Brand>
-          <Button onClick={()=> {logout()}} className={currentNavBar().buttonClassName}><i className='bi bi-x'></i></Button>
+          <Button onClick={()=>{
+            
+            console.log(`Onclick del Nav activado`)
+            logout()
+          }} className={currentNavBar().buttonClassName}><i className='bi bi-x'></i></Button>
           {/* <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className={currentNavBar().toggleClassName}/> */}
         </Container>
       </Navbar>

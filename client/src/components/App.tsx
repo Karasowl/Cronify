@@ -13,10 +13,10 @@ function App () {
 const userState = useContext(userContext)
 userState.loginState.setLoginState(localStorage.token)
 const location = useLocation().pathname
-useRedirect(!userState.loginState.isLogged, [routes.root], routes.login) //esto se puede refactorizar para que redirija hacia otra ruta en caso de que el valor booleano sea el opuesto
-useRedirect(userState.loginState.isLogged, [routes.root], routes.home)
-useRedirect(userState.loginState.isLogged, [routes.login, routes.register], routes.home)
-useRedirect(!userState.loginState.isLogged, [routes.home, routes.settings, routes.statistics, routes.user], routes.login)
+useRedirect(!localStorage.token, [routes.root], routes.login) //esto se puede refactorizar para que redirija hacia otra ruta en caso de que el valor booleano sea el opuesto
+useRedirect(localStorage.token, [routes.root], routes.home)
+useRedirect(localStorage.token, [routes.login, routes.register], routes.home)
+useRedirect(!localStorage.token, [routes.home, routes.settings, routes.statistics, routes.user], routes.login)
 
 return(
 <div id='app'>

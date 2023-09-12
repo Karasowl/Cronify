@@ -17,6 +17,7 @@ const UserProvider = ({children}:Types.TProps) => {
           console.log(`Error: localStorage.token es ${localStorage.token}`)
           return false
         }else{
+          console.log("Token en localStorage:", localStorage.token)
           const authFound = await fetcher({url: urls.auth, options:{
            method:'GET',
            headers: {
@@ -28,7 +29,7 @@ const UserProvider = ({children}:Types.TProps) => {
           if(typeof authFound === "string" ){
            throw new Error(authFound)
           } else{
-           console.log(`${(authFound as Types.IAuthData).auth} es igual a ${localStorage.token}`)
+           console.log(`Token encontrado en bs`)
            setLogged(isLoggedIn)
            return true
         }
