@@ -25,13 +25,15 @@ export const getCards = async (req: Request, res:Response) =>{
 
 export const createCard = async (req: Request, res:Response) =>{ 
   try {
+    
     const {title, starTime, cardType, user, goals} = req.body
+    console.log(starTime, "fecha")
     const newCard = new CardModel({
         title,
-        starTime : Date.now(),
+        starTime,
         cardType,
         user,
-        goals,
+        goals
     })
 
     await newCard.validate();

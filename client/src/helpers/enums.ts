@@ -18,3 +18,7 @@
 
   }
   
+  export enum ECardsType {
+    DO ='DO',
+    STOP = 'STOP'
+    }

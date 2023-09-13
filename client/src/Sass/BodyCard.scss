@@ -1,54 +1,354 @@
+article {
+    display: flex;
+    width: 18rem;
+    padding: $padding-card;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 0.25rem;
+    background: #f8f9fa;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
 
-article{
+    .card-header {
+        display: flex;
+        width: $width-element-card;
+        height: 1.75rem;
+        padding: $padding-card;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 0.25rem;
+        background: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
+
+        .card-title{
+            color: white;
+            font-weight: bold;
+        }
+
+        .card-menu{
+            font-size: x-large;
+            color: white;
+        }
+    }
+
+    .card-body {
+        display: flex;
+        min-height: 8rem;
+        padding: $padding-card;
+        align-items: center;
+        gap: 0.375rem;
+        background: linear-gradient(180deg, rgba(112, 0, 255, 0) 0%, rgba(0, 123, 255, 0.1) 100%);
+
+        .innerBody {
+            display: flex;
+            height: 9.3125rem;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 0.5rem;
+
+            .timer-hoursMinutes-container{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .timer-hoursMinutes {
+                position: relative;
+                display: flex;
+                width: 7rem;
+                min-width: 7rem;
+                min-height: 7rem;
+                border-radius: 50%;
+                justify-content: center;
+                align-items: center;
+            
+                @keyframes fill {
+                    0% {
+                        background-position: 100% 50%;
+                    }
+                    50% {
+                        background-position: 0% 50%;
+                    }
+                    100% {
+                        background-position: 100% 50%;
+                    }
+                }
+            
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background: linear-gradient(90deg, #48C6EF 0%, #6F86D6 100%);
+                    background-size: 200% 200%;
+                    animation: fill 2s infinite;
+                }
+            
+                div {
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 1.01563rem;
+                    background: #fff;
+            
+                    .hoursMinutes {
+                        color: #1988fe;
+                        font-family: Inter;
+                        font-size: 1.21875rem;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 1.21875rem;
+                        padding: 0.1em 0.2em;
+                    }
+                }
+            }
+            
+
+            .right-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 0.75rem;
+
+                .total {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.375rem;
+
+                    p {
+                        color: var(--Gray-3, #828282);
+                        font-family: Inter;
+                        font-size: 0.625rem;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 1.21875rem;
+                    }
+
+                    .progression-total {
+                        display: flex;
+                        padding: 0.375rem;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 0.38rem;
+
+                        background: #fff;
+                        color: var(--Blue-1, #2f80ed);
+                        font-family: Inter;
+                        font-size: 0.75rem;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 1.21875rem;
+
+                        .inner-progression-text {
+                            color: var(--Blue-1, #2f80ed) !important;
+                            font-family: Inter;
+                            font-size: 0.75rem;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 1.21875rem;
+
+                            .separator {
+                                background-color: var(--Blue-2, #2d9cdb) !important;
+                                width: 0.0625rem;
+                                height: 0.375rem;
+                                display: inline-block;
+                                margin-left: 0.38rem;
+                            }
+                        }
+                    }
+                }
+
+                .current-goal {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+
+                    p {
+                        color: var(--Gray-3, #828282);
+                        font-family: Inter;
+                        font-size: 0.625rem;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 1.21875rem; /* 195% */
+                        span {
+                            color: #007bff;
+                            font-family: Inter;
+                            font-size: 0.625rem;
+                            font-style: normal;
+                            font-weight: 900;
+                            line-height: 1.21875rem;
+                        }
+
+                        
+                    }
+
+                    .progression-goal {
+                        display: flex;
+                        width: 8.0625rem;
+                        height: 1.5rem;
+                        padding: 0.25rem 5.1875rem 0.25rem 0.4375rem;
+                        align-items: center;
+                        background: #fff;
+
+                        .progression-bar{
+                            width: 2.4375rem;
+height: 1rem;
+background: #007BFF;
 display: flex;
-width: 18rem;
-padding: $padding-card;
-flex-direction: column;
+justify-content: center;
+align-items: center;
+
+.percent{
+    color: #FFF;
+font-family: Inter;
+font-size: 0.75rem;
+font-style: normal;
+font-weight: 900;
+line-height: 1.21875rem;
+
+}
+                        }
+                    }
+                
+                .streak{
+                    p{
+                        color: #007BFF !important;
+font-family: Inter;
+font-size: 0.625rem;
+font-style: normal;
+font-weight: 900;
+line-height: 1.21875rem;
+                    }
+                    i{
+                        margin-left: 0.3rem;
+                    }
+                }}
+            }
+        }
+    }
+
+    .card-buttons {
+        display: flex;
+        height: 1.75rem;
+        width: $width-element-card;
+        padding: $padding-card;
+        padding: 0.125rem 0.375rem;
+        justify-content: space-between;
+        align-items: center;
+
+        .play-stop{
+            display: flex;
+justify-content: center;
 align-items: center;
 gap: 0.75rem;
-border-radius: 0.25rem;
-background: #F8F9FA;
-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
 
-.card-header{
-color: white;
-font-weight: bold;
-display: flex;
-width: $width-element-card;
-height: 1.75rem;
-padding: $padding-card;
-justify-content: space-between;
-align-items: center;
-border-radius: 0.25rem;
-background: linear-gradient(90deg, #4481EB 0%, #04BEFE 100%);
+        }
+        .play, .stop, .statistics{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #E8F1FF;
+            width: 1.5rem;
+            cursor: pointer;
+        height: 1.5rem;
+        
+           .play-icon{
+            font-size: x-large;
+            color: var(--Green-2, #27AE60) !important;
+           }
+           .stop-icon{
+            font-size: x-large;
+            color: var(--Orange, #F2994A);
+           }
+           .statistics-icon{
+            font-size: x-large;
+            color: var(--Blue-1, #2F80ED);
+           }
+        }
+    }
+
+    p {
+        margin: 0;
+        color: $gray-500 !important;
+        font-size: 0.625rem;
+        font-weight: 300;
+        line-height: 1.2rem;
+        /* 195% */
+    }
 }
 
-.card-body{
-display: flex;
-min-height: 8rem;
-width: $width-element-card;
-padding: $padding-card;
-align-items: center;
-gap: 0.375rem;
-background: linear-gradient(180deg, rgba(112, 0, 255, 0.00) 0%, rgba(0, 123, 255, 0.10) 100%);
-}
+///
+/*
+ * react-circular-progressbar styles
+ * All of the styles in this file are configurable!
+ */
 
-.card-buttons{
-display: flex;
-height: 1.75rem;
-width: $width-element-card;
-padding: $padding-card;
-padding: 0.125rem 0.375rem;
-justify-content: space-between;
-align-items: center;
-}
-
-p{
-margin: 0;
-color: $gray-500 !important;    
-font-size: 0.625rem;
-font-weight: 300;
-line-height: 1.2rem; /* 195% */
-}
-}
-
+ .CircularProgressbar {
+    /*
+     * This fixes an issue where the CircularProgressbar svg has
+     * 0 width inside a "display: flex" container, and thus not visible.
+     */
+    width: 100%;
+    position: relative;
+    /*
+     * This fixes a centering issue with CircularProgressbarWithChildren:
+     * https://github.com/kevinsqi/react-circular-progressbar/issues/94
+     */
+    vertical-align: middle;
+  }
+  
+  .CircularProgressbar .CircularProgressbar-path {
+    stroke: #3e98c7;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease 0s;
+  }
+  
+  .CircularProgressbar .CircularProgressbar-trail {
+    stroke: #d6d6d6;
+    /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
+    stroke-linecap: round;
+  }
+  
+  .CircularProgressbar .CircularProgressbar-text {
+    fill: #3e98c7;
+    font-size: 20px;
+    dominant-baseline: middle;
+    text-anchor: middle;
+  }
+  
+  .CircularProgressbar .CircularProgressbar-background {
+    fill: #d6d6d6;
+  }
+  
+  /*
+   * Sample background styles. Use these with e.g.:
+   *
+   *   <CircularProgressbar
+   *     className="CircularProgressbar-inverted"
+   *     background
+   *     percentage={50}
+   *   />
+   */
+  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
+    fill: #3e98c7;
+  }
+  
+  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
+    fill: #fff;
+  }
+  
+  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
+    stroke: #fff;
+  }
+  
+  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
+    stroke: transparent;
+  }

@@ -3,9 +3,9 @@ import {Document} from "mongoose";
 
 //Cards
 export enum ECardsType {
-DO,
-STOP
-}
+    DO ='DO',
+    STOP = 'STOP'
+    }
 
 type TSegundos = number
 
@@ -24,7 +24,7 @@ interface TGoal extends Document {
 type TStopBegin = Date
 type TStopEnd = Date
 
-type TStop = [TStopBegin,TStopEnd]
+type TStop = [TStopBegin,TStopEnd] | []
 
 type TCard = {
 type: ECardsType,

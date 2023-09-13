@@ -1,4 +1,4 @@
-
+import ECardsType from './helpers/enums'
 
 
 export type TProps = {
@@ -81,10 +81,7 @@ interface IUser {
   }
 
   //Cards
-export enum ECardsType {
-  DO,
-  STOP
-  }
+
   
   type TSegundos = number
   
@@ -103,7 +100,7 @@ export enum ECardsType {
   type TStopBegin = Date
   type TStopEnd = Date
   
-  type TStop = [TStopBegin,TStopEnd]
+  type TStop = [TStopBegin,TStopEnd] | []
   
   type TCard = {
   type: ECardsType,

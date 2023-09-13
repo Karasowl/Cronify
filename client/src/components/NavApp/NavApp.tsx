@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useLocation } from 'react-router-dom';
 import {routes} from '../../helpers/enums';
 import * as Types from "./../../types"
-import UserContext from '../../context/User-context';
+import UserContext from '../../context/user-context';
 import { useContext } from 'react';
 
 function OffcanvasExample() {

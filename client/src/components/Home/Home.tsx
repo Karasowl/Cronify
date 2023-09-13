@@ -26,6 +26,7 @@ useEffect(() => {
             errorState.addError(response)
         } else {
           console.log(response)
+          response.reverse()
           setCards(response)
         }
       } catch (err) {
@@ -56,20 +57,18 @@ useEffect(() => {
               "cardType": {
                   "type":"STOP",
                   "totalTime": 3000,
-                  "stops": ["2023-08-25T22:05:49.147Z", "2023-08-25T22:05:49.147Z"],
+                  "stops": [],
                   "days": [{
                       "Ischeck": false,
                       "date": "2023-08-25T22:05:49.147Z"
-                  }],
-               "starTime":"2023-08-25T22:05:49.147Z",
-              "goals": {
-                  "achieved": false,
-                  "startDate": "2023-08-25T22:05:49.147Z",
-                  "totalTime": 334566
-              }
-          
-          
+                  }]
               },
+              "starTime":"2020-08-25T22:05:49.147Z",
+              "goals": {
+                "achieved": false,
+                "startDate": "2023-08-25T22:05:49.147Z",
+                "totalTime": 334566
+            },
               "appTime": ""
           }
 
