@@ -194,27 +194,14 @@ article {
                         display: flex;
                         width: 8.0625rem;
                         height: 1.5rem;
-                        padding: 0.25rem 5.1875rem 0.25rem 0.4375rem;
                         align-items: center;
                         background: #fff;
 
-                        .progression-bar{
-                            width: 2.4375rem;
-height: 1rem;
-background: #007BFF;
-display: flex;
-justify-content: center;
-align-items: center;
-
-.percent{
-    color: #FFF;
-font-family: Inter;
-font-size: 0.75rem;
-font-style: normal;
-font-weight: 900;
-line-height: 1.21875rem;
-
-}
+                        .progress{
+                            width: inherit;
+                            border-radius: 0;
+                            background-color: #fff;
+                            padding: 0 0.25em;
                         }
                     }
                 
@@ -250,6 +237,25 @@ justify-content: center;
 align-items: center;
 gap: 0.75rem;
 
+p {
+    color: var(--Gray-3, #828282);
+    font-family: Inter;
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.21875rem; /* 195% */
+    span {
+        color: #007bff;
+        font-family: Inter;
+        font-size: 0.625rem;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 1.21875rem;
+    }
+
+    
+}
+
         }
         .play, .stop, .statistics{
             display: flex;
@@ -272,6 +278,8 @@ gap: 0.75rem;
             font-size: x-large;
             color: var(--Blue-1, #2F80ED);
            }
+
+       
         }
     }
 

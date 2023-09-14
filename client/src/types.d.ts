@@ -5,6 +5,12 @@ export type TProps = {
     children: JSX.Element | JSX.Element[]
 }
 
+export interface IPropsHome {
+  updateCards: (value: number) => void,
+  card: Types.ICard | object
+}
+
+
 
 export interface ILoginState {
     isLogged: boolean,
@@ -24,7 +30,7 @@ export interface IFetchOptions extends RequestInit{
     options?: {
         method: string,
         headers?: {
-            'content-Type'?: string,
+            'Content-Type'?: string,
             auth?: string
         },
         body?: string
@@ -93,12 +99,12 @@ interface IUser {
   
   interface TGoal extends Document {
       achieved: boolean,
-      startDate: Date,
+      startDate: Date
       totalTime: number
   }
   
-  type TStopBegin = Date
-  type TStopEnd = Date
+  type TStopBegin = string //o Date?
+  type TStopEnd = string //o Date?
   
   type TStop = [TStopBegin,TStopEnd] | []
   
@@ -114,7 +120,7 @@ interface IUser {
     cardType: TCard,
     createdAt?,
     goals: TGoal[]
-    starTime:Date,
+    starTime:Date | string,
     title:string,
     user: string,
 }

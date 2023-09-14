@@ -52,7 +52,7 @@ function OffcanvasExample() {
             
             console.log(`Onclick del Nav activado`)
             logout()
-          }} className={currentNavBar().buttonClassName}><i className='bi bi-x'></i></Button>
+          }} className={currentNavBar().buttonClassName}><i className='bi bi-box-arrow-right'></i></Button>
           {/* <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className={currentNavBar().toggleClassName}/> */}
         </Container>
       </Navbar>

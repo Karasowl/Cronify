@@ -16,6 +16,8 @@ type TDay = {
 
 
 interface TGoal extends Document {
+    id: string,
+    active: boolean,
     achieved: boolean,
     startDate: Date,
     totalTime: number

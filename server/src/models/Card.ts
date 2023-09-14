@@ -21,7 +21,7 @@ const CardSchema:Schema = new Schema({
     },
     starTime:{
         type: Date, 
-        required:[true, 'La fecha de inicio es requerida']
+        required:[false]
     },
     goals:{
         type:Array,

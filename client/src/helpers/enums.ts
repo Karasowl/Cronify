@@ -15,6 +15,8 @@
     auth = `http://localhost:9785/api/auth`,
     createCard = `http://localhost:9785/api/create-card`,
     getCards = `http://localhost:9785/api/get-cards`,
+    updateCard = `http://localhost:9785/api/update-card`, //lleva parámetro
+    deleteCard = `http://localhost:9785/api/delete-card`, //lleva parámetro
 
   }
   

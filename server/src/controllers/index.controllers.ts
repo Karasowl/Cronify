@@ -2,7 +2,7 @@ import { ECardsType, IUser } from '../types'
 import UserModel from '../models/User'
 import CardModel from '../models/Card'
 import AuthModel from '../models/Auth'
-import { Request, Response } from 'express'
+import {Request, Response, request } from 'express'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 dotenv.config()
@@ -133,6 +133,43 @@ export const auth = async (req: Request, res: Response) => {
       console.log(error)
       
       return res.status(404).json({ success: false, message: `Comprobación de autorización no completada: ${error}`})
+    }
+}
+
+export const updateCard = async (req: Request, res: Response) => {
+    try {
+     const {id} = req.params
+     const keysToUpdate = req.body
+     
+      const CardUpdated = await CardModel.findByIdAndUpdate(id, keysToUpdate, {new:true} )
+      if(!CardUpdated){
+        return res.status(404).json({ success: false, message: `No se pudo actualizar la tarjeta`})
+      }else{
+        return res.status(201).json({ success: true, data: CardUpdated})
+      }
+
+    } catch (error) {
+      console.log(error)
+      
+      return res.status(404).json({ success: false, message: `Actualización de tarjeta no completada: ${error}`})
+    }
+    
+}
+
+export const deleteCard = async (req: Request, res: Response) => {
+    try {
+     const {id} = req.params
+      const CardDeleted = await CardModel.findByIdAndDelete(id)
+      if(!CardDeleted){
+        return res.status(404).json({ success: false, message: `No se pudo eliminar la tarjeta`})
+      }else{
+        return res.status(201).json({ success: true, data: CardDeleted})
+      }
+
+    } catch (error) {
+      console.log(error)
+      
+      return res.status(404).json({ success: false, message: `Eliminación de tarjeta no completada: ${error}`})
     }
     
 }

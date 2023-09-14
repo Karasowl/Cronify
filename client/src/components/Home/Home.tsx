@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap"
 
 export default function Home() {
 
-  const [cardsCreated, setCardsCreated] = useState<number>(0)
+  const [cardsUpdated, setCardsUpdated] = useState<number>(0)
   const [cards, setCards] = useState<Types.ICard[]>([])
   const errorState = useContext(ErrorContext)
 
@@ -18,7 +18,7 @@ useEffect(() => {
         const response = await fetchCards<Types.ICard[] | string>({url:urls.getCards, options:{
           method: 'GET',
           headers: {
-            "content-Type": "application/json",
+            "Content-Type": "application/json",
             auth:localStorage.token || sessionStorage.token
           }
         }})
@@ -37,8 +37,7 @@ useEffect(() => {
       }
     }
     localStorage.token || sessionStorage.token ? fetching() : null
-  },[cardsCreated])
-
+  },[cardsUpdated])
 
   return (
     <div id="home" className=''>
@@ -63,32 +62,40 @@ useEffect(() => {
                       "date": "2023-08-25T22:05:49.147Z"
                   }]
               },
-              "starTime":"2020-08-25T22:05:49.147Z",
-              "goals": {
+              "starTime":"",
+              "goals": [{
+                "id":"1",
+                "active":true,
                 "achieved": false,
                 "startDate": "2023-08-25T22:05:49.147Z",
                 "totalTime": 334566
-            },
+            }],
               "appTime": ""
           }
 
           await fetchCards({url:urls.createCard, options:{
             method: 'POST',
             headers: {
-              "content-Type": "application/json",
+              "Content-Type": "application/json",
             },
             body: JSON.stringify(card)
 
           }})
-          setCardsCreated(prev=> prev + 1)
+          setCardsUpdated(prev=> prev + 1)
         }}
         ><i className="bi bi-plus"></i></Button>
      </div>
      <div id="cards-grid">
       {cards.length > 0 && cards.map((card) => {
+          const BodyCardProps: Types.IPropsHome = {
+            card: card as Types.ICard,
+            updateCards: setCardsUpdated
+          };
       return (
+      
       <div key={card._id} className="body-card">
-      <BodyCard key={card._id} {...card as Types.ICard}/>
+<BodyCard key={card._id} {...BodyCardProps} />
+
       </div>
       )
       })}
