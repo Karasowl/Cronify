@@ -29,6 +29,10 @@ const CardSchema:Schema = new Schema({
         index:true
 
     },
+    maxReached:{
+        type:Object,
+        default: null
+    }
 }, {timestamps:true})
 
 

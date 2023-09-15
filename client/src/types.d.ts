@@ -1,5 +1,6 @@
 import ECardsType from './helpers/enums'
 
+//date-fns custom
 
 export type TProps = {
     children: JSX.Element | JSX.Element[]
@@ -123,4 +124,5 @@ interface IUser {
     starTime:Date | string,
     title:string,
     user: string,
+    maxReached: Duration | null
 }

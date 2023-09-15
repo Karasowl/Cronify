@@ -1,6 +1,6 @@
 import type * as Types from './../../types'
 import { ECardsType, urls } from '../../helpers/enums'
-import {format, parseISO, intervalToDuration, differenceInMinutes, subMinutes, formatDistanceToNow, formatDuration, milliseconds, formatISO} from 'date-fns'
+import {format, parseISO, intervalToDuration, differenceInMinutes, subMinutes, formatDuration, milliseconds, formatISO, set} from 'date-fns'
 import {useContext, useEffect, useState } from 'react'
 import { CircularProgressbar } from 'react-circular-progressbar'
 import { es } from 'date-fns/locale'
@@ -21,26 +21,31 @@ const [seconds, setSeconds] = useState(0)
 const goalReceived = {days:1}
 const [goal, setGoal] = useState(goalReceived)
 const [percentBar, setPercentBar] = useState(0)
-const [maxReached, setmaxReached] = useState(formatDistanceToNow(parseISO(props.card.createdAt), {locale:es}))
+const [maxReached, setmaxReached] = useState<Duration | null>(props.card.maxReached)
 const errorState = useContext(ErrorContext)
 
+const maxReachedFromated = () => {
+  let formated:string
+if(maxReached){
+  if(milliseconds(maxReached) < 1000 * 60 *60){
+    formated = formatDuration(maxReached, {locale:es, format: ['minutes', 'seconds']})
+  }else if(milliseconds(maxReached) < 1000 * 60 *60 *24){
+    formated = formatDuration(maxReached, {locale:es, format: ['days', 'hours']})
+  } else{
+    formated = formatDuration(maxReached, {locale:es, format: ['years','months', 'days']})
+  }
+}
+  return formated
+}
 
 
 const isStop = props.card.cardType.type === ECardsType.STOP
 useEffect(() => {
   const intervalId = setInterval(() => {
-  let timer:Duration
-    if (startTime.length === 0) {
-      timer = intervalToDuration({
-        start: parseISO(props.card.createdAt),
-         end : new Date()
-       })
-    }else{
-      timer = intervalToDuration({
-        start: parseISO(startTime as string),
-         end : new Date()
-       })
-    }
+  const timer:Duration = intervalToDuration({
+    start: parseISO(startTime || props.card.createdAt),
+     end : new Date()
+   })
       
       
       setYears(timer.years || 0)
@@ -58,7 +63,16 @@ useEffect(() => {
         }
         return (miliCurrent / miliGoal) * 100
       })
-      setmaxReached(formatDistanceToNow(parseISO(props.card.createdAt), {locale:es}))
+      
+      setmaxReached((prev)=>{
+        let maxReachedUpdated:Duration
+        if(prev){
+             milliseconds(timer) < milliseconds(prev) ? maxReachedUpdated = prev : maxReachedUpdated = timer
+        } else{
+          maxReachedUpdated = timer
+        }
+        return maxReachedUpdated
+      })
 
   }, 1000);
 
@@ -148,24 +162,29 @@ const prettyCratedAT = parseISO(props.card.createdAt)
                    setHours(0)
                    setMinutes(0)
                    setSeconds(0)
-                   try{                    
+
+                   
+                   try{      
+                    const propertiesToPatch = {
+                      StarTime: formatISO(new Date()),
+                      maxReached
+                    }
+                      
                     const response = await fetcher({url: `${urls.updateCard}/${props.card._id}`, options:{
                       method:'PATCH',
                       headers:{
                           "Content-Type": "application/json",
                       },
-                      body:JSON.stringify(
-                        {
-                          starTime: formatISO(new Date()),
-                        }
-                      )
+                      body:JSON.stringify(propertiesToPatch)
                     }})
 
                     if (typeof response === 'string') {
                       throw new Error(response)
                     }else{
                       setStartTime(formatISO(new Date()))
-                      
+                      props.updateCards((prev:number) => {
+                        return prev + 1
+                       })
                     }
                     
                   }catch(error){
@@ -181,7 +200,13 @@ const prettyCratedAT = parseISO(props.card.createdAt)
           className='stop'
           >
             <i className='bi bi-stop stop-icon'></i></div>
-                <p>Máximo logro: <span>{`${maxReached}`}</span></p>
+                <p>Máximo logro: <span>
+                  {
+                  
+                  (maxReached && maxReachedFromated())
+
+                  }
+                  </span></p>
           </div>
           <div className='statistics'><i className='bi bi-bar-chart statistics-icon'></i></div>
         </div>

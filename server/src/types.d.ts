@@ -42,6 +42,7 @@ days: TDay[]
     starTime:Date,
     title:string,
     user: string,
+    maxReached: Duration | null,
 }
 
 //user
