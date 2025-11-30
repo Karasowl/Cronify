@@ -1,0 +1,64 @@
+
+> cronify@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.5 (Turbopack)
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+Error: Can't resolve 'tailwindcss-animate' in 'E:\dev-projects\Cronify\src\app'
+    [at finishWithoutResolve (E:\dev-projects\Cronify\node_modules\enhanced-resolve\lib\Resolver.js:565:18)]
+    [at E:\dev-projects\Cronify\node_modules\enhanced-resolve\lib\Resolver.js:657:14]
+    [at E:\dev-projects\Cronify\node_modules\enhanced-resolve\lib\Resolver.js:718:5]
+    [at eval (eval at create (E:\dev-projects\Cronify\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)]
+    [at E:\dev-projects\Cronify\node_modules\enhanced-resolve\lib\Resolver.js:718:5]
+    [at eval (eval at create (E:\dev-projects\Cronify\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:27:1)]
+    [at E:\dev-projects\Cronify\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43]
+    [at E:\dev-projects\Cronify\node_modules\enhanced-resolve\lib\Resolver.js:718:5]
+    [at eval (eval at create (E:\dev-projects\Cronify\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)]
+    [at E:\dev-projects\Cronify\node_modules\enhanced-resolve\lib\Resolver.js:718:5] {
+  details: "resolve 'tailwindcss-animate' in 'E:\\dev-projects\\Cronify\\src\\app'\n" +
+    '  Parsed request is a module\n' +
+    '  using description file: E:\\dev-projects\\Cronify\\package.json (relative path: ./src/app)\n' +
+    '    resolve as module\n' +
+    "      E:\\dev-projects\\Cronify\\src\\app\\node_modules doesn't exist or is not a directory\n" +
+    "      E:\\dev-projects\\Cronify\\src\\node_modules doesn't exist or is not a directory\n" +
+    '      looking for modules in E:\\dev-projects\\Cronify\\node_modules\n' +
+    '        single file module\n' +
+    '          using description file: E:\\dev-projects\\Cronify\\package.json (relative path: ./node_modules/tailwindcss-animate)\n' +
+    '            no extension\n' +
+    "              E:\\dev-projects\\Cronify\\node_modules\\tailwindcss-animate doesn't exist\n" +
+    '            .js\n' +
+    "              E:\\dev-projects\\Cronify\\node_modules\\tailwindcss-animate.js doesn't exist\n" +
+    '            .json\n' +
+    "              E:\\dev-projects\\Cronify\\node_modules\\tailwindcss-animate.json doesn't exist\n" +
+    '            .node\n' +
+    "              E:\\dev-projects\\Cronify\\node_modules\\tailwindcss-animate.node doesn't exist\n" +
+    '            .ts\n' +
+    "              E:\\dev-projects\\Cronify\\node_modules\\tailwindcss-animate.ts doesn't exist\n" +
+    "        E:\\dev-projects\\Cronify\\node_modules\\tailwindcss-animate doesn't exist\n" +
+    "      E:\\dev-projects\\node_modules doesn't exist or is not a directory\n" +
+    "      E:\\node_modules doesn't exist or is not a directory"
+}
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: E:\dev-projects\Cronify\src\app\globals.css:1:1: Can't resolve 'tailwindcss-animate' in 'E:\dev-projects\Cronify\src\app'
+    at Input.error (node_modules/postcss/lib/input.js:135:16) [E:\dev-projects\Cronify\.next\build\chunks\node_modules_fe693df6._.js:4651:22]
+    at Root.error (node_modules/postcss/lib/node.js:146:32) [E:\dev-projects\Cronify\.next\build\chunks\node_modules_fe693df6._.js:928:38]
+    [at Object.Once (E:\dev-projects\Cronify\node_modules\@tailwindcss\postcss\dist\index.js:10:6912)]
+    at async LazyResult.runAsync (node_modules/postcss/lib/lazy-result.js:293:11) [E:\dev-projects\Cronify\.next\build\chunks\node_modules_fe693df6._.js:6206:21]
+    at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34) [E:\dev-projects\Cronify\.next\build\chunks\[root-of-the-server]__51225daf._.js:146:36]
+    at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23) [E:\dev-projects\Cronify\.next\build\chunks\[root-of-the-server]__974941ed._.js:443:31]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+    at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34) [E:\dev-projects\Cronify\.next\build\chunks\[root-of-the-server]__51225daf._.js:146:36])
+    at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23) [E:\dev-projects\Cronify\.next\build\chunks\[root-of-the-server]__974941ed._.js:443:31])

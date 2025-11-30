@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/i18n/routing.ts"],"sourcesContent":["import { defineRouting } from 'next-intl/routing';\r\nimport { createNavigation } from 'next-intl/navigation';\r\n\r\nexport const routing = defineRouting({\r\n    // A list of all locales that are supported\r\n    locales: ['en', 'es'],\r\n\r\n    // Used when no locale matches\r\n    defaultLocale: 'en'\r\n});\r\n\r\n// Lightweight wrappers around Next.js' navigation APIs\r\n// that will consider the routing configuration\r\nexport const { Link, redirect, usePathname, useRouter, getPathname } =\r\n    createNavigation(routing);\r\n"],"names":[],"mappings":";;;;;;;;;;;;;;AAAA;AACA;;;AAEO,MAAM,UAAU,IAAA,2PAAa,EAAC;IACjC,2CAA2C;IAC3C,SAAS;QAAC;QAAM;KAAK;IAErB,8BAA8B;IAC9B,eAAe;AACnB;AAIO,MAAM,EAAE,IAAI,EAAE,QAAQ,EAAE,WAAW,EAAE,SAAS,EAAE,WAAW,EAAE,GAChE,IAAA,0RAAgB,EAAC"}},
+    {"offset": {"line": 48, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/middleware.ts"],"sourcesContent":["import createMiddleware from 'next-intl/middleware';\r\nimport { routing } from './i18n/routing';\r\n\r\nexport default createMiddleware(routing);\r\n\r\nexport const config = {\r\n    // Match only internationalized pathnames\r\n    matcher: ['/', '/(es|en)/:path*']\r\n};\r\n"],"names":[],"mappings":";;;;;;AAAA;AACA;;;uCAEe,IAAA,yMAAgB,EAAC,yIAAO;AAEhC,MAAM,SAAS;IAClB,yCAAyC;IACzC,SAAS;QAAC;QAAK;KAAkB;AACrC"}}]
+}
