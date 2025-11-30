@@ -65,7 +65,7 @@ export function HabitTracker() {
                 code: error.code
             })
             console.error("Full error object:", JSON.stringify(error, null, 2))
-            // toast.error("Failed to load habits") // Suppress for now as table might not exist
+            toast.error("Failed to load habits: " + error.message)
         } finally {
             setIsLoading(false)
         }

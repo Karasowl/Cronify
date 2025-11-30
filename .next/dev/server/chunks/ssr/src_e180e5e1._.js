@@ -923,7 +923,7 @@ function HabitTracker() {
                 code: error.code
             });
             console.error("Full error object:", JSON.stringify(error, null, 2));
-        // toast.error("Failed to load habits") // Suppress for now as table might not exist
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Failed to load habits: " + error.message);
         } finally{
             setIsLoading(false);
         }
