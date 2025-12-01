@@ -24,6 +24,7 @@ import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
 import { Plus, CheckSquare, Timer, Target } from "lucide-react"
 import { useTranslations } from 'next-intl'
+import { useRouter } from "@/i18n/routing"
 import { GOAL_PRESETS } from "@/hooks"
 import { cn } from "@/lib/utils"
 import type { Habit, HabitType } from "@/types"
@@ -57,6 +58,7 @@ export function AddHabitDialog({
     const [habitType, setHabitType] = useState<HabitType>("build")
     const [goalSeconds, setGoalSeconds] = useState(86400) // 1 día default
     const supabase = createClient()
+    const router = useRouter()
     const t = useTranslations('HabitTracker')
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -72,7 +74,12 @@ export function AddHabitDialog({
                 data: { user },
             } = await supabase.auth.getUser()
 
-            if (!user) throw new Error("Not authenticated")
+            if (!user) {
+                toast.error("Tu sesión ha expirado. Redirigiendo al login...")
+                setOpen(false)
+                router.push("/login")
+                return
+            }
 
             const now = new Date().toISOString()
 

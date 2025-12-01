@@ -39,6 +39,25 @@ export async function middleware(request: NextRequest) {
     // IMPORTANT: This must be called to refresh expired sessions
     const { data: { user } } = await supabase.auth.getUser()
 
+    // Check if the path requires authentication
+    const pathname = request.nextUrl.pathname
+    const isProtectedRoute = pathname.includes('/dashboard')
+    const isLoginPage = pathname.includes('/login')
+
+    // If trying to access protected route without auth, redirect to login
+    if (isProtectedRoute && !user) {
+        const locale = pathname.split('/')[1] || 'es'
+        const loginUrl = new URL(`/${locale}/login`, request.url)
+        return NextResponse.redirect(loginUrl)
+    }
+
+    // If logged in and trying to access login page, redirect to dashboard
+    if (isLoginPage && user) {
+        const locale = pathname.split('/')[1] || 'es'
+        const dashboardUrl = new URL(`/${locale}/dashboard`, request.url)
+        return NextResponse.redirect(dashboardUrl)
+    }
+
     // If there's a user, copy the auth cookies to the intl response
     if (user) {
         // Get all cookies that were set during auth refresh

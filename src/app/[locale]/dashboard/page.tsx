@@ -170,15 +170,32 @@ export default function DashboardPage() {
                 <p className="text-muted-foreground">{t("noHabits")}</p>
             </div>
 
-            {/* Global Calendar */}
-            <GlassCard>
-                <GlobalCalendar
-                    habits={habits}
-                    logs={logs}
-                    onDayClick={handleDayClick}
-                    onAddHabit={() => setAddDialogOpen(true)}
-                />
-            </GlassCard>
+            {/* Empty state - shown prominently when no habits */}
+            {habits.length === 0 && (
+                <GlassCard className="text-center py-12">
+                    <CheckSquare className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+                    <h2 className="text-xl font-semibold mb-2">¡Comienza tu viaje!</h2>
+                    <p className="text-muted-foreground mb-6">
+                        No tienes hábitos todavía. Crea tu primer hábito para empezar a trackear tu progreso.
+                    </p>
+                    <Button size="lg" onClick={() => setAddDialogOpen(true)} className="gap-2">
+                        <CheckSquare className="w-5 h-5" />
+                        Crear mi primer hábito
+                    </Button>
+                </GlassCard>
+            )}
+
+            {/* Global Calendar - only show when there are habits */}
+            {habits.length > 0 && (
+                <GlassCard>
+                    <GlobalCalendar
+                        habits={habits}
+                        logs={logs}
+                        onDayClick={handleDayClick}
+                        onAddHabit={() => setAddDialogOpen(true)}
+                    />
+                </GlassCard>
+            )}
 
             {/* Today's Quick Log */}
             {buildHabits.length > 0 && (
@@ -274,18 +291,6 @@ export default function DashboardPage() {
                         ))}
                     </div>
                 </div>
-            )}
-
-            {/* Empty state */}
-            {habits.length === 0 && (
-                <GlassCard className="text-center py-12">
-                    <p className="text-muted-foreground mb-4">
-                        No tienes hábitos todavía. ¡Empieza creando uno!
-                    </p>
-                    <Button onClick={() => setAddDialogOpen(true)}>
-                        Crear mi primer hábito
-                    </Button>
-                </GlassCard>
             )}
 
             {/* Day Modal */}
