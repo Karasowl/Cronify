@@ -37,6 +37,14 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/dashboard(?:/)?$"
     },
     {
+      "page": "/[locale]/dashboard/account",
+      "regex": "^/([^/]+?)/dashboard/account(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/dashboard/account(?:/)?$"
+    },
+    {
       "page": "/[locale]/dashboard/habits/[id]",
       "regex": "^/([^/]+?)/dashboard/habits/([^/]+?)(?:/)?$",
       "routeKeys": {
@@ -76,6 +84,14 @@
         "nxtPlocale": "nxtPlocale"
       },
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/dashboard/shared\\-with\\-me(?:/)?$"
+    },
+    {
+      "page": "/[locale]/dashboard/stats",
+      "regex": "^/([^/]+?)/dashboard/stats(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/dashboard/stats(?:/)?$"
     },
     {
       "page": "/[locale]/login",

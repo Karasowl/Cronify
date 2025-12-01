@@ -47,6 +47,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 }
 
 
+// Validate ../../src/app/[locale]/dashboard/account/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/[locale]/dashboard/account">> = Specific
+  const handler = {} as typeof import("../../src/app/[locale]/dashboard/account/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/[locale]/dashboard/habits/[id]/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/[locale]/dashboard/habits/[id]">> = Specific
@@ -96,6 +105,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/[locale]/dashboard/shared">> = Specific
   const handler = {} as typeof import("../../src/app/[locale]/dashboard/shared/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/[locale]/dashboard/stats/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/[locale]/dashboard/stats">> = Specific
+  const handler = {} as typeof import("../../src/app/[locale]/dashboard/stats/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

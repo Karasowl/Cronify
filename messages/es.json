@@ -15,10 +15,12 @@
     },
     "Navbar": {
         "dashboard": "Panel",
+        "stats": "Estadísticas",
         "partners": "Compañeros",
         "sharedView": "Vista Compartida",
         "login": "Iniciar Sesión",
-        "logout": "Cerrar Sesión"
+        "logout": "Cerrar Sesión",
+        "account": "Mi Cuenta"
     },
     "Auth": {
         "welcomeBack": "Bienvenido de nuevo",
@@ -131,5 +133,51 @@
         "completion": "Cumplimiento",
         "streak": "Racha",
         "failReasons": "Razones de fallos recientes"
+    },
+    "Account": {
+        "title": "Mi Cuenta",
+        "subtitle": "Gestiona tu perfil y preferencias",
+        "emailLabel": "Correo electrónico",
+        "memberSince": "Miembro desde",
+        "settings": "Configuración",
+        "autoFailTitle": "Marcar días como fallados automáticamente",
+        "autoFailDesc": "Si está activado, los días sin registro se marcarán como fallados. Si no, se mostrarán como pendientes.",
+        "logout": "Cerrar sesión",
+        "logoutConfirmTitle": "¿Cerrar sesión?",
+        "logoutConfirmDesc": "Tendrás que volver a iniciar sesión para acceder a tus hábitos.",
+        "deleteAccount": "Eliminar cuenta",
+        "deleteAccountTitle": "¿Eliminar cuenta?",
+        "deleteAccountDesc": "Esta acción es irreversible. Se eliminarán todos tus datos, hábitos y registros.",
+        "deleteConfirmButton": "Sí, eliminar mi cuenta",
+        "dangerZone": "Zona de peligro"
+    },
+    "Stats": {
+        "title": "Estadísticas",
+        "subtitle": "Visualiza tu progreso a lo largo del tiempo",
+        "overview": "Resumen general",
+        "totalDays": "Días totales",
+        "completedDays": "Días completados",
+        "failedDays": "Días fallados",
+        "completionRate": "Tasa de cumplimiento",
+        "currentStreak": "Racha actual",
+        "bestStreak": "Mejor racha",
+        "weeklyProgress": "Progreso semanal",
+        "monthlyProgress": "Progreso mensual",
+        "habitBreakdown": "Desglose por hábito",
+        "mostConsistent": "Más consistente",
+        "needsWork": "Necesita trabajo",
+        "noData": "No hay suficientes datos para mostrar estadísticas"
+    },
+    "Calendar": {
+        "title": "Calendario",
+        "today": "Hoy",
+        "pending": "Pendiente",
+        "completed": "Completado",
+        "failed": "Fallado",
+        "skipped": "Saltado",
+        "noHabitsForDay": "Sin hábitos para este día",
+        "markAll": "Marcar todos",
+        "allCompleted": "Todos completados",
+        "allFailed": "Todos fallados"
     }
 }

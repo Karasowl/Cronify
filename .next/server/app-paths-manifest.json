@@ -1,10 +1,12 @@
 {
+  "/[locale]/dashboard/account/page": "app/[locale]/dashboard/account/page.js",
   "/[locale]/dashboard/habits/[id]/page": "app/[locale]/dashboard/habits/[id]/page.js",
   "/[locale]/dashboard/page": "app/[locale]/dashboard/page.js",
   "/[locale]/dashboard/partners/page": "app/[locale]/dashboard/partners/page.js",
   "/[locale]/dashboard/share/page": "app/[locale]/dashboard/share/page.js",
   "/[locale]/dashboard/shared-with-me/page": "app/[locale]/dashboard/shared-with-me/page.js",
   "/[locale]/dashboard/shared/page": "app/[locale]/dashboard/shared/page.js",
+  "/[locale]/dashboard/stats/page": "app/[locale]/dashboard/stats/page.js",
   "/[locale]/login/page": "app/[locale]/login/page.js",
   "/[locale]/page": "app/[locale]/page.js",
   "/_global-error/page": "app/_global-error/page.js",

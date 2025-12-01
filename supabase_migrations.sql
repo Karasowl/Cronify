@@ -139,6 +139,38 @@ CREATE POLICY "Partners can view relapses" ON relapses
 
 
 -- ============================================================
+-- MIGRACIÓN 5: Tabla de configuración de usuario
+-- ============================================================
+-- Ejecutar si: Quieres que los usuarios puedan configurar auto-fail y otras preferencias
+-- EJECUTAR AHORA
+
+CREATE TABLE IF NOT EXISTS user_settings (
+  user_id uuid references auth.users(id) on delete cascade primary key,
+  auto_fail_enabled boolean default false,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+  updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+ALTER TABLE user_settings ENABLE ROW LEVEL SECURITY;
+
+-- Policy: Usuario puede ver su propia configuración
+CREATE POLICY "Users can view their own settings" ON user_settings
+  FOR SELECT USING (auth.uid() = user_id);
+
+-- Policy: Usuario puede insertar su configuración
+CREATE POLICY "Users can insert their own settings" ON user_settings
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- Policy: Usuario puede actualizar su configuración
+CREATE POLICY "Users can update their own settings" ON user_settings
+  FOR UPDATE USING (auth.uid() = user_id);
+
+-- Policy: Usuario puede eliminar su configuración
+CREATE POLICY "Users can delete their own settings" ON user_settings
+  FOR DELETE USING (auth.uid() = user_id);
+
+
+-- ============================================================
 -- VERIFICACIÓN: Comprobar que todo está correcto
 -- ============================================================
 -- Ejecuta esto para verificar la estructura de la tabla habits

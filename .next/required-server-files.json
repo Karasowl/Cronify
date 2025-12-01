@@ -99,7 +99,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "E:\\dev-projects\\Cronify",
+    "outputFileTracingRoot": "e:\\dev-projects\\Cronify",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -292,11 +292,11 @@
       "resolveAlias": {
         "next-intl/config": "./src/i18n/request.ts"
       },
-      "root": "E:\\dev-projects\\Cronify"
+      "root": "e:\\dev-projects\\Cronify"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "E:\\dev-projects\\Cronify",
+  "appDir": "e:\\dev-projects\\Cronify",
   "relativeAppDir": "",
   "files": [
     ".next\\routes-manifest.json",

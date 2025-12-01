@@ -15,10 +15,12 @@
     },
     "Navbar": {
         "dashboard": "Dashboard",
+        "stats": "Stats",
         "partners": "Partners",
         "sharedView": "Shared View",
         "login": "Login",
-        "logout": "Logout"
+        "logout": "Logout",
+        "account": "My Account"
     },
     "Auth": {
         "welcomeBack": "Welcome Back",
@@ -131,5 +133,51 @@
         "completion": "Completion",
         "streak": "Streak",
         "failReasons": "Recent failure reasons"
+    },
+    "Account": {
+        "title": "My Account",
+        "subtitle": "Manage your profile and preferences",
+        "emailLabel": "Email",
+        "memberSince": "Member since",
+        "settings": "Settings",
+        "autoFailTitle": "Auto-mark days as failed",
+        "autoFailDesc": "If enabled, days without any record will be marked as failed. Otherwise, they'll show as pending.",
+        "logout": "Log out",
+        "logoutConfirmTitle": "Log out?",
+        "logoutConfirmDesc": "You'll need to sign in again to access your habits.",
+        "deleteAccount": "Delete account",
+        "deleteAccountTitle": "Delete account?",
+        "deleteAccountDesc": "This action is irreversible. All your data, habits, and records will be deleted.",
+        "deleteConfirmButton": "Yes, delete my account",
+        "dangerZone": "Danger zone"
+    },
+    "Stats": {
+        "title": "Statistics",
+        "subtitle": "Visualize your progress over time",
+        "overview": "Overview",
+        "totalDays": "Total days",
+        "completedDays": "Completed days",
+        "failedDays": "Failed days",
+        "completionRate": "Completion rate",
+        "currentStreak": "Current streak",
+        "bestStreak": "Best streak",
+        "weeklyProgress": "Weekly progress",
+        "monthlyProgress": "Monthly progress",
+        "habitBreakdown": "Habit breakdown",
+        "mostConsistent": "Most consistent",
+        "needsWork": "Needs work",
+        "noData": "Not enough data to show statistics"
+    },
+    "Calendar": {
+        "title": "Calendar",
+        "today": "Today",
+        "pending": "Pending",
+        "completed": "Completed",
+        "failed": "Failed",
+        "skipped": "Skipped",
+        "noHabitsForDay": "No habits for this day",
+        "markAll": "Mark all",
+        "allCompleted": "All completed",
+        "allFailed": "All failed"
     }
 }

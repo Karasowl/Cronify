@@ -26,10 +26,33 @@ import { Plus, CheckSquare, Timer, Target } from "lucide-react"
 import { useTranslations } from 'next-intl'
 import { GOAL_PRESETS } from "@/hooks"
 import { cn } from "@/lib/utils"
-import type { HabitType } from "@/types"
+import type { Habit, HabitType } from "@/types"
 
-export function AddHabitDialog({ onHabitAdded }: { onHabitAdded: () => void }) {
-    const [open, setOpen] = useState(false)
+interface AddHabitDialogProps {
+    open?: boolean
+    onOpenChange?: (open: boolean) => void
+    onHabitAdded?: () => void
+    onHabitCreated?: (habit: Habit) => void
+}
+
+export function AddHabitDialog({
+    open: controlledOpen,
+    onOpenChange,
+    onHabitAdded,
+    onHabitCreated
+}: AddHabitDialogProps) {
+    const [internalOpen, setInternalOpen] = useState(false)
+
+    // Support both controlled and uncontrolled mode
+    const isControlled = controlledOpen !== undefined
+    const open = isControlled ? controlledOpen : internalOpen
+    const setOpen = (value: boolean) => {
+        if (isControlled) {
+            onOpenChange?.(value)
+        } else {
+            setInternalOpen(value)
+        }
+    }
     const [isLoading, setIsLoading] = useState(false)
     const [habitType, setHabitType] = useState<HabitType>("build")
     const [goalSeconds, setGoalSeconds] = useState(86400) // 1 día default
@@ -65,7 +88,7 @@ export function AddHabitDialog({ onHabitAdded }: { onHabitAdded: () => void }) {
                 max_streak_seconds: 0,
             }
 
-            const { error } = await supabase.from("habits").insert(habitData)
+            const { data, error } = await supabase.from("habits").insert(habitData).select().single()
 
             if (error) throw error
 
@@ -73,7 +96,8 @@ export function AddHabitDialog({ onHabitAdded }: { onHabitAdded: () => void }) {
             setOpen(false)
             setHabitType("build")
             setGoalSeconds(86400)
-            onHabitAdded()
+            onHabitAdded?.()
+            if (data) onHabitCreated?.(data as Habit)
         } catch (error: any) {
             toast.error(error.message)
         } finally {
@@ -83,12 +107,14 @@ export function AddHabitDialog({ onHabitAdded }: { onHabitAdded: () => void }) {
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-                <Button className="gap-2">
-                    <Plus className="w-4 h-4" /> {t('addHabitButton')}
-                </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] glass border-white/10">
+            {!isControlled && (
+                <DialogTrigger asChild>
+                    <Button className="gap-2">
+                        <Plus className="w-4 h-4" /> {t('addHabitButton')}
+                    </Button>
+                </DialogTrigger>
+            )}
+            <DialogContent className="sm:max-w-[425px] glass border-white/10 w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>{t('createTitle')}</DialogTitle>
                     <DialogDescription>
