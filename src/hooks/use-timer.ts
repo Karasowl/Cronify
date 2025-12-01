@@ -18,7 +18,7 @@ interface UseTimerReturn {
   isNewRecord: boolean
   formattedTime: string
   formattedMaxStreak: string
-  reset: () => Promise<void>
+  reset: (reason?: string) => Promise<void>
   isResetting: boolean
 }
 
@@ -116,11 +116,25 @@ export function useTimer({
   }, [lastReset, localMaxStreak, onMaxReached])
 
   // Reset (recaída)
-  const reset = useCallback(async () => {
+  const reset = useCallback(async (reason?: string) => {
     setIsResetting(true)
     try {
       const now = new Date().toISOString()
       const currentSeconds = duration.totalSeconds
+
+      // Save the relapse to history
+      const { error: relapseError } = await supabase
+        .from("relapses")
+        .insert({
+          habit_id: habitId,
+          duration_seconds: currentSeconds,
+          reason: reason || null,
+        })
+
+      if (relapseError) {
+        console.error("Error saving relapse:", relapseError)
+        // Continue even if relapse logging fails
+      }
 
       // Update the habit with new last_reset and potentially new max
       const updates: Record<string, unknown> = {

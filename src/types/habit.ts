@@ -36,6 +36,15 @@ export interface TimerDuration {
   totalSeconds: number
 }
 
+// Relapse record for "break" habits
+export interface Relapse {
+  id: string
+  habit_id: string
+  duration_seconds: number
+  reason: string | null
+  created_at: string
+}
+
 export interface HabitWithLogs extends Habit {
   habit_logs: HabitLog[]
 }

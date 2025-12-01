@@ -90,6 +90,55 @@ WHERE habit_type IS NULL
 
 
 -- ============================================================
+-- MIGRACIÓN 4: Tabla de relapses (historial de recaídas)
+-- ============================================================
+-- Ejecutar si: Quieres guardar historial de recaídas para hábitos tipo "break"
+-- EJECUTAR AHORA
+
+CREATE TABLE IF NOT EXISTS relapses (
+  id uuid default gen_random_uuid() primary key,
+  habit_id uuid references habits(id) on delete cascade not null,
+  duration_seconds bigint not null,
+  reason text,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+ALTER TABLE relapses ENABLE ROW LEVEL SECURITY;
+
+-- Policy: Dueño del hábito puede ver sus relapses
+CREATE POLICY "Users can view their relapses" ON relapses
+  FOR SELECT USING (
+    EXISTS (
+      SELECT 1 FROM habits
+      WHERE habits.id = relapses.habit_id
+      AND habits.user_id = auth.uid()
+    )
+  );
+
+-- Policy: Dueño del hábito puede crear relapses
+CREATE POLICY "Users can create relapses" ON relapses
+  FOR INSERT WITH CHECK (
+    EXISTS (
+      SELECT 1 FROM habits
+      WHERE habits.id = relapses.habit_id
+      AND habits.user_id = auth.uid()
+    )
+  );
+
+-- Policy: Partners pueden ver relapses de hábitos que les comparten
+CREATE POLICY "Partners can view relapses" ON relapses
+  FOR SELECT USING (
+    EXISTS (
+      SELECT 1 FROM habits
+      JOIN partnerships ON partnerships.user_id = habits.user_id
+      WHERE habits.id = relapses.habit_id
+      AND partnerships.partner_email = (auth.jwt() ->> 'email')
+      AND partnerships.status = 'active'
+    )
+  );
+
+
+-- ============================================================
 -- VERIFICACIÓN: Comprobar que todo está correcto
 -- ============================================================
 -- Ejecuta esto para verificar la estructura de la tabla habits
