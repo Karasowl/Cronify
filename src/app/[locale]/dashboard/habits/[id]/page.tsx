@@ -99,12 +99,15 @@ export default function HabitDetailPage({ params }: PageProps) {
 
   const handleLogSubmit = async (status: HabitLogStatus, reason?: string) => {
     try {
-      const { error } = await supabase.from("habit_logs").upsert({
-        habit_id: id,
-        date: selectedDate,
-        status,
-        reason: reason || null,
-      })
+      const { error } = await supabase.from("habit_logs").upsert(
+        {
+          habit_id: id,
+          date: selectedDate,
+          status,
+          reason: reason || null,
+        },
+        { onConflict: "habit_id,date" }
+      )
 
       if (error) throw error
 

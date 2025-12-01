@@ -36,15 +36,18 @@ export function useTodayLogs() {
     try {
       const { data, error: logError } = await supabase
         .from("habit_logs")
-        .upsert({
-          habit_id: input.habit_id,
-          date: input.date,
-          status: input.status,
-          value: input.value || null,
-          reason: input.reason || null,
-          notes: input.notes || null,
-          mood: input.mood || null,
-        })
+        .upsert(
+          {
+            habit_id: input.habit_id,
+            date: input.date,
+            status: input.status,
+            value: input.value || null,
+            reason: input.reason || null,
+            notes: input.notes || null,
+            mood: input.mood || null,
+          },
+          { onConflict: "habit_id,date" }
+        )
         .select()
         .single()
 

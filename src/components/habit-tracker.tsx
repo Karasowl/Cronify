@@ -88,11 +88,14 @@ export function HabitTracker() {
 
     async function logHabit(habitId: string, status: "completed" | "failed") {
         try {
-            const { error } = await supabase.from("habit_logs").upsert({
-                habit_id: habitId,
-                date: today,
-                status,
-            })
+            const { error } = await supabase.from("habit_logs").upsert(
+                {
+                    habit_id: habitId,
+                    date: today,
+                    status,
+                },
+                { onConflict: "habit_id,date" }
+            )
 
             if (error) throw error
 
