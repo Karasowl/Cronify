@@ -17,8 +17,23 @@ export interface Habit {
   start_date: string
   end_date: string | null
   is_public: boolean
+  // Timer fields for "break" habits (cronómetro de abstinencia)
+  last_reset: string
+  max_streak_seconds: number
+  current_goal_seconds: number
   created_at: string
   updated_at: string
+}
+
+// Duration broken down into components
+export interface TimerDuration {
+  years: number
+  months: number
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
+  totalSeconds: number
 }
 
 export interface HabitWithLogs extends Habit {

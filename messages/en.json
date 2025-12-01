@@ -57,7 +57,17 @@
         "viewCalendar": "View calendar",
         "habitDeleted": "Habit deleted",
         "deleteConfirmTitle": "Delete habit?",
-        "deleteConfirmDescription": "This action cannot be undone. All records associated with this habit will be deleted."
+        "deleteConfirmDescription": "This action cannot be undone. All records associated with this habit will be deleted.",
+        "breakHabits": "Break Habits",
+        "buildHabits": "Build Habits",
+        "habitType": "Habit Type",
+        "buildType": "Build",
+        "buildTypeDesc": "Create a new habit",
+        "breakType": "Break",
+        "breakTypeDesc": "Stop doing something",
+        "breakTitlePlaceholder": "e.g., Quit smoking, No social media...",
+        "goalLabel": "Initial Goal",
+        "goalHint": "The timer will show your progress towards this goal"
     },
     "Common": {
         "loading": "Loading...",

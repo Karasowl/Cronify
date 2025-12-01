@@ -6,8 +6,9 @@ import { useLocale, useTranslations } from "next-intl"
 import { createClient } from "@/lib/supabase/client"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
-import { Check, X, MoreVertical, Loader2, Calendar, Trash2 } from "lucide-react"
+import { Check, X, MoreVertical, Loader2, Calendar, Trash2, Timer, CheckSquare } from "lucide-react"
 import { AddHabitDialog } from "@/components/add-habit-dialog"
+import { TimerCard } from "@/components/habits"
 import { toast } from "sonner"
 import {
     DropdownMenu,
@@ -26,13 +27,7 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
-
-type Habit = {
-    id: string
-    title: string
-    description: string
-    created_at: string
-}
+import type { Habit } from "@/types"
 
 type Log = {
     habit_id: string
@@ -143,86 +138,127 @@ export function HabitTracker() {
         )
     }
 
+    // Separate habits by type
+    const buildHabits = habits.filter((h) => h.habit_type !== "break")
+    const breakHabits = habits.filter((h) => h.habit_type === "break")
+
     return (
-        <div className="space-y-6">
+        <div className="space-y-8">
             <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold">{t('todaysHabits')}</h2>
                 <AddHabitDialog onHabitAdded={fetchHabits} />
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {habits.length === 0 ? (
-                    <GlassCard className="col-span-full text-center py-12">
-                        <p className="text-muted-foreground mb-4">{tDashboard('noHabits')}</p>
-                        <AddHabitDialog onHabitAdded={fetchHabits} />
-                    </GlassCard>
-                ) : (
-                    habits.map((habit) => {
-                        const log = logs.find((l) => l.habit_id === habit.id)
-                        const isCompleted = log?.status === "completed"
-                        const isFailed = log?.status === "failed"
+            {habits.length === 0 ? (
+                <GlassCard className="text-center py-12">
+                    <p className="text-muted-foreground mb-4">{tDashboard('noHabits')}</p>
+                    <AddHabitDialog onHabitAdded={fetchHabits} />
+                </GlassCard>
+            ) : (
+                <>
+                    {/* Break Habits (Cronómetros) */}
+                    {breakHabits.length > 0 && (
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-2">
+                                <Timer className="w-5 h-5 text-orange-500" />
+                                <h3 className="font-semibold text-lg">
+                                    {t('breakHabits') || "Dejar de hacer"}
+                                </h3>
+                            </div>
+                            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                                {breakHabits.map((habit) => (
+                                    <TimerCard
+                                        key={habit.id}
+                                        habit={habit}
+                                        locale={locale}
+                                        onReset={fetchHabits}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    )}
 
-                        return (
-                            <GlassCard key={habit.id} className="flex flex-col justify-between gap-4">
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <h3 className="font-semibold text-lg">{habit.title}</h3>
-                                        {habit.description && (
-                                            <p className="text-sm text-muted-foreground">
-                                                {habit.description}
-                                            </p>
-                                        )}
-                                    </div>
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon" className="h-8 w-8">
-                                                <MoreVertical className="w-4 h-4" />
-                                            </Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent>
-                                            <DropdownMenuItem onClick={() => goToHabitDetail(habit.id)}>
-                                                <Calendar className="w-4 h-4 mr-2" />
-                                                {t('viewCalendar') || "Ver calendario"}
-                                            </DropdownMenuItem>
-                                            <DropdownMenuSeparator />
-                                            <DropdownMenuItem
-                                                className="text-destructive"
-                                                onClick={() => setDeleteHabitId(habit.id)}
-                                            >
-                                                <Trash2 className="w-4 h-4 mr-2" />
-                                                {tCommon('delete')}
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                    {/* Build Habits (Daily Check) */}
+                    {buildHabits.length > 0 && (
+                        <div className="space-y-4">
+                            {breakHabits.length > 0 && (
+                                <div className="flex items-center gap-2">
+                                    <CheckSquare className="w-5 h-5 text-green-500" />
+                                    <h3 className="font-semibold text-lg">
+                                        {t('buildHabits') || "Construir hábitos"}
+                                    </h3>
                                 </div>
+                            )}
+                            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                                {buildHabits.map((habit) => {
+                                    const log = logs.find((l) => l.habit_id === habit.id)
+                                    const isCompleted = log?.status === "completed"
+                                    const isFailed = log?.status === "failed"
 
-                                <div className="flex gap-2 mt-2">
-                                    <Button
-                                        className={`flex-1 ${isCompleted ? "bg-green-500/20 text-green-500 hover:bg-green-500/30" : ""
-                                            }`}
-                                        variant={isCompleted ? "outline" : "default"}
-                                        onClick={() => logHabit(habit.id, "completed")}
-                                        disabled={isCompleted}
-                                    >
-                                        <Check className="w-4 h-4 mr-2" />
-                                        {t('done')}
-                                    </Button>
-                                    <Button
-                                        className={`flex-1 ${isFailed ? "bg-red-500/20 text-red-500 hover:bg-red-500/30" : ""
-                                            }`}
-                                        variant={isFailed ? "outline" : "secondary"}
-                                        onClick={() => logHabit(habit.id, "failed")}
-                                        disabled={isFailed}
-                                    >
-                                        <X className="w-4 h-4 mr-2" />
-                                        {t('fail')}
-                                    </Button>
-                                </div>
-                            </GlassCard>
-                        )
-                    })
-                )}
-            </div>
+                                    return (
+                                        <GlassCard key={habit.id} className="flex flex-col justify-between gap-4">
+                                            <div className="flex justify-between items-start">
+                                                <div>
+                                                    <h3 className="font-semibold text-lg">{habit.title}</h3>
+                                                    {habit.description && (
+                                                        <p className="text-sm text-muted-foreground">
+                                                            {habit.description}
+                                                        </p>
+                                                    )}
+                                                </div>
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger asChild>
+                                                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                                                            <MoreVertical className="w-4 h-4" />
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent>
+                                                        <DropdownMenuItem onClick={() => goToHabitDetail(habit.id)}>
+                                                            <Calendar className="w-4 h-4 mr-2" />
+                                                            {t('viewCalendar') || "Ver calendario"}
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuSeparator />
+                                                        <DropdownMenuItem
+                                                            className="text-destructive"
+                                                            onClick={() => setDeleteHabitId(habit.id)}
+                                                        >
+                                                            <Trash2 className="w-4 h-4 mr-2" />
+                                                            {tCommon('delete')}
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </div>
+
+                                            <div className="flex gap-2 mt-2">
+                                                <Button
+                                                    className={`flex-1 ${isCompleted ? "bg-green-500/20 text-green-500 hover:bg-green-500/30" : ""
+                                                        }`}
+                                                    variant={isCompleted ? "outline" : "default"}
+                                                    onClick={() => logHabit(habit.id, "completed")}
+                                                    disabled={isCompleted}
+                                                >
+                                                    <Check className="w-4 h-4 mr-2" />
+                                                    {t('done')}
+                                                </Button>
+                                                <Button
+                                                    className={`flex-1 ${isFailed ? "bg-red-500/20 text-red-500 hover:bg-red-500/30" : ""
+                                                        }`}
+                                                    variant={isFailed ? "outline" : "secondary"}
+                                                    onClick={() => logHabit(habit.id, "failed")}
+                                                    disabled={isFailed}
+                                                >
+                                                    <X className="w-4 h-4 mr-2" />
+                                                    {t('fail')}
+                                                </Button>
+                                            </div>
+                                        </GlassCard>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    )}
+                </>
+            )}
 
             {/* Delete Confirmation Dialog */}
             <AlertDialog open={!!deleteHabitId} onOpenChange={(open) => !open && setDeleteHabitId(null)}>

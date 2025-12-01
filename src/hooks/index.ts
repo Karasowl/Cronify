@@ -1,4 +1,5 @@
 export { useHabits, useHabit } from "./use-habits"
 export { useTodayLogs, useHabitLogs, calculateHabitStats } from "./use-habit-logs"
 export { useSharedHabits } from "./use-shared-habits"
+export { useTimer, formatGoalSeconds, GOAL_PRESETS } from "./use-timer"
 export type { PartnerData, PartnerHabit } from "./use-shared-habits"

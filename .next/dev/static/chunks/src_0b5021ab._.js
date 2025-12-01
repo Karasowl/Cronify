@@ -1254,12 +1254,12 @@ function HabitTracker() {
                 className: "w-8 h-8 animate-spin text-primary"
             }, void 0, false, {
                 fileName: "[project]/src/components/habit-tracker.tsx",
-                lineNumber: 141,
+                lineNumber: 136,
                 columnNumber: 17
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/habit-tracker.tsx",
-            lineNumber: 140,
+            lineNumber: 135,
             columnNumber: 13
         }, this);
     }
@@ -1274,20 +1274,20 @@ function HabitTracker() {
                         children: t('todaysHabits')
                     }, void 0, false, {
                         fileName: "[project]/src/components/habit-tracker.tsx",
-                        lineNumber: 149,
+                        lineNumber: 144,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$add$2d$habit$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AddHabitDialog"], {
                         onHabitAdded: fetchHabits
                     }, void 0, false, {
                         fileName: "[project]/src/components/habit-tracker.tsx",
-                        lineNumber: 150,
+                        lineNumber: 145,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/habit-tracker.tsx",
-                lineNumber: 148,
+                lineNumber: 143,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1300,20 +1300,20 @@ function HabitTracker() {
                             children: tDashboard('noHabits')
                         }, void 0, false, {
                             fileName: "[project]/src/components/habit-tracker.tsx",
-                            lineNumber: 156,
+                            lineNumber: 151,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$add$2d$habit$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AddHabitDialog"], {
                             onHabitAdded: fetchHabits
                         }, void 0, false, {
                             fileName: "[project]/src/components/habit-tracker.tsx",
-                            lineNumber: 157,
+                            lineNumber: 152,
                             columnNumber: 25
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/habit-tracker.tsx",
-                    lineNumber: 155,
+                    lineNumber: 150,
                     columnNumber: 21
                 }, this) : habits.map((habit)=>{
                     const log = logs.find((l)=>l.habit_id === habit.id);
@@ -1332,7 +1332,7 @@ function HabitTracker() {
                                                 children: habit.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/habit-tracker.tsx",
-                                                lineNumber: 169,
+                                                lineNumber: 164,
                                                 columnNumber: 41
                                             }, this),
                                             habit.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1340,13 +1340,13 @@ function HabitTracker() {
                                                 children: habit.description
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/habit-tracker.tsx",
-                                                lineNumber: 171,
+                                                lineNumber: 166,
                                                 columnNumber: 45
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/habit-tracker.tsx",
-                                        lineNumber: 168,
+                                        lineNumber: 163,
                                         columnNumber: 37
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dropdown$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DropdownMenu"], {
@@ -1361,17 +1361,17 @@ function HabitTracker() {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/habit-tracker.tsx",
-                                                        lineNumber: 179,
+                                                        lineNumber: 174,
                                                         columnNumber: 49
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/habit-tracker.tsx",
-                                                    lineNumber: 178,
+                                                    lineNumber: 173,
                                                     columnNumber: 45
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/habit-tracker.tsx",
-                                                lineNumber: 177,
+                                                lineNumber: 172,
                                                 columnNumber: 41
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dropdown$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DropdownMenuContent"], {
@@ -1383,19 +1383,19 @@ function HabitTracker() {
                                                                 className: "w-4 h-4 mr-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/habit-tracker.tsx",
-                                                                lineNumber: 184,
+                                                                lineNumber: 179,
                                                                 columnNumber: 49
                                                             }, this),
                                                             t('viewCalendar') || "Ver calendario"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/habit-tracker.tsx",
-                                                        lineNumber: 183,
+                                                        lineNumber: 178,
                                                         columnNumber: 45
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dropdown$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DropdownMenuSeparator"], {}, void 0, false, {
                                                         fileName: "[project]/src/components/habit-tracker.tsx",
-                                                        lineNumber: 187,
+                                                        lineNumber: 182,
                                                         columnNumber: 45
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dropdown$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DropdownMenuItem"], {
@@ -1406,32 +1406,32 @@ function HabitTracker() {
                                                                 className: "w-4 h-4 mr-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/habit-tracker.tsx",
-                                                                lineNumber: 192,
+                                                                lineNumber: 187,
                                                                 columnNumber: 49
                                                             }, this),
                                                             tCommon('delete')
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/habit-tracker.tsx",
-                                                        lineNumber: 188,
+                                                        lineNumber: 183,
                                                         columnNumber: 45
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/habit-tracker.tsx",
-                                                lineNumber: 182,
+                                                lineNumber: 177,
                                                 columnNumber: 41
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/habit-tracker.tsx",
-                                        lineNumber: 176,
+                                        lineNumber: 171,
                                         columnNumber: 37
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/habit-tracker.tsx",
-                                lineNumber: 167,
+                                lineNumber: 162,
                                 columnNumber: 33
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1447,14 +1447,14 @@ function HabitTracker() {
                                                 className: "w-4 h-4 mr-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/habit-tracker.tsx",
-                                                lineNumber: 207,
+                                                lineNumber: 202,
                                                 columnNumber: 41
                                             }, this),
                                             t('done')
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/habit-tracker.tsx",
-                                        lineNumber: 200,
+                                        lineNumber: 195,
                                         columnNumber: 37
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1467,32 +1467,32 @@ function HabitTracker() {
                                                 className: "w-4 h-4 mr-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/habit-tracker.tsx",
-                                                lineNumber: 217,
+                                                lineNumber: 212,
                                                 columnNumber: 41
                                             }, this),
                                             t('fail')
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/habit-tracker.tsx",
-                                        lineNumber: 210,
+                                        lineNumber: 205,
                                         columnNumber: 37
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/habit-tracker.tsx",
-                                lineNumber: 199,
+                                lineNumber: 194,
                                 columnNumber: 33
                             }, this)
                         ]
                     }, habit.id, true, {
                         fileName: "[project]/src/components/habit-tracker.tsx",
-                        lineNumber: 166,
+                        lineNumber: 161,
                         columnNumber: 29
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/components/habit-tracker.tsx",
-                lineNumber: 153,
+                lineNumber: 148,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialog"], {
@@ -1506,20 +1506,20 @@ function HabitTracker() {
                                     children: t('deleteConfirmTitle') || "¿Eliminar hábito?"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/habit-tracker.tsx",
-                                    lineNumber: 231,
+                                    lineNumber: 226,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogDescription"], {
                                     children: t('deleteConfirmDescription') || "Esta acción no se puede deshacer. Se eliminarán todos los registros asociados a este hábito."
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/habit-tracker.tsx",
-                                    lineNumber: 232,
+                                    lineNumber: 227,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/habit-tracker.tsx",
-                            lineNumber: 230,
+                            lineNumber: 225,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogFooter"], {
@@ -1529,7 +1529,7 @@ function HabitTracker() {
                                     children: tCommon('cancel') || "Cancelar"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/habit-tracker.tsx",
-                                    lineNumber: 237,
+                                    lineNumber: 232,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogAction"], {
@@ -1541,37 +1541,37 @@ function HabitTracker() {
                                             className: "w-4 h-4 animate-spin mr-2"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/habit-tracker.tsx",
-                                            lineNumber: 246,
+                                            lineNumber: 241,
                                             columnNumber: 33
                                         }, this) : null,
                                         tCommon('delete') || "Eliminar"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/habit-tracker.tsx",
-                                    lineNumber: 240,
+                                    lineNumber: 235,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/habit-tracker.tsx",
-                            lineNumber: 236,
+                            lineNumber: 231,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/habit-tracker.tsx",
-                    lineNumber: 229,
+                    lineNumber: 224,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/habit-tracker.tsx",
-                lineNumber: 228,
+                lineNumber: 223,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/habit-tracker.tsx",
-        lineNumber: 147,
+        lineNumber: 142,
         columnNumber: 9
     }, this);
 }

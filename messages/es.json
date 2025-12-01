@@ -57,7 +57,17 @@
         "viewCalendar": "Ver calendario",
         "habitDeleted": "Hábito eliminado",
         "deleteConfirmTitle": "¿Eliminar hábito?",
-        "deleteConfirmDescription": "Esta acción no se puede deshacer. Se eliminarán todos los registros asociados a este hábito."
+        "deleteConfirmDescription": "Esta acción no se puede deshacer. Se eliminarán todos los registros asociados a este hábito.",
+        "breakHabits": "Dejar de hacer",
+        "buildHabits": "Construir hábitos",
+        "habitType": "Tipo de hábito",
+        "buildType": "Construir",
+        "buildTypeDesc": "Crear un nuevo hábito",
+        "breakType": "Romper",
+        "breakTypeDesc": "Dejar de hacer algo",
+        "breakTitlePlaceholder": "ej. Dejar de fumar, No redes sociales...",
+        "goalLabel": "Meta inicial",
+        "goalHint": "El cronómetro mostrará tu progreso hacia esta meta"
     },
     "Common": {
         "loading": "Cargando...",

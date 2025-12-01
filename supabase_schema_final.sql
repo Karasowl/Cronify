@@ -9,9 +9,24 @@ create table if not exists habits (
   user_id uuid references auth.users(id) not null,
   title text not null,
   description text,
+  habit_type text check (habit_type in ('build', 'break')) default 'build',
   frequency jsonb default '{"type": "daily"}'::jsonb,
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+  start_date timestamp with time zone default timezone('utc'::text, now()),
+  -- For "break" habits (cronómetro de abstinencia)
+  last_reset timestamp with time zone default timezone('utc'::text, now()),
+  max_streak_seconds bigint default 0, -- Máximo tiempo logrado en segundos
+  current_goal_seconds bigint default 86400, -- Meta actual (default: 1 día = 86400 segundos)
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+  updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
+
+-- Migration: Add new columns if table exists
+-- ALTER TABLE habits ADD COLUMN IF NOT EXISTS habit_type text check (habit_type in ('build', 'break')) default 'build';
+-- ALTER TABLE habits ADD COLUMN IF NOT EXISTS start_date timestamp with time zone default timezone('utc'::text, now());
+-- ALTER TABLE habits ADD COLUMN IF NOT EXISTS last_reset timestamp with time zone default timezone('utc'::text, now());
+-- ALTER TABLE habits ADD COLUMN IF NOT EXISTS max_streak_seconds bigint default 0;
+-- ALTER TABLE habits ADD COLUMN IF NOT EXISTS current_goal_seconds bigint default 86400;
+-- ALTER TABLE habits ADD COLUMN IF NOT EXISTS updated_at timestamp with time zone default timezone('utc'::text, now());
 
 alter table habits enable row level security;
 
