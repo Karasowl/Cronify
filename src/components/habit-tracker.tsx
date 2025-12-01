@@ -1,19 +1,31 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import { useLocale, useTranslations } from "next-intl"
 import { createClient } from "@/lib/supabase/client"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
-import { Check, X, MoreVertical, Loader2 } from "lucide-react"
+import { Check, X, MoreVertical, Loader2, Calendar, Trash2 } from "lucide-react"
 import { AddHabitDialog } from "@/components/add-habit-dialog"
 import { toast } from "sonner"
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
+    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useTranslations } from 'next-intl'
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
 
 type Habit = {
     id: string
@@ -32,7 +44,11 @@ export function HabitTracker() {
     const [habits, setHabits] = useState<Habit[]>([])
     const [logs, setLogs] = useState<Log[]>([])
     const [isLoading, setIsLoading] = useState(true)
+    const [deleteHabitId, setDeleteHabitId] = useState<string | null>(null)
+    const [isDeleting, setIsDeleting] = useState(false)
     const supabase = createClient()
+    const router = useRouter()
+    const locale = useLocale()
     const today = new Date().toISOString().split("T")[0]
     const t = useTranslations('HabitTracker')
     const tDashboard = useTranslations('Dashboard')
@@ -95,6 +111,30 @@ export function HabitTracker() {
         }
     }
 
+    async function deleteHabit(habitId: string) {
+        setIsDeleting(true)
+        try {
+            const { error } = await supabase
+                .from("habits")
+                .delete()
+                .eq("id", habitId)
+
+            if (error) throw error
+
+            setHabits((prev) => prev.filter((h) => h.id !== habitId))
+            toast.success(t('habitDeleted') || "Hábito eliminado")
+        } catch (error: any) {
+            toast.error(error.message)
+        } finally {
+            setIsDeleting(false)
+            setDeleteHabitId(null)
+        }
+    }
+
+    function goToHabitDetail(habitId: string) {
+        router.push(`/${locale}/dashboard/habits/${habitId}`)
+    }
+
     if (isLoading) {
         return (
             <div className="flex justify-center p-8">
@@ -140,7 +180,16 @@ export function HabitTracker() {
                                             </Button>
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent>
-                                            <DropdownMenuItem className="text-destructive">
+                                            <DropdownMenuItem onClick={() => goToHabitDetail(habit.id)}>
+                                                <Calendar className="w-4 h-4 mr-2" />
+                                                {t('viewCalendar') || "Ver calendario"}
+                                            </DropdownMenuItem>
+                                            <DropdownMenuSeparator />
+                                            <DropdownMenuItem
+                                                className="text-destructive"
+                                                onClick={() => setDeleteHabitId(habit.id)}
+                                            >
+                                                <Trash2 className="w-4 h-4 mr-2" />
                                                 {tCommon('delete')}
                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
@@ -174,6 +223,33 @@ export function HabitTracker() {
                     })
                 )}
             </div>
+
+            {/* Delete Confirmation Dialog */}
+            <AlertDialog open={!!deleteHabitId} onOpenChange={(open) => !open && setDeleteHabitId(null)}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>{t('deleteConfirmTitle') || "¿Eliminar hábito?"}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            {t('deleteConfirmDescription') || "Esta acción no se puede deshacer. Se eliminarán todos los registros asociados a este hábito."}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel disabled={isDeleting}>
+                            {tCommon('cancel') || "Cancelar"}
+                        </AlertDialogCancel>
+                        <AlertDialogAction
+                            onClick={() => deleteHabitId && deleteHabit(deleteHabitId)}
+                            disabled={isDeleting}
+                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                        >
+                            {isDeleting ? (
+                                <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                            ) : null}
+                            {tCommon('delete') || "Eliminar"}
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </div>
     )
 }

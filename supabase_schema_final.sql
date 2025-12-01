@@ -102,3 +102,44 @@ create policy "Partners can view logs" on habit_logs
       and partnerships.status = 'active'
     )
   );
+
+-- 5. Encouragements Table (Messages from partners)
+create table if not exists encouragements (
+  id uuid default gen_random_uuid() primary key,
+  habit_id uuid references habits(id) on delete cascade not null,
+  from_email text not null, -- Partner who sent the encouragement
+  message text not null,
+  emoji text, -- Quick reaction emoji
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+alter table encouragements enable row level security;
+
+-- Policy: Partners can send encouragements to habits they can view
+create policy "Partners can send encouragements" on encouragements
+  for insert with check (
+    exists (
+      select 1 from habits
+      join partnerships on partnerships.user_id = habits.user_id
+      where habits.id = encouragements.habit_id
+      and partnerships.partner_email = (auth.jwt() ->> 'email')
+      and partnerships.status = 'active'
+    )
+    and from_email = (auth.jwt() ->> 'email')
+  );
+
+-- Policy: Habit owner can view encouragements
+create policy "Users can view encouragements on their habits" on encouragements
+  for select using (
+    exists (
+      select 1 from habits
+      where habits.id = encouragements.habit_id
+      and habits.user_id = auth.uid()
+    )
+  );
+
+-- Policy: Partner who sent can view their encouragements
+create policy "Partners can view their sent encouragements" on encouragements
+  for select using (
+    from_email = (auth.jwt() ->> 'email')
+  );

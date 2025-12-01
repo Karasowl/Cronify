@@ -53,7 +53,11 @@
         "habitDescPlaceholder": "Why is this important?",
         "createButton": "Create Habit",
         "creating": "Creating...",
-        "success": "Habit created successfully"
+        "success": "Habit created successfully",
+        "viewCalendar": "View calendar",
+        "habitDeleted": "Habit deleted",
+        "deleteConfirmTitle": "Delete habit?",
+        "deleteConfirmDescription": "This action cannot be undone. All records associated with this habit will be deleted."
     },
     "Common": {
         "loading": "Loading...",
@@ -65,22 +69,41 @@
     },
     "Partnerships": {
         "title": "Share Your Progress",
-        "description": "Invite a partner to view your habits and keep you accountable.",
+        "description": "Invite a partner to view your habits and help keep you accountable.",
         "emailLabel": "Partner Email",
         "emailPlaceholder": "partner@example.com",
         "inviteButton": "Invite",
         "inviting": "Inviting...",
-        "yourPartners": "Your Partners",
+        "yourPartners": "Your Accountability Partners",
         "noPartners": "No partners yet.",
+        "noPartnersHint": "Invite someone to help you stay on track with your habits",
         "remove": "Remove",
-        "inviteSuccess": "Partner invited successfully",
-        "removeSuccess": "Partner removed successfully"
+        "inviteSuccess": "Partner added successfully",
+        "removeSuccess": "Partner removed",
+        "alreadyPartner": "This email is already your partner",
+        "whatShared": "Your partner will be able to see:",
+        "sharedItem1": "Your habits and their progress",
+        "sharedItem2": "Calendar with completed/failed days",
+        "sharedItem3": "Reasons when you fail a day",
+        "sharedItem4": "Your current streak and completion percentage",
+        "statusActive": "Active",
+        "statusPending": "Pending",
+        "addedOn": "Added",
+        "removeConfirmTitle": "Remove partner?",
+        "removeConfirmDesc": "This partner will no longer be able to see your habits or progress.",
+        "cancel": "Cancel"
     },
     "SharedHabits": {
         "title": "Shared View",
-        "description": "View habits shared with you.",
+        "description": "Habits others share with you for your support.",
         "noHabits": "No shared habits found.",
+        "noHabitsHint": "When someone adds you as an accountability partner, their habits will appear here.",
         "statusToday": "Status today:",
-        "pending": "Pending"
+        "pending": "Pending",
+        "completed": "Completed",
+        "failed": "Failed",
+        "completion": "Completion",
+        "streak": "Streak",
+        "failReasons": "Recent failure reasons"
     }
 }

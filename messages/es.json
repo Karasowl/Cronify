@@ -53,7 +53,11 @@
         "habitDescPlaceholder": "¿Por qué es importante?",
         "createButton": "Crear Hábito",
         "creating": "Creando...",
-        "success": "Hábito creado exitosamente"
+        "success": "Hábito creado exitosamente",
+        "viewCalendar": "Ver calendario",
+        "habitDeleted": "Hábito eliminado",
+        "deleteConfirmTitle": "¿Eliminar hábito?",
+        "deleteConfirmDescription": "Esta acción no se puede deshacer. Se eliminarán todos los registros asociados a este hábito."
     },
     "Common": {
         "loading": "Cargando...",
@@ -65,22 +69,41 @@
     },
     "Partnerships": {
         "title": "Comparte tu Progreso",
-        "description": "Invita a un compañero para ver tus hábitos y mantenerte responsable.",
+        "description": "Invita a un compañero para que vea tus hábitos y te ayude a mantenerte responsable.",
         "emailLabel": "Correo del Compañero",
         "emailPlaceholder": "compañero@ejemplo.com",
         "inviteButton": "Invitar",
         "inviting": "Invitando...",
-        "yourPartners": "Tus Compañeros",
+        "yourPartners": "Tus Compañeros de Accountability",
         "noPartners": "Aún no tienes compañeros.",
+        "noPartnersHint": "Invita a alguien para que te ayude a mantener tus hábitos",
         "remove": "Eliminar",
-        "inviteSuccess": "Compañero invitado exitosamente",
-        "removeSuccess": "Compañero eliminado exitosamente"
+        "inviteSuccess": "Compañero agregado exitosamente",
+        "removeSuccess": "Compañero eliminado",
+        "alreadyPartner": "Este email ya es tu partner",
+        "whatShared": "Tu partner podrá ver:",
+        "sharedItem1": "Tus hábitos y su progreso",
+        "sharedItem2": "Calendario con días completados/fallados",
+        "sharedItem3": "Razones cuando falles un día",
+        "sharedItem4": "Tu racha actual y porcentaje de cumplimiento",
+        "statusActive": "Activo",
+        "statusPending": "Pendiente",
+        "addedOn": "Agregado",
+        "removeConfirmTitle": "¿Eliminar partner?",
+        "removeConfirmDesc": "Este partner ya no podrá ver tus hábitos ni tu progreso.",
+        "cancel": "Cancelar"
     },
     "SharedHabits": {
         "title": "Vista Compartida",
-        "description": "Ver hábitos compartidos contigo.",
+        "description": "Hábitos que otros comparten contigo para que los apoyes.",
         "noHabits": "No se encontraron hábitos compartidos.",
+        "noHabitsHint": "Cuando alguien te agregue como accountability partner, sus hábitos aparecerán aquí.",
         "statusToday": "Estado hoy:",
-        "pending": "Pendiente"
+        "pending": "Pendiente",
+        "completed": "Completados",
+        "failed": "Fallados",
+        "completion": "Cumplimiento",
+        "streak": "Racha",
+        "failReasons": "Razones de fallos recientes"
     }
 }

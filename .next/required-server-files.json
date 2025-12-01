@@ -289,6 +289,9 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
+      "resolveAlias": {
+        "next-intl/config": "./src/i18n/request.ts"
+      },
       "root": "E:\\dev-projects\\Cronify"
     },
     "distDirRoot": ".next"

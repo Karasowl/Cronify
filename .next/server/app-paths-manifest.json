@@ -1,11 +1,14 @@
 {
+  "/[locale]/dashboard/habits/[id]/page": "app/[locale]/dashboard/habits/[id]/page.js",
+  "/[locale]/dashboard/page": "app/[locale]/dashboard/page.js",
+  "/[locale]/dashboard/partners/page": "app/[locale]/dashboard/partners/page.js",
+  "/[locale]/dashboard/share/page": "app/[locale]/dashboard/share/page.js",
+  "/[locale]/dashboard/shared-with-me/page": "app/[locale]/dashboard/shared-with-me/page.js",
+  "/[locale]/dashboard/shared/page": "app/[locale]/dashboard/shared/page.js",
+  "/[locale]/login/page": "app/[locale]/login/page.js",
+  "/[locale]/page": "app/[locale]/page.js",
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/auth/callback/route": "app/auth/callback/route.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/share/page": "app/dashboard/share/page.js",
-  "/dashboard/shared-with-me/page": "app/dashboard/shared-with-me/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/login/page": "app/login/page.js",
-  "/page": "app/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }

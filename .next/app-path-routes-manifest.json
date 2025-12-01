@@ -1,11 +1,14 @@
 {
+  "/[locale]/dashboard/habits/[id]/page": "/[locale]/dashboard/habits/[id]",
+  "/[locale]/dashboard/page": "/[locale]/dashboard",
+  "/[locale]/dashboard/partners/page": "/[locale]/dashboard/partners",
+  "/[locale]/dashboard/share/page": "/[locale]/dashboard/share",
+  "/[locale]/dashboard/shared-with-me/page": "/[locale]/dashboard/shared-with-me",
+  "/[locale]/dashboard/shared/page": "/[locale]/dashboard/shared",
+  "/[locale]/login/page": "/[locale]/login",
+  "/[locale]/page": "/[locale]",
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
   "/auth/callback/route": "/auth/callback",
-  "/dashboard/page": "/dashboard",
-  "/dashboard/share/page": "/dashboard/share",
-  "/dashboard/shared-with-me/page": "/dashboard/shared-with-me",
-  "/favicon.ico/route": "/favicon.ico",
-  "/login/page": "/login",
-  "/page": "/"
+  "/favicon.ico/route": "/favicon.ico"
 }

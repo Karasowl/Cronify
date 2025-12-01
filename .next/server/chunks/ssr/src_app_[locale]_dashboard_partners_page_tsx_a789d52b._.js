@@ -1,0 +1,3 @@
+module.exports=[94229,a=>{"use strict";var b=a.i(87924),c=a.i(3112),d=a.i(71078),e=a.i(15925);function f(){let a=(0,e.useTranslations)("Partnerships");return(0,b.jsxs)("div",{className:"space-y-8",children:[(0,b.jsx)(d.Navbar,{}),(0,b.jsxs)("div",{className:"space-y-2",children:[(0,b.jsx)("h1",{className:"text-3xl font-bold tracking-tight",children:a("title")}),(0,b.jsx)("p",{className:"text-muted-foreground",children:a("description")})]}),(0,b.jsx)(c.Partnerships,{})]})}a.s(["default",()=>f])}];
+
+//# sourceMappingURL=src_app_%5Blocale%5D_dashboard_partners_page_tsx_a789d52b._.js.map
