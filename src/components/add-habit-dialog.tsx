@@ -23,7 +23,7 @@ import {
 import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
 import { Plus, CheckSquare, Timer, Target } from "lucide-react"
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { useRouter } from "@/i18n/routing"
 import { GOAL_PRESETS } from "@/hooks"
 import { cn } from "@/lib/utils"
@@ -77,7 +77,10 @@ export function AddHabitDialog({
             if (!user) {
                 toast.error("Tu sesión ha expirado. Redirigiendo al login...")
                 setOpen(false)
-                router.push("/login")
+                // Use window.location for full page redirect to ensure proper auth flow
+                setTimeout(() => {
+                    window.location.href = "/login"
+                }, 1000)
                 return
             }
 

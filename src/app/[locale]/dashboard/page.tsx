@@ -34,6 +34,14 @@ export default function DashboardPage() {
     useEffect(() => {
         async function fetchData() {
             try {
+                // Check if user is authenticated
+                const { data: { user } } = await supabase.auth.getUser()
+                if (!user) {
+                    // Redirect to login if not authenticated
+                    window.location.href = "/login"
+                    return
+                }
+
                 // Fetch habits
                 const { data: habitsData, error: habitsError } = await supabase
                     .from("habits")
