@@ -4,7 +4,10 @@
       "Bash(cat:*)",
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd remember me functionality and fix auth flow\n\n- Add \"Remember me\" checkbox to login form\n- Implement session cookie vs persistent cookie based on user preference\n- Middleware now checks for remember_session cookie and signs out if missing\n- Redirect to login after email verification instead of auto-login\n- Remove .next/ build artifacts from version control\n- Add checkbox UI component\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
