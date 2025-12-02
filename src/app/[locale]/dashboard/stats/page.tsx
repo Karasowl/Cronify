@@ -428,10 +428,16 @@ export default function StatsPage() {
                     <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
                     <p className="text-muted-foreground">{t("subtitle")}</p>
                 </div>
-                <Button variant="outline" onClick={exportToCSV} className="gap-2 w-fit">
-                    <Download className="w-4 h-4" />
-                    {t("exportCSV")}
-                </Button>
+                <div className="flex gap-2">
+                    <Button variant="outline" onClick={exportToCSV} className="gap-2">
+                        <Download className="w-4 h-4" />
+                        {t("exportCSV")}
+                    </Button>
+                    <Button variant="outline" onClick={exportToPDF} className="gap-2">
+                        <FileText className="w-4 h-4" />
+                        {t("exportPDF")}
+                    </Button>
+                </div>
             </div>
 
             {/* Overview Cards */}
