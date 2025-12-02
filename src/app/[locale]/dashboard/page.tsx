@@ -9,7 +9,25 @@ import { OnboardingModal } from "@/components/onboarding-modal"
 import { createClient } from "@/lib/supabase/client"
 import { useTranslations, useLocale } from "next-intl"
 import { toast } from "sonner"
-import { Loader2, Check, X, Clock, CheckSquare } from "lucide-react"
+import { Loader2, Check, X, Clock, CheckSquare, MoreVertical, Trash2, ChevronRight, Calendar } from "lucide-react"
+import { useRouter } from "next/navigation"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import type { Habit, HabitLog, HabitLogStatus } from "@/types"
 import { cn } from "@/lib/utils"
@@ -20,11 +38,14 @@ export default function DashboardPage() {
     const tCommon = useTranslations("Common")
     const locale = useLocale()
     const supabase = createClient()
+    const router = useRouter()
 
     const [habits, setHabits] = useState<Habit[]>([])
     const [logs, setLogs] = useState<HabitLog[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [addDialogOpen, setAddDialogOpen] = useState(false)
+    const [deleteHabitId, setDeleteHabitId] = useState<string | null>(null)
+    const [isDeleting, setIsDeleting] = useState(false)
 
     // Day modal state
     const [selectedDate, setSelectedDate] = useState<string | null>(null)
@@ -160,6 +181,32 @@ export default function DashboardPage() {
         setHabits((prev) => [...prev, habit])
     }
 
+    // Navigate to habit detail
+    function goToHabitDetail(habitId: string) {
+        router.push(`/${locale}/dashboard/habits/${habitId}`)
+    }
+
+    // Delete habit
+    async function deleteHabit(habitId: string) {
+        setIsDeleting(true)
+        try {
+            const { error } = await supabase
+                .from("habits")
+                .delete()
+                .eq("id", habitId)
+
+            if (error) throw error
+
+            setHabits((prev) => prev.filter((h) => h.id !== habitId))
+            toast.success(tHabit("habitDeleted"))
+        } catch (err: any) {
+            toast.error("Error: " + err.message)
+        } finally {
+            setIsDeleting(false)
+            setDeleteHabitId(null)
+        }
+    }
+
     if (isLoading) {
         return (
             <div className="space-y-8">
@@ -234,9 +281,15 @@ export default function DashboardPage() {
                                         log?.status === "failed" && "bg-red-500/10 border-red-500/30"
                                     )}
                                 >
-                                    <div className="flex items-center justify-between gap-2">
-                                        <div className="flex-1 min-w-0">
-                                            <p className="font-medium truncate">{habit.title}</p>
+                                    {/* Header with title and menu */}
+                                    <div className="flex items-start justify-between gap-2 mb-3">
+                                        <div
+                                            className="flex-1 min-w-0 cursor-pointer group"
+                                            onClick={() => goToHabitDetail(habit.id)}
+                                        >
+                                            <p className="font-medium truncate group-hover:text-primary transition-colors">
+                                                {habit.title}
+                                            </p>
                                             {habit.description && (
                                                 <p className="text-xs text-muted-foreground truncate">
                                                     {habit.description}
@@ -244,21 +297,63 @@ export default function DashboardPage() {
                                             )}
                                         </div>
 
-                                        {log ? (
-                                            <div className="flex items-center gap-1">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon" className="h-8 w-8 flex-shrink-0">
+                                                    <MoreVertical className="w-4 h-4" />
+                                                </Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem onClick={() => goToHabitDetail(habit.id)}>
+                                                    <Calendar className="w-4 h-4 mr-2" />
+                                                    {tHabit("viewCalendar")}
+                                                </DropdownMenuItem>
+                                                <DropdownMenuSeparator />
+                                                <DropdownMenuItem
+                                                    className="text-destructive"
+                                                    onClick={() => setDeleteHabitId(habit.id)}
+                                                >
+                                                    <Trash2 className="w-4 h-4 mr-2" />
+                                                    {tCommon("delete")}
+                                                </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </div>
+
+                                    {/* Action buttons */}
+                                    {log ? (
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-2">
                                                 {log.status === "completed" && (
-                                                    <Check className="w-5 h-5 text-green-500" />
+                                                    <>
+                                                        <Check className="w-5 h-5 text-green-500" />
+                                                        <span className="text-sm text-green-500">{tHabit("done")}</span>
+                                                    </>
                                                 )}
                                                 {log.status === "failed" && (
-                                                    <X className="w-5 h-5 text-red-500" />
+                                                    <>
+                                                        <X className="w-5 h-5 text-red-500" />
+                                                        <span className="text-sm text-red-500">{tHabit("fail")}</span>
+                                                    </>
                                                 )}
                                             </div>
-                                        ) : (
-                                            <div className="flex gap-1.5">
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                className="gap-1 text-muted-foreground hover:text-primary"
+                                                onClick={() => goToHabitDetail(habit.id)}
+                                            >
+                                                {tHabit("viewDetails")}
+                                                <ChevronRight className="w-4 h-4" />
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <div className="space-y-2">
+                                            <div className="flex gap-2">
                                                 <Button
                                                     size="sm"
                                                     variant="ghost"
-                                                    className="h-10 sm:h-8 px-3 text-green-600 hover:bg-green-500/20 active:scale-95"
+                                                    className="flex-1 h-10 text-green-600 hover:bg-green-500/20 active:scale-95"
                                                     onClick={() => handleLog(habit.id, "completed")}
                                                 >
                                                     <Check className="w-4 h-4 mr-1" />
@@ -267,15 +362,24 @@ export default function DashboardPage() {
                                                 <Button
                                                     size="sm"
                                                     variant="ghost"
-                                                    className="h-10 sm:h-8 px-3 text-red-600 hover:bg-red-500/20 active:scale-95"
+                                                    className="flex-1 h-10 text-red-600 hover:bg-red-500/20 active:scale-95"
                                                     onClick={() => handleLog(habit.id, "failed")}
                                                 >
                                                     <X className="w-4 h-4 mr-1" />
                                                     {tHabit("fail")}
                                                 </Button>
                                             </div>
-                                        )}
-                                    </div>
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                className="w-full gap-1 text-muted-foreground hover:text-primary"
+                                                onClick={() => goToHabitDetail(habit.id)}
+                                            >
+                                                {tHabit("viewDetails")}
+                                                <ChevronRight className="w-4 h-4" />
+                                            </Button>
+                                        </div>
+                                    )}
                                 </GlassCard>
                             )
                         })}
@@ -326,6 +430,31 @@ export default function DashboardPage() {
 
             {/* Onboarding Modal - shows on first visit */}
             <OnboardingModal />
+
+            {/* Delete Confirmation Dialog */}
+            <AlertDialog open={!!deleteHabitId} onOpenChange={(open) => !open && setDeleteHabitId(null)}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>{tHabit("deleteConfirmTitle")}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            {tHabit("deleteConfirmDescription")}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel disabled={isDeleting}>
+                            {tCommon("cancel")}
+                        </AlertDialogCancel>
+                        <AlertDialogAction
+                            onClick={() => deleteHabitId && deleteHabit(deleteHabitId)}
+                            disabled={isDeleting}
+                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                        >
+                            {isDeleting && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
+                            {tCommon("delete")}
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </div>
     )
 }
