@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { createClient } from "@/lib/supabase/client"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
-import { Check, X, MoreVertical, Loader2, Calendar, Trash2, Timer, CheckSquare } from "lucide-react"
+import { Check, X, MoreVertical, Loader2, Calendar, Trash2, Timer, CheckSquare, ChevronRight, Edit } from "lucide-react"
 import { AddHabitDialog } from "@/components/add-habit-dialog"
 import { TimerCard } from "@/components/habits"
 import { toast } from "sonner"
@@ -200,9 +200,15 @@ export function HabitTracker() {
 
                                     return (
                                         <GlassCard key={habit.id} className="flex flex-col justify-between gap-4">
-                                            <div className="flex justify-between items-start">
-                                                <div>
-                                                    <h3 className="font-semibold text-lg">{habit.title}</h3>
+                                            {/* Header - clickable */}
+                                            <div
+                                                className="flex justify-between items-start cursor-pointer group"
+                                                onClick={() => goToHabitDetail(habit.id)}
+                                            >
+                                                <div className="flex-1">
+                                                    <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
+                                                        {habit.title}
+                                                    </h3>
                                                     {habit.description && (
                                                         <p className="text-sm text-muted-foreground">
                                                             {habit.description}
@@ -210,7 +216,7 @@ export function HabitTracker() {
                                                     )}
                                                 </div>
                                                 <DropdownMenu>
-                                                    <DropdownMenuTrigger asChild>
+                                                    <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
                                                         <Button variant="ghost" size="icon" className="h-8 w-8">
                                                             <MoreVertical className="w-4 h-4" />
                                                         </Button>
@@ -232,7 +238,8 @@ export function HabitTracker() {
                                                 </DropdownMenu>
                                             </div>
 
-                                            <div className="flex gap-2 mt-2">
+                                            {/* Action buttons */}
+                                            <div className="flex gap-2">
                                                 <Button
                                                     className={`flex-1 ${isCompleted ? "bg-green-500/20 text-green-500 hover:bg-green-500/30" : ""
                                                         }`}
@@ -254,6 +261,17 @@ export function HabitTracker() {
                                                     {t('fail')}
                                                 </Button>
                                             </div>
+
+                                            {/* View details link */}
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                className="w-full gap-1 text-muted-foreground hover:text-primary"
+                                                onClick={() => goToHabitDetail(habit.id)}
+                                            >
+                                                {t('viewDetails')}
+                                                <ChevronRight className="w-4 h-4" />
+                                            </Button>
                                         </GlassCard>
                                     )
                                 })}

@@ -90,6 +90,7 @@
         "creating": "Creando...",
         "success": "Hábito creado exitosamente",
         "viewCalendar": "Ver calendario",
+        "viewDetails": "Ver detalles",
         "habitDeleted": "Hábito eliminado",
         "deleteConfirmTitle": "¿Eliminar hábito?",
         "deleteConfirmDescription": "Esta acción no se puede deshacer. Se eliminarán todos los registros asociados a este hábito.",

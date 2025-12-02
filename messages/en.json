@@ -90,6 +90,7 @@
         "creating": "Creating...",
         "success": "Habit created successfully",
         "viewCalendar": "View calendar",
+        "viewDetails": "View details",
         "habitDeleted": "Habit deleted",
         "deleteConfirmTitle": "Delete habit?",
         "deleteConfirmDescription": "This action cannot be undone. All records associated with this habit will be deleted.",
