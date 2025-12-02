@@ -157,15 +157,16 @@ export default function AuthPage() {
                                 className="bg-white/5 border-white/10 focus:bg-white/10 transition-all"
                             />
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-3">
                             <Checkbox
                                 id="rememberMe"
                                 checked={rememberMe}
                                 onCheckedChange={(checked) => setRememberMe(checked === true)}
+                                className="size-5"
                             />
                             <Label
                                 htmlFor="rememberMe"
-                                className="text-sm font-normal text-muted-foreground cursor-pointer"
+                                className="text-sm font-normal text-foreground/80 cursor-pointer"
                             >
                                 {t('rememberMe')}
                             </Label>
