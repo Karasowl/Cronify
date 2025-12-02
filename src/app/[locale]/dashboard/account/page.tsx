@@ -31,6 +31,7 @@ export default function AccountPage() {
     const router = useRouter()
     const supabase = createClient()
     const t = useTranslations("Account")
+    const tCommon = useTranslations("Common")
 
     const [user, setUser] = useState<{ email: string; created_at: string } | null>(null)
     const [settings, setSettings] = useState<UserSettings>({ auto_fail_enabled: false })
@@ -83,9 +84,9 @@ export default function AccountPage() {
             if (error) throw error
 
             setSettings({ ...settings, auto_fail_enabled: enabled })
-            toast.success("Configuración guardada")
+            toast.success(t("settingsSaved"))
         } catch (err: any) {
-            toast.error("Error guardando configuración")
+            toast.error(t("settingsError"))
         } finally {
             setIsSaving(false)
         }
@@ -114,10 +115,10 @@ export default function AccountPage() {
             document.cookie = 'remember_session=; path=/; max-age=0'
             await supabase.auth.signOut()
 
-            toast.success("Cuenta eliminada")
+            toast.success(t("accountDeleted"))
             router.push("/")
         } catch (err: any) {
-            toast.error("Error eliminando cuenta")
+            toast.error(t("deleteError"))
             setIsDeleting(false)
         }
     }
@@ -211,7 +212,7 @@ export default function AccountPage() {
                             </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                            <AlertDialogCancel>{t("logout")}</AlertDialogCancel>
+                            <AlertDialogCancel>{tCommon("cancel")}</AlertDialogCancel>
                             <AlertDialogAction onClick={handleLogout}>
                                 {t("logout")}
                             </AlertDialogAction>
@@ -247,7 +248,7 @@ export default function AccountPage() {
                             </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                            <AlertDialogCancel>{tCommon("cancel")}</AlertDialogCancel>
                             <AlertDialogAction
                                 onClick={handleDeleteAccount}
                                 className="bg-destructive text-destructive-foreground hover:bg-destructive/90"

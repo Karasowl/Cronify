@@ -20,6 +20,7 @@ import { useTimer, formatGoalSeconds } from "@/hooks"
 import { StopCircle, Trophy, Target, Flame, ChevronRight, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import type { Habit } from "@/types"
+import { useTranslations } from "next-intl"
 
 interface TimerCardProps {
   habit: Habit
@@ -30,6 +31,8 @@ interface TimerCardProps {
 export function TimerCard({ habit, locale, onReset }: TimerCardProps) {
   const router = useRouter()
   const [showResetDialog, setShowResetDialog] = useState(false)
+  const t = useTranslations("Timer")
+  const tCommon = useTranslations("Common")
 
   const {
     duration,
@@ -67,7 +70,7 @@ export function TimerCard({ habit, locale, onReset }: TimerCardProps) {
       {isNewRecord && (
         <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 bg-yellow-500/20 text-yellow-500 text-xs font-medium rounded-full">
           <Trophy className="w-3 h-3" />
-          Nuevo récord
+          {t("newRecord")}
         </div>
       )}
 
@@ -108,7 +111,7 @@ export function TimerCard({ habit, locale, onReset }: TimerCardProps) {
                 {duration.days > 0 && (
                   <div className="text-2xl font-bold text-primary">
                     {duration.days}
-                    <span className="text-sm text-muted-foreground ml-1">días</span>
+                    <span className="text-sm text-muted-foreground ml-1">{t("days")}</span>
                   </div>
                 )}
                 <div className="text-xl font-mono font-semibold">
@@ -138,14 +141,14 @@ export function TimerCard({ habit, locale, onReset }: TimerCardProps) {
             <Flame className="w-4 h-4" />
             <span className="font-semibold">{formattedTime}</span>
           </div>
-          <p className="text-xs text-muted-foreground">Tiempo actual</p>
+          <p className="text-xs text-muted-foreground">{t("currentTime")}</p>
         </div>
         <div className="text-center p-2 rounded-lg bg-muted/50">
           <div className="flex items-center justify-center gap-1 text-yellow-500">
             <Trophy className="w-4 h-4" />
             <span className="font-semibold">{formattedMaxStreak || "0s"}</span>
           </div>
-          <p className="text-xs text-muted-foreground">Récord</p>
+          <p className="text-xs text-muted-foreground">{t("record")}</p>
         </div>
       </div>
 
@@ -176,31 +179,31 @@ export function TimerCard({ habit, locale, onReset }: TimerCardProps) {
               ) : (
                 <StopCircle className="w-4 h-4" />
               )}
-              Recaída
+              {t("relapse")}
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Registrar recaída</AlertDialogTitle>
+              <AlertDialogTitle>{t("relapseTitle")}</AlertDialogTitle>
               <AlertDialogDescription>
-                Esto reiniciará tu contador a cero. Tu tiempo actual de{" "}
+                {t("relapseDesc")}{" "}
                 <span className="font-semibold text-foreground">{formattedTime}</span>{" "}
                 {duration.totalSeconds > habit.max_streak_seconds ? (
                   <span className="text-yellow-500">
-                    se guardará como nuevo récord.
+                    {t("relapseNewRecord")}
                   </span>
                 ) : (
-                  <span>será registrado.</span>
+                  <span>{t("relapseLogged")}</span>
                 )}
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+              <AlertDialogCancel>{tCommon("cancel")}</AlertDialogCancel>
               <AlertDialogAction
                 onClick={handleReset}
                 className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               >
-                Confirmar recaída
+                {t("confirmRelapse")}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -212,7 +215,7 @@ export function TimerCard({ habit, locale, onReset }: TimerCardProps) {
           className="gap-1 text-muted-foreground"
           onClick={handleCardClick}
         >
-          Ver detalles
+          {t("viewDetails")}
           <ChevronRight className="w-4 h-4" />
         </Button>
       </div>

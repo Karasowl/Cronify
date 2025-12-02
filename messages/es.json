@@ -38,11 +38,20 @@
         "rememberMe": "Mantener sesión iniciada",
         "emailVerified": "¡Correo verificado! Ya puedes iniciar sesión.",
         "checkEmailDesc": "Hemos enviado un enlace de confirmación a tu correo. Por favor revisa tu bandeja de entrada (y spam) para activar tu cuenta.",
-        "backToLogin": "Volver al inicio de sesión"
+        "backToLogin": "Volver al inicio de sesión",
+        "backToHome": "Volver",
+        "showPassword": "Mostrar contraseña",
+        "hidePassword": "Ocultar contraseña",
+        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "forgotPasswordNotice": "La recuperación de contraseña estará disponible próximamente. Por favor contacta al soporte."
     },
     "Dashboard": {
         "title": "Tus Hábitos",
-        "noHabits": "Sigue tu progreso y mantente constante."
+        "noHabits": "Sigue tu progreso y mantente constante.",
+        "emptyTitle": "¡Comienza tu viaje!",
+        "emptyDesc": "No tienes hábitos todavía. Crea tu primer hábito para empezar a trackear tu progreso.",
+        "createFirst": "Crear mi primer hábito",
+        "errorLoading": "Error cargando datos"
     },
     "HabitTracker": {
         "todaysHabits": "Hábitos de Hoy",
@@ -97,7 +106,34 @@
         "cancel": "Cancelar",
         "delete": "Eliminar",
         "edit": "Editar",
-        "error": "Algo salió mal"
+        "error": "Algo salió mal",
+        "saving": "Guardando...",
+        "sessionExpired": "Tu sesión ha expirado. Redirigiendo al login..."
+    },
+    "HabitLog": {
+        "title": "Registrar hábito",
+        "howWasIt": "¿Cómo te fue?",
+        "completed": "Completado",
+        "failed": "Fallado",
+        "skipped": "Saltado",
+        "reasonLabel": "¿Qué pasó? (opcional pero recomendado)",
+        "notesLabel": "Notas (opcional)",
+        "reasonPlaceholder": "Ej: Me quedé trabajando hasta tarde...",
+        "notesPlaceholder": "Añade notas sobre este día...",
+        "reasonHint": "Registrar la razón te ayuda a identificar patrones y tu accountability partner podrá apoyarte mejor."
+    },
+    "Timer": {
+        "newRecord": "Nuevo récord",
+        "days": "días",
+        "currentTime": "Tiempo actual",
+        "record": "Récord",
+        "relapse": "Recaída",
+        "relapseTitle": "Registrar recaída",
+        "relapseDesc": "Esto reiniciará tu contador a cero.",
+        "relapseNewRecord": "se guardará como nuevo récord.",
+        "relapseLogged": "será registrado.",
+        "confirmRelapse": "Confirmar recaída",
+        "viewDetails": "Ver detalles"
     },
     "Partnerships": {
         "title": "Comparte tu Progreso",
@@ -149,11 +185,16 @@
         "logout": "Cerrar sesión",
         "logoutConfirmTitle": "¿Cerrar sesión?",
         "logoutConfirmDesc": "Tendrás que volver a iniciar sesión para acceder a tus hábitos.",
+        "stayLoggedIn": "Permanecer conectado",
         "deleteAccount": "Eliminar cuenta",
         "deleteAccountTitle": "¿Eliminar cuenta?",
         "deleteAccountDesc": "Esta acción es irreversible. Se eliminarán todos tus datos, hábitos y registros.",
         "deleteConfirmButton": "Sí, eliminar mi cuenta",
-        "dangerZone": "Zona de peligro"
+        "dangerZone": "Zona de peligro",
+        "settingsSaved": "Configuración guardada",
+        "settingsError": "Error guardando configuración",
+        "accountDeleted": "Cuenta eliminada",
+        "deleteError": "Error eliminando cuenta"
     },
     "Stats": {
         "title": "Estadísticas",
@@ -170,7 +211,12 @@
         "habitBreakdown": "Desglose por hábito",
         "mostConsistent": "Más consistente",
         "needsWork": "Necesita trabajo",
-        "noData": "No hay suficientes datos para mostrar estadísticas"
+        "noData": "No hay suficientes datos para mostrar estadísticas",
+        "bestDay": "Mejor día",
+        "percentCompleted": "% Completado",
+        "dayPerformance": "Rendimiento por día de la semana",
+        "compliance": "de cumplimiento",
+        "daysOfWeek": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"]
     },
     "Calendar": {
         "title": "Calendario",

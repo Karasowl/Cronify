@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils"
 export default function DashboardPage() {
     const t = useTranslations("Dashboard")
     const tHabit = useTranslations("HabitTracker")
+    const tCommon = useTranslations("Common")
     const locale = useLocale()
     const supabase = createClient()
 
@@ -63,7 +64,7 @@ export default function DashboardPage() {
                 if (logsError) throw logsError
                 setLogs(logsData || [])
             } catch (err: any) {
-                toast.error("Error cargando datos: " + err.message)
+                toast.error(t("errorLoading") + ": " + err.message)
             } finally {
                 setIsLoading(false)
             }
@@ -182,13 +183,13 @@ export default function DashboardPage() {
             {habits.length === 0 && (
                 <GlassCard className="text-center py-12">
                     <CheckSquare className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-                    <h2 className="text-xl font-semibold mb-2">¡Comienza tu viaje!</h2>
+                    <h2 className="text-xl font-semibold mb-2">{t("emptyTitle")}</h2>
                     <p className="text-muted-foreground mb-6">
-                        No tienes hábitos todavía. Crea tu primer hábito para empezar a trackear tu progreso.
+                        {t("emptyDesc")}
                     </p>
                     <Button size="lg" onClick={() => setAddDialogOpen(true)} className="gap-2">
                         <CheckSquare className="w-5 h-5" />
-                        Crear mi primer hábito
+                        {t("createFirst")}
                     </Button>
                 </GlassCard>
             )}

@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter, usePathname } from "@/i18n/routing"
 import { useSearchParams } from "next/navigation"
-import { Loader2, CheckCircle2 } from "lucide-react"
+import { Loader2, CheckCircle2, ArrowLeft, Eye, EyeOff } from "lucide-react"
 import { toast } from "sonner"
 import { useTranslations } from 'next-intl'
 
@@ -18,6 +18,7 @@ export default function AuthPage() {
     const [isLogin, setIsLogin] = useState(true)
     const [isSuccess, setIsSuccess] = useState(false)
     const [rememberMe, setRememberMe] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
     const router = useRouter()
     const searchParams = useSearchParams()
     const supabase = createClient()
@@ -123,6 +124,17 @@ export default function AuthPage() {
                 <div className="absolute bottom-[20%] right-[20%] w-[30%] h-[30%] bg-secondary-foreground/10 rounded-full blur-[100px]" />
             </div>
 
+            {/* Back to Home Button */}
+            <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => router.push("/")}
+                className="absolute top-4 left-4 gap-2 text-muted-foreground hover:text-foreground"
+            >
+                <ArrowLeft className="w-4 h-4" />
+                {t('backToHome')}
+            </Button>
+
             <GlassCard className="w-full max-w-md" gradient>
                 <div className="space-y-6">
                     <div className="text-center space-y-2">
@@ -150,27 +162,59 @@ export default function AuthPage() {
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="password">{t('passwordLabel')}</Label>
-                            <Input
-                                id="password"
-                                name="password"
-                                type="password"
-                                required
-                                className="bg-white/5 border-white/10 focus:bg-white/10 transition-all"
-                            />
+                            <div className="relative">
+                                <Input
+                                    id="password"
+                                    name="password"
+                                    type={showPassword ? "text" : "password"}
+                                    required
+                                    className="bg-white/5 border-white/10 focus:bg-white/10 transition-all pr-10"
+                                />
+                                <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-muted-foreground hover:text-foreground"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    tabIndex={-1}
+                                >
+                                    {showPassword ? (
+                                        <EyeOff className="h-4 w-4" />
+                                    ) : (
+                                        <Eye className="h-4 w-4" />
+                                    )}
+                                    <span className="sr-only">
+                                        {showPassword ? t('hidePassword') : t('showPassword')}
+                                    </span>
+                                </Button>
+                            </div>
                         </div>
-                        <div className="flex items-center space-x-3">
-                            <Checkbox
-                                id="rememberMe"
-                                checked={rememberMe}
-                                onCheckedChange={(checked) => setRememberMe(checked === true)}
-                                className="size-5"
-                            />
-                            <Label
-                                htmlFor="rememberMe"
-                                className="text-sm font-normal text-foreground/80 cursor-pointer"
-                            >
-                                {t('rememberMe')}
-                            </Label>
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-3">
+                                <Checkbox
+                                    id="rememberMe"
+                                    checked={rememberMe}
+                                    onCheckedChange={(checked) => setRememberMe(checked === true)}
+                                    className="size-5"
+                                />
+                                <Label
+                                    htmlFor="rememberMe"
+                                    className="text-sm font-normal text-foreground/80 cursor-pointer"
+                                >
+                                    {t('rememberMe')}
+                                </Label>
+                            </div>
+                            {isLogin && (
+                                <Button
+                                    type="button"
+                                    variant="link"
+                                    size="sm"
+                                    className="px-0 text-xs text-muted-foreground hover:text-primary"
+                                    onClick={() => toast.info(t('forgotPasswordNotice'))}
+                                >
+                                    {t('forgotPassword')}
+                                </Button>
+                            )}
                         </div>
                         <Button className="w-full" disabled={isLoading}>
                             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

@@ -38,11 +38,20 @@
         "rememberMe": "Keep me signed in",
         "emailVerified": "Email verified! You can now sign in.",
         "checkEmailDesc": "We've sent a confirmation link to your email. Please check your inbox (and spam folder) to activate your account.",
-        "backToLogin": "Back to Login"
+        "backToLogin": "Back to Login",
+        "backToHome": "Back",
+        "showPassword": "Show password",
+        "hidePassword": "Hide password",
+        "forgotPassword": "Forgot password?",
+        "forgotPasswordNotice": "Password recovery will be available soon. Please contact support."
     },
     "Dashboard": {
         "title": "Your Habits",
-        "noHabits": "Track your progress and stay consistent."
+        "noHabits": "Track your progress and stay consistent.",
+        "emptyTitle": "Start your journey!",
+        "emptyDesc": "You don't have any habits yet. Create your first habit to start tracking your progress.",
+        "createFirst": "Create my first habit",
+        "errorLoading": "Error loading data"
     },
     "HabitTracker": {
         "todaysHabits": "Today's Habits",
@@ -97,7 +106,34 @@
         "cancel": "Cancel",
         "delete": "Delete",
         "edit": "Edit",
-        "error": "Something went wrong"
+        "error": "Something went wrong",
+        "saving": "Saving...",
+        "sessionExpired": "Your session has expired. Redirecting to login..."
+    },
+    "HabitLog": {
+        "title": "Log habit",
+        "howWasIt": "How did it go?",
+        "completed": "Completed",
+        "failed": "Failed",
+        "skipped": "Skipped",
+        "reasonLabel": "What happened? (optional but recommended)",
+        "notesLabel": "Notes (optional)",
+        "reasonPlaceholder": "e.g., I stayed working late...",
+        "notesPlaceholder": "Add notes about this day...",
+        "reasonHint": "Recording the reason helps you identify patterns and your accountability partner can support you better."
+    },
+    "Timer": {
+        "newRecord": "New record",
+        "days": "days",
+        "currentTime": "Current time",
+        "record": "Record",
+        "relapse": "Relapse",
+        "relapseTitle": "Register relapse",
+        "relapseDesc": "This will reset your counter to zero.",
+        "relapseNewRecord": "will be saved as a new record.",
+        "relapseLogged": "will be logged.",
+        "confirmRelapse": "Confirm relapse",
+        "viewDetails": "View details"
     },
     "Partnerships": {
         "title": "Share Your Progress",
@@ -149,11 +185,16 @@
         "logout": "Log out",
         "logoutConfirmTitle": "Log out?",
         "logoutConfirmDesc": "You'll need to sign in again to access your habits.",
+        "stayLoggedIn": "Stay logged in",
         "deleteAccount": "Delete account",
         "deleteAccountTitle": "Delete account?",
         "deleteAccountDesc": "This action is irreversible. All your data, habits, and records will be deleted.",
         "deleteConfirmButton": "Yes, delete my account",
-        "dangerZone": "Danger zone"
+        "dangerZone": "Danger zone",
+        "settingsSaved": "Settings saved",
+        "settingsError": "Error saving settings",
+        "accountDeleted": "Account deleted",
+        "deleteError": "Error deleting account"
     },
     "Stats": {
         "title": "Statistics",
@@ -170,7 +211,12 @@
         "habitBreakdown": "Habit breakdown",
         "mostConsistent": "Most consistent",
         "needsWork": "Needs work",
-        "noData": "Not enough data to show statistics"
+        "noData": "Not enough data to show statistics",
+        "bestDay": "Best day",
+        "percentCompleted": "% Completed",
+        "dayPerformance": "Performance by day of the week",
+        "compliance": "compliance",
+        "daysOfWeek": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     },
     "Calendar": {
         "title": "Calendar",

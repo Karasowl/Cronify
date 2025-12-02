@@ -155,7 +155,7 @@ export default function StatsPage() {
 
     // Day of week analysis
     const dayOfWeekStats = useMemo(() => {
-        const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"]
+        const days = t.raw("daysOfWeek") as string[]
         const dayStats = days.map((day, index) => {
             const dayLogs = logs.filter((l) => new Date(l.date).getDay() === index)
             const completed = dayLogs.filter((l) => l.status === "completed").length
@@ -170,7 +170,7 @@ export default function StatsPage() {
         })
 
         return dayStats
-    }, [logs])
+    }, [logs, t])
 
     // Best day
     const bestDay = useMemo(() => {
@@ -243,7 +243,7 @@ export default function StatsPage() {
                 <GlassCard className="text-center">
                     <Trophy className="w-8 h-8 mx-auto text-yellow-500 mb-2" />
                     <p className="text-3xl font-bold text-yellow-500">{bestDay.day}</p>
-                    <p className="text-sm text-muted-foreground">Mejor día ({bestDay.rate}%)</p>
+                    <p className="text-sm text-muted-foreground">{t("bestDay")} ({bestDay.rate}%)</p>
                 </GlassCard>
             </div>
 
@@ -273,7 +273,7 @@ export default function StatsPage() {
                                 stroke="#3b82f6"
                                 strokeWidth={2}
                                 dot={{ fill: "#3b82f6" }}
-                                name="% Completado"
+                                name={t("percentCompleted")}
                             />
                         </LineChart>
                     </ResponsiveContainer>
@@ -284,7 +284,7 @@ export default function StatsPage() {
             <GlassCard>
                 <div className="flex items-center gap-2 mb-4">
                     <BarChart3 className="w-5 h-5 text-primary" />
-                    <h2 className="font-semibold text-sm sm:text-base">Rendimiento por día de la semana</h2>
+                    <h2 className="font-semibold text-sm sm:text-base">{t("dayPerformance")}</h2>
                 </div>
                 <div className="h-48 sm:h-64">
                     <ResponsiveContainer width="100%" height="100%">
@@ -300,7 +300,7 @@ export default function StatsPage() {
                                 }}
                                 labelStyle={{ color: "#fff" }}
                             />
-                            <Bar dataKey="rate" name="% Completado" radius={[4, 4, 0, 0]}>
+                            <Bar dataKey="rate" name={t("percentCompleted")} radius={[4, 4, 0, 0]}>
                                 {dayOfWeekStats.map((entry, index) => (
                                     <Cell
                                         key={`cell-${index}`}
@@ -354,7 +354,7 @@ export default function StatsPage() {
                         <div>
                             <p className="font-medium">{habitBreakdown[0].name}</p>
                             <p className="text-sm text-muted-foreground">
-                                {habitBreakdown[0].rate}% de cumplimiento
+                                {habitBreakdown[0].rate}% {t("compliance")}
                             </p>
                         </div>
                     )}
@@ -368,7 +368,7 @@ export default function StatsPage() {
                                 {habitBreakdown[habitBreakdown.length - 1].name}
                             </p>
                             <p className="text-sm text-muted-foreground">
-                                {habitBreakdown[habitBreakdown.length - 1].rate}% de cumplimiento
+                                {habitBreakdown[habitBreakdown.length - 1].rate}% {t("compliance")}
                             </p>
                         </div>
                     )}

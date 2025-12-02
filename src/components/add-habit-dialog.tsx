@@ -60,6 +60,7 @@ export function AddHabitDialog({
     const supabase = createClient()
     const router = useRouter()
     const t = useTranslations('HabitTracker')
+    const tCommon = useTranslations('Common')
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -75,7 +76,7 @@ export function AddHabitDialog({
             } = await supabase.auth.getUser()
 
             if (!user) {
-                toast.error("Tu sesión ha expirado. Redirigiendo al login...")
+                toast.error(tCommon("sessionExpired"))
                 setOpen(false)
                 // Use window.location for full page redirect to ensure proper auth flow
                 setTimeout(() => {

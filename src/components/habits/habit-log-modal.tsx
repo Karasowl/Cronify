@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label"
 import { Check, X, Minus } from "lucide-react"
 import type { HabitLogStatus } from "@/types"
 import { cn } from "@/lib/utils"
+import { useTranslations, useLocale } from "next-intl"
 
 interface HabitLogModalProps {
   open: boolean
@@ -38,6 +39,9 @@ export function HabitLogModal({
   const [status, setStatus] = useState<HabitLogStatus | null>(currentStatus || null)
   const [reason, setReason] = useState(currentReason || "")
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const t = useTranslations("HabitLog")
+  const tCommon = useTranslations("Common")
+  const locale = useLocale()
 
   const handleSubmit = async () => {
     if (!status) return
@@ -54,8 +58,8 @@ export function HabitLogModal({
   }
 
   const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr)
-    return date.toLocaleDateString("es-ES", {
+    const dateObj = new Date(dateStr)
+    return dateObj.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
       weekday: "long",
       year: "numeric",
       month: "long",
@@ -66,19 +70,19 @@ export function HabitLogModal({
   const statusOptions: { value: HabitLogStatus; label: string; icon: React.ReactNode; color: string }[] = [
     {
       value: "completed",
-      label: "Completado",
+      label: t("completed"),
       icon: <Check className="w-5 h-5" />,
       color: "border-green-500 bg-green-500/20 text-green-500",
     },
     {
       value: "failed",
-      label: "Fallado",
+      label: t("failed"),
       icon: <X className="w-5 h-5" />,
       color: "border-red-500 bg-red-500/20 text-red-500",
     },
     {
       value: "skipped",
-      label: "Saltado",
+      label: t("skipped"),
       icon: <Minus className="w-5 h-5" />,
       color: "border-yellow-500 bg-yellow-500/20 text-yellow-500",
     },
@@ -88,7 +92,7 @@ export function HabitLogModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Registrar hábito</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription>
             <span className="font-medium">{habitTitle}</span>
             <br />
@@ -99,7 +103,7 @@ export function HabitLogModal({
         <div className="space-y-4">
           {/* Status Selection */}
           <div className="space-y-2">
-            <Label>¿Cómo te fue?</Label>
+            <Label>{t("howWasIt")}</Label>
             <div className="grid grid-cols-3 gap-2">
               {statusOptions.map((option) => (
                 <button
@@ -123,15 +127,15 @@ export function HabitLogModal({
           <div className="space-y-2">
             <Label htmlFor="reason">
               {status === "failed"
-                ? "¿Qué pasó? (opcional pero recomendado)"
-                : "Notas (opcional)"}
+                ? t("reasonLabel")
+                : t("notesLabel")}
             </Label>
             <Textarea
               id="reason"
               placeholder={
                 status === "failed"
-                  ? "Ej: Me quedé trabajando hasta tarde..."
-                  : "Añade notas sobre este día..."
+                  ? t("reasonPlaceholder")
+                  : t("notesPlaceholder")
               }
               value={reason}
               onChange={(e) => setReason(e.target.value)}
@@ -142,7 +146,7 @@ export function HabitLogModal({
             />
             {status === "failed" && (
               <p className="text-xs text-muted-foreground">
-                Registrar la razón te ayuda a identificar patrones y tu accountability partner podrá apoyarte mejor.
+                {t("reasonHint")}
               </p>
             )}
           </div>
@@ -150,10 +154,10 @@ export function HabitLogModal({
 
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            Cancelar
+            {tCommon("cancel")}
           </Button>
           <Button onClick={handleSubmit} disabled={!status || isSubmitting}>
-            {isSubmitting ? "Guardando..." : "Guardar"}
+            {isSubmitting ? tCommon("saving") : tCommon("save")}
           </Button>
         </DialogFooter>
       </DialogContent>
