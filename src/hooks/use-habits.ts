@@ -36,6 +36,8 @@ export function useHabits() {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) throw new Error("Not authenticated")
 
+      const now = new Date().toISOString()
+
       const { data, error: createError } = await supabase
         .from("habits")
         .insert({
@@ -44,11 +46,10 @@ export function useHabits() {
           description: input.description || null,
           habit_type: input.habit_type || "build",
           frequency: input.frequency || { type: "daily" },
-          target_value: input.target_value || null,
-          target_unit: input.target_unit || null,
-          start_date: input.start_date || new Date().toISOString().split("T")[0],
-          end_date: input.end_date || null,
-          is_public: input.is_public ?? false,
+          start_date: input.start_date || now,
+          last_reset: now,
+          current_goal_seconds: 86400,
+          max_streak_seconds: 0,
         })
         .select()
         .single()

@@ -12,11 +12,7 @@ export interface Habit {
   description: string | null
   habit_type: HabitType
   frequency: HabitFrequency
-  target_value: number | null
-  target_unit: string | null
   start_date: string
-  end_date: string | null
-  is_public: boolean
   // Timer fields for "break" habits (cronómetro de abstinencia)
   last_reset: string
   max_streak_seconds: number
@@ -79,11 +75,7 @@ export interface CreateHabitInput {
   description?: string
   habit_type?: HabitType
   frequency?: HabitFrequency
-  target_value?: number
-  target_unit?: string
   start_date?: string
-  end_date?: string
-  is_public?: boolean
 }
 
 export interface LogHabitInput {
