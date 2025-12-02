@@ -58,7 +58,8 @@ export default function AuthPage() {
                     document.cookie = `remember_session=true; path=/; SameSite=Lax`
                 }
 
-                router.push("/dashboard")
+                // Use full page navigation to ensure cookie is sent with the request
+                window.location.href = "/dashboard"
             } else {
                 console.log("Attempting sign up...")
                 const { error } = await supabase.auth.signUp({
