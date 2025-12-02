@@ -210,6 +210,23 @@ export default function Home() {
             </GlassCard>
           </motion.div>
         </section>
+
+        {/* Footer */}
+        <footer className="border-t border-white/10 pt-8 pb-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+            <div className="flex items-center gap-1">
+              {t('footer.madeWith')} <span className="text-red-500">♥</span> by Cronify
+            </div>
+            <div className="flex gap-6">
+              <Link href="/terms" className="hover:text-primary transition-colors">
+                {t('footer.terms')}
+              </Link>
+              <Link href="/privacy" className="hover:text-primary transition-colors">
+                {t('footer.privacy')}
+              </Link>
+            </div>
+          </div>
+        </footer>
       </div>
     </main>
   )

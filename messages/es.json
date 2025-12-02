@@ -26,7 +26,12 @@
         "step3Title": "Comparte con un partner",
         "step3Desc": "Invita a alguien para que te mantenga responsable",
         "ctaTitle": "¿Listo para transformar tu vida?",
-        "ctaDesc": "Únete a miles de personas construyendo mejores hábitos con Cronify."
+        "ctaDesc": "Únete a miles de personas construyendo mejores hábitos con Cronify.",
+        "footer": {
+            "terms": "Términos de Servicio",
+            "privacy": "Política de Privacidad",
+            "madeWith": "Hecho con"
+        }
     },
     "Navbar": {
         "dashboard": "Panel",
@@ -219,8 +224,10 @@
     "Stats": {
         "title": "Estadísticas",
         "subtitle": "Visualiza tu progreso a lo largo del tiempo",
-        "exportCSV": "Exportar a CSV",
+        "exportCSV": "CSV",
+        "exportPDF": "PDF",
         "exportSuccess": "Datos exportados exitosamente",
+        "exportReport": "Exportar",
         "overview": "Resumen general",
         "totalDays": "Días totales",
         "completedDays": "Días completados",
@@ -238,7 +245,12 @@
         "percentCompleted": "% Completado",
         "dayPerformance": "Rendimiento por día de la semana",
         "compliance": "de cumplimiento",
-        "daysOfWeek": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"]
+        "daysOfWeek": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+        "failureReasons": "Por Qué Fallaste",
+        "failureReasonsDesc": "Analiza patrones en tus razones de fallo",
+        "noReasons": "Aún no hay razones de fallo registradas",
+        "timesRecorded": "veces",
+        "topReasons": "Razones principales"
     },
     "Calendar": {
         "title": "Calendario",
@@ -258,6 +270,84 @@
         "description": "Cronify es un proyecto gratuito. Si te ayuda a construir mejores hábitos, considera apoyar el desarrollo con una pequeña donación.",
         "donateButton": "Apoyar con PayPal",
         "thanks": "¡Gracias por tu apoyo!"
+    },
+    "Badges": {
+        "title": "Logros",
+        "subtitle": "Desbloquea insignias mientras construyes mejores hábitos",
+        "locked": "Bloqueado",
+        "unlocked": "¡Desbloqueado!",
+        "streak7": {
+            "name": "Guerrero Semanal",
+            "desc": "Completa una racha de 7 días"
+        },
+        "streak30": {
+            "name": "Maestro Mensual",
+            "desc": "Completa una racha de 30 días"
+        },
+        "streak100": {
+            "name": "Leyenda de Hábitos",
+            "desc": "Completa una racha de 100 días"
+        },
+        "firstHabit": {
+            "name": "Primer Paso",
+            "desc": "Crea tu primer hábito"
+        },
+        "firstPartner": {
+            "name": "Inicio de Accountability",
+            "desc": "Agrega tu primer partner"
+        },
+        "perfectWeek": {
+            "name": "Semana Perfecta",
+            "desc": "100% de cumplimiento en una semana"
+        },
+        "breakHabitWeek": {
+            "name": "Mantente Fuerte",
+            "desc": "7 días sin recaída en un hábito break"
+        },
+        "tenHabits": {
+            "name": "Coleccionista de Hábitos",
+            "desc": "Crea 10 hábitos"
+        }
+    },
+    "Legal": {
+        "termsTitle": "Términos de Servicio",
+        "termsLastUpdated": "Última actualización",
+        "privacyTitle": "Política de Privacidad",
+        "backToHome": "Volver al inicio",
+        "terms": {
+            "intro": "Bienvenido a Cronify. Al usar nuestro servicio, aceptas estos términos.",
+            "section1Title": "1. Aceptación de Términos",
+            "section1Content": "Al acceder y usar Cronify, aceptas y acuerdas estar sujeto a estos Términos de Servicio. Si no estás de acuerdo con estos términos, por favor no uses el servicio.",
+            "section2Title": "2. Descripción del Servicio",
+            "section2Content": "Cronify es una aplicación gratuita de seguimiento de hábitos que permite a los usuarios rastrear hábitos diarios, establecer metas y compartir progreso con partners de accountability.",
+            "section3Title": "3. Cuentas de Usuario",
+            "section3Content": "Eres responsable de mantener la confidencialidad de tus credenciales de cuenta. Aceptas proporcionar información precisa al crear tu cuenta.",
+            "section4Title": "4. Contenido del Usuario",
+            "section4Content": "Conservas la propiedad de cualquier contenido que envíes a Cronify. Al enviar contenido, nos otorgas una licencia para usar, almacenar y mostrar ese contenido según sea necesario para proporcionar el servicio.",
+            "section5Title": "5. Uso Aceptable",
+            "section5Content": "Aceptas no usar Cronify para ningún propósito ilegal o de cualquier manera que pueda dañar, deshabilitar o perjudicar el servicio.",
+            "section6Title": "6. Descargo de Responsabilidad",
+            "section6Content": "Cronify se proporciona \"tal cual\" sin garantías de ningún tipo. No garantizamos que el servicio sea ininterrumpido o libre de errores.",
+            "section7Title": "7. Cambios en los Términos",
+            "section7Content": "Nos reservamos el derecho de modificar estos términos en cualquier momento. El uso continuado del servicio después de los cambios constituye la aceptación de los nuevos términos."
+        },
+        "privacy": {
+            "intro": "Tu privacidad es importante para nosotros. Esta política explica cómo recopilamos, usamos y protegemos tu información.",
+            "section1Title": "1. Información que Recopilamos",
+            "section1Content": "Recopilamos información que proporcionas directamente: dirección de correo electrónico, hábitos que creas y registros de progreso. No vendemos tu información personal a terceros.",
+            "section2Title": "2. Cómo Usamos tu Información",
+            "section2Content": "Usamos tu información para proporcionar y mejorar el servicio, enviar notificaciones importantes sobre tu cuenta y habilitar funciones como los partnerships de accountability.",
+            "section3Title": "3. Almacenamiento de Datos",
+            "section3Content": "Tus datos se almacenan de forma segura usando la infraestructura de Supabase. Implementamos medidas de seguridad estándar de la industria para proteger tu información.",
+            "section4Title": "4. Compartir con Partners",
+            "section4Content": "Cuando agregas un partner de accountability, pueden ver tus hábitos, progreso y razones de fallos. Tú controlas con quién compartes.",
+            "section5Title": "5. Retención de Datos",
+            "section5Content": "Retenemos tus datos mientras tu cuenta esté activa. Puedes eliminar tu cuenta y todos los datos asociados en cualquier momento desde la configuración de tu cuenta.",
+            "section6Title": "6. Cookies",
+            "section6Content": "Usamos cookies esenciales para autenticación y gestión de sesiones. No usamos cookies de seguimiento para publicidad.",
+            "section7Title": "7. Contacto",
+            "section7Content": "Si tienes preguntas sobre esta política de privacidad, por favor contáctanos a través de nuestros canales de soporte."
+        }
     },
     "Onboarding": {
         "welcome": "¡Bienvenido a Cronify!",

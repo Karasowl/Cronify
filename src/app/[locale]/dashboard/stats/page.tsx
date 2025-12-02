@@ -15,8 +15,12 @@ import {
     BarChart3,
     Flame,
     Download,
+    AlertCircle,
+    FileText,
 } from "lucide-react"
+import { jsPDF } from "jspdf"
 import { Button } from "@/components/ui/button"
+import { Badges } from "@/components/badges"
 import type { Habit, HabitLog } from "@/types"
 import {
     LineChart,
@@ -36,19 +40,25 @@ export default function StatsPage() {
     const supabase = createClient()
 
     const [habits, setHabits] = useState<Habit[]>([])
+    const [allHabits, setAllHabits] = useState<Habit[]>([])
     const [logs, setLogs] = useState<HabitLog[]>([])
+    const [partnersCount, setPartnersCount] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
 
     // Fetch data
     useEffect(() => {
         async function fetchData() {
             try {
-                const { data: habitsData } = await supabase
+                // Fetch all habits (for badges)
+                const { data: allHabitsData } = await supabase
                     .from("habits")
                     .select("*")
-                    .eq("habit_type", "build")
 
-                setHabits(habitsData || [])
+                setAllHabits(allHabitsData || [])
+
+                // Filter build habits for stats
+                const buildHabits = (allHabitsData || []).filter(h => h.habit_type === "build")
+                setHabits(buildHabits)
 
                 // Fetch all logs
                 const { data: logsData } = await supabase
@@ -57,6 +67,13 @@ export default function StatsPage() {
                     .order("date", { ascending: true })
 
                 setLogs(logsData || [])
+
+                // Fetch partners count
+                const { count } = await supabase
+                    .from("partnerships")
+                    .select("*", { count: "exact", head: true })
+
+                setPartnersCount(count || 0)
             } catch (err: any) {
                 toast.error("Error: " + err.message)
             } finally {
@@ -182,6 +199,74 @@ export default function StatsPage() {
         })
     }, [dayOfWeekStats])
 
+    // Badge calculations
+    const badgeStats = useMemo(() => {
+        // Check for perfect week (any week with 100% completion)
+        let hasPerfectWeek = false
+        const today = new Date()
+
+        for (let i = 0; i < 52; i++) {
+            const weekStart = new Date(today)
+            weekStart.setDate(today.getDate() - (i * 7 + 6))
+            const weekEnd = new Date(today)
+            weekEnd.setDate(today.getDate() - i * 7)
+
+            const weekLogs = logs.filter((l) => {
+                const logDate = new Date(l.date)
+                return logDate >= weekStart && logDate <= weekEnd
+            })
+
+            if (weekLogs.length >= 7) {
+                const completed = weekLogs.filter((l) => l.status === "completed").length
+                if (completed === weekLogs.length) {
+                    hasPerfectWeek = true
+                    break
+                }
+            }
+        }
+
+        // Check for break habit 7-day streak
+        const breakHabits = allHabits.filter((h) => h.habit_type === "break")
+        let hasBreakHabitStreak7 = false
+
+        for (const habit of breakHabits) {
+            const startDate = new Date(habit.last_relapse || habit.created_at)
+            const now = new Date()
+            const daysSince = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24))
+            if (daysSince >= 7) {
+                hasBreakHabitStreak7 = true
+                break
+            }
+        }
+
+        return {
+            hasPerfectWeek,
+            hasBreakHabitStreak7,
+        }
+    }, [logs, allHabits])
+
+    // Failure reasons analysis
+    const failureReasons = useMemo(() => {
+        const reasonCounts: Record<string, number> = {}
+
+        logs
+            .filter((l) => l.status === "failed" && l.reason)
+            .forEach((log) => {
+                const reason = log.reason!.trim().toLowerCase()
+                if (reason) {
+                    // Normalize common patterns
+                    const normalizedReason = log.reason!.trim()
+                    reasonCounts[normalizedReason] = (reasonCounts[normalizedReason] || 0) + 1
+                }
+            })
+
+        // Sort by count and take top 5
+        return Object.entries(reasonCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5)
+            .map(([reason, count]) => ({ reason, count }))
+    }, [logs])
+
     // Export to CSV function
     function exportToCSV() {
         // Create CSV content
@@ -214,6 +299,96 @@ export default function StatsPage() {
         document.body.removeChild(link)
         URL.revokeObjectURL(url)
 
+        toast.success(t("exportSuccess"))
+    }
+
+    // Export to PDF function
+    function exportToPDF() {
+        const doc = new jsPDF()
+        const pageWidth = doc.internal.pageSize.getWidth()
+        let yPos = 20
+
+        // Title
+        doc.setFontSize(24)
+        doc.setTextColor(124, 58, 237) // Primary color
+        doc.text("Cronify", pageWidth / 2, yPos, { align: "center" })
+        yPos += 10
+
+        doc.setFontSize(16)
+        doc.setTextColor(100, 100, 100)
+        doc.text(t("title"), pageWidth / 2, yPos, { align: "center" })
+        yPos += 15
+
+        // Date
+        doc.setFontSize(10)
+        doc.text(`Generated: ${new Date().toLocaleDateString()}`, pageWidth / 2, yPos, { align: "center" })
+        yPos += 15
+
+        // Overview stats
+        doc.setFontSize(14)
+        doc.setTextColor(0, 0, 0)
+        doc.text(t("overview"), 20, yPos)
+        yPos += 10
+
+        doc.setFontSize(11)
+        doc.setTextColor(60, 60, 60)
+        doc.text(`${t("totalDays")}: ${overallStats.totalDays}`, 25, yPos)
+        yPos += 7
+        doc.text(`${t("completedDays")}: ${overallStats.completedDays}`, 25, yPos)
+        yPos += 7
+        doc.text(`${t("failedDays")}: ${overallStats.failedDays}`, 25, yPos)
+        yPos += 7
+        doc.text(`${t("completionRate")}: ${overallStats.completionRate}%`, 25, yPos)
+        yPos += 7
+        doc.text(`${t("currentStreak")}: ${overallStats.currentStreak} days`, 25, yPos)
+        yPos += 15
+
+        // Habit breakdown
+        if (habitBreakdown.length > 0) {
+            doc.setFontSize(14)
+            doc.setTextColor(0, 0, 0)
+            doc.text(t("habitBreakdown"), 20, yPos)
+            yPos += 10
+
+            doc.setFontSize(10)
+            doc.setTextColor(60, 60, 60)
+            habitBreakdown.forEach((habit) => {
+                if (yPos > 270) {
+                    doc.addPage()
+                    yPos = 20
+                }
+                doc.text(`• ${habit.name}: ${habit.rate}% (${habit.completed}/${habit.total})`, 25, yPos)
+                yPos += 6
+            })
+            yPos += 10
+        }
+
+        // Failure reasons
+        if (failureReasons.length > 0) {
+            if (yPos > 240) {
+                doc.addPage()
+                yPos = 20
+            }
+
+            doc.setFontSize(14)
+            doc.setTextColor(0, 0, 0)
+            doc.text(t("failureReasons"), 20, yPos)
+            yPos += 10
+
+            doc.setFontSize(10)
+            doc.setTextColor(60, 60, 60)
+            failureReasons.forEach((item, index) => {
+                if (yPos > 270) {
+                    doc.addPage()
+                    yPos = 20
+                }
+                doc.text(`${index + 1}. ${item.reason} (${item.count}x)`, 25, yPos)
+                yPos += 6
+            })
+        }
+
+        // Save
+        doc.save(`cronify-report-${new Date().toISOString().split("T")[0]}.pdf`)
         toast.success(t("exportSuccess"))
     }
 
@@ -290,6 +465,16 @@ export default function StatsPage() {
                 </GlassCard>
             </div>
 
+            {/* Badges / Achievements */}
+            <Badges
+                currentStreak={overallStats.currentStreak}
+                bestStreak={overallStats.currentStreak}
+                totalHabits={allHabits.length}
+                totalPartners={partnersCount}
+                hasBreakHabitStreak7={badgeStats.hasBreakHabitStreak7}
+                hasPerfectWeek={badgeStats.hasPerfectWeek}
+            />
+
             {/* Weekly Progress Chart */}
             <GlassCard>
                 <div className="flex items-center gap-2 mb-4">
@@ -354,6 +539,39 @@ export default function StatsPage() {
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
+            </GlassCard>
+
+            {/* Failure Reasons Analysis */}
+            <GlassCard>
+                <div className="flex items-center gap-2 mb-4">
+                    <AlertCircle className="w-5 h-5 text-red-500" />
+                    <div>
+                        <h2 className="font-semibold">{t("failureReasons")}</h2>
+                        <p className="text-xs text-muted-foreground">{t("failureReasonsDesc")}</p>
+                    </div>
+                </div>
+
+                {failureReasons.length === 0 ? (
+                    <p className="text-sm text-muted-foreground text-center py-4">
+                        {t("noReasons")}
+                    </p>
+                ) : (
+                    <div className="space-y-3">
+                        {failureReasons.map((item, index) => (
+                            <div key={index} className="flex items-center gap-3">
+                                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center text-xs font-medium text-red-500">
+                                    {index + 1}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-sm truncate">{item.reason}</p>
+                                </div>
+                                <div className="flex-shrink-0 text-xs text-muted-foreground">
+                                    {item.count} {t("timesRecorded")}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </GlassCard>
 
             {/* Habit Breakdown */}
