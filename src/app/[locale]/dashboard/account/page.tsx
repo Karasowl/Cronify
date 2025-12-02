@@ -92,6 +92,8 @@ export default function AccountPage() {
     }
 
     async function handleLogout() {
+        // Clear remember_session cookie
+        document.cookie = 'remember_session=; path=/; max-age=0'
         await supabase.auth.signOut()
         router.push("/login")
     }
@@ -109,6 +111,7 @@ export default function AccountPage() {
 
             // Note: Actual user deletion requires admin API or Edge Function
             // For now, we sign out the user after deleting their data
+            document.cookie = 'remember_session=; path=/; max-age=0'
             await supabase.auth.signOut()
 
             toast.success("Cuenta eliminada")

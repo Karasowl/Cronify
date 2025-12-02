@@ -1,14 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
 import { createClient } from "@/lib/supabase/client"
-import { useRouter } from "@/i18n/routing"
-import { motion } from "framer-motion"
-import { Loader2 } from "lucide-react"
+import { useRouter, usePathname } from "@/i18n/routing"
+import { useSearchParams } from "next/navigation"
+import { Loader2, CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
 import { useTranslations } from 'next-intl'
 
@@ -16,9 +17,18 @@ export default function AuthPage() {
     const [isLoading, setIsLoading] = useState(false)
     const [isLogin, setIsLogin] = useState(true)
     const [isSuccess, setIsSuccess] = useState(false)
+    const [rememberMe, setRememberMe] = useState(false)
     const router = useRouter()
+    const searchParams = useSearchParams()
     const supabase = createClient()
     const t = useTranslations('Auth')
+
+    // Show success message if redirected from email verification
+    useEffect(() => {
+        if (searchParams.get('verified') === 'true') {
+            toast.success(t('emailVerified'))
+        }
+    }, [searchParams, t])
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -38,6 +48,16 @@ export default function AuthPage() {
                 })
                 if (error) throw error
                 console.log("Sign in successful")
+
+                // Set remember_session cookie based on checkbox
+                if (rememberMe) {
+                    // Persistent cookie (30 days)
+                    document.cookie = `remember_session=true; path=/; max-age=${30 * 24 * 60 * 60}; SameSite=Lax`
+                } else {
+                    // Session cookie (expires when browser closes)
+                    document.cookie = `remember_session=true; path=/; SameSite=Lax`
+                }
+
                 router.push("/dashboard")
             } else {
                 console.log("Attempting sign up...")
@@ -76,18 +96,18 @@ export default function AuthPage() {
 
                 <GlassCard className="w-full max-w-md text-center space-y-6 p-8" gradient>
                     <div className="mx-auto w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4">
-                        <Loader2 className="w-8 h-8 text-primary animate-pulse" />
+                        <CheckCircle2 className="w-8 h-8 text-primary" />
                     </div>
                     <h2 className="text-2xl font-bold">{t('checkEmail')}</h2>
                     <p className="text-muted-foreground">
-                        We've sent a confirmation link to your email. Please check your inbox (and spam folder) to activate your account.
+                        {t('checkEmailDesc')}
                     </p>
                     <Button
                         variant="outline"
                         onClick={() => setIsSuccess(false)}
                         className="w-full"
                     >
-                        Back to Login
+                        {t('backToLogin')}
                     </Button>
                 </GlassCard>
             </div>
@@ -136,6 +156,19 @@ export default function AuthPage() {
                                 required
                                 className="bg-white/5 border-white/10 focus:bg-white/10 transition-all"
                             />
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <Checkbox
+                                id="rememberMe"
+                                checked={rememberMe}
+                                onCheckedChange={(checked) => setRememberMe(checked === true)}
+                            />
+                            <Label
+                                htmlFor="rememberMe"
+                                className="text-sm font-normal text-muted-foreground cursor-pointer"
+                            >
+                                {t('rememberMe')}
+                            </Label>
                         </div>
                         <Button className="w-full" disabled={isLoading}>
                             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

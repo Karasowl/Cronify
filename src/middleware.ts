@@ -42,6 +42,26 @@ export async function middleware(request: NextRequest) {
     // Refresh the session
     const { data: { user } } = await supabase.auth.getUser()
 
+    // Check for remember_session cookie
+    const rememberSession = request.cookies.get('remember_session')
+
+    // If user has a session but no remember_session cookie, they closed the browser
+    // without "Remember me" checked - sign them out
+    if (user && !rememberSession) {
+        await supabase.auth.signOut()
+        const locale = pathname.split('/')[1] || 'es'
+        const loginUrl = new URL(`/${locale}/login`, request.url)
+        // Clear Supabase cookies in the redirect response
+        const redirectResponse = NextResponse.redirect(loginUrl)
+        // Delete all supabase auth cookies
+        request.cookies.getAll().forEach(cookie => {
+            if (cookie.name.startsWith('sb-')) {
+                redirectResponse.cookies.delete(cookie.name)
+            }
+        })
+        return redirectResponse
+    }
+
     // If not authenticated, redirect to login
     if (!user) {
         const locale = pathname.split('/')[1] || 'es'

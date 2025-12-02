@@ -34,7 +34,11 @@
         "signUpButton": "Sign Up",
         "noAccount": "Don't have an account? Sign up",
         "hasAccount": "Already have an account? Sign in",
-        "checkEmail": "Check your email to confirm your account"
+        "checkEmail": "Check your email to confirm your account",
+        "rememberMe": "Keep me signed in",
+        "emailVerified": "Email verified! You can now sign in.",
+        "checkEmailDesc": "We've sent a confirmation link to your email. Please check your inbox (and spam folder) to activate your account.",
+        "backToLogin": "Back to Login"
     },
     "Dashboard": {
         "title": "Your Habits",

@@ -8,4 +8,5 @@ build/
 *.log
 .DS_Store
 .next/
+.claude/settings.local.json
 nul

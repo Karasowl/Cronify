@@ -34,7 +34,11 @@
         "signUpButton": "Registrarse",
         "noAccount": "¿No tienes cuenta? Regístrate",
         "hasAccount": "¿Ya tienes cuenta? Inicia sesión",
-        "checkEmail": "Revisa tu correo para confirmar tu cuenta"
+        "checkEmail": "Revisa tu correo para confirmar tu cuenta",
+        "rememberMe": "Mantener sesión iniciada",
+        "emailVerified": "¡Correo verificado! Ya puedes iniciar sesión.",
+        "checkEmailDesc": "Hemos enviado un enlace de confirmación a tu correo. Por favor revisa tu bandeja de entrada (y spam) para activar tu cuenta.",
+        "backToLogin": "Volver al inicio de sesión"
     },
     "Dashboard": {
         "title": "Tus Hábitos",
