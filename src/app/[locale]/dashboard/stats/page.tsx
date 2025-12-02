@@ -14,7 +14,9 @@ import {
     Target,
     BarChart3,
     Flame,
+    Download,
 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import type { Habit, HabitLog } from "@/types"
 import {
     LineChart,
@@ -180,6 +182,41 @@ export default function StatsPage() {
         })
     }, [dayOfWeekStats])
 
+    // Export to CSV function
+    function exportToCSV() {
+        // Create CSV content
+        const headers = ["Date", "Habit", "Status", "Reason"]
+        const rows = logs.map((log) => {
+            const habit = habits.find((h) => h.id === log.habit_id)
+            return [
+                log.date,
+                habit?.title || "Unknown",
+                log.status,
+                log.reason || "",
+            ]
+        })
+
+        const csvContent = [
+            headers.join(","),
+            ...rows.map((row) =>
+                row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")
+            ),
+        ].join("\n")
+
+        // Create and download file
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
+        const url = URL.createObjectURL(blob)
+        const link = document.createElement("a")
+        link.setAttribute("href", url)
+        link.setAttribute("download", `cronify-export-${new Date().toISOString().split("T")[0]}.csv`)
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
+
+        toast.success(t("exportSuccess"))
+    }
+
     if (isLoading) {
         return (
             <div className="space-y-8">
@@ -211,9 +248,15 @@ export default function StatsPage() {
         <div className="space-y-8">
             <Navbar />
 
-            <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
-                <p className="text-muted-foreground">{t("subtitle")}</p>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div className="space-y-1">
+                    <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
+                    <p className="text-muted-foreground">{t("subtitle")}</p>
+                </div>
+                <Button variant="outline" onClick={exportToCSV} className="gap-2 w-fit">
+                    <Download className="w-4 h-4" />
+                    {t("exportCSV")}
+                </Button>
             </div>
 
             {/* Overview Cards */}

@@ -2,16 +2,31 @@
     "HomePage": {
         "title": "Domina tus Hábitos",
         "subtitle": "Construye la vida que deseas con Cronify.",
-        "getStarted": "Comenzar",
+        "getStarted": "Comenzar - Es Gratis",
         "login": "Iniciar Sesión",
+        "freeForever": "100% Gratis",
+        "freeForeverDesc": "Sin límites, sin planes premium, sin trucos. Cronify es completamente gratis.",
         "features": {
             "trackingTitle": "Seguimiento de Hábitos Reinventado",
             "trackingDesc": "Sigue tus objetivos diarios con una interfaz hermosa e intuitiva. Marca hábitos como completados o registra razones si fallas.",
             "accountabilityTitle": "Responsabilidad Compartida",
             "accountabilityDesc": "Comparte tu progreso con un compañero. Ellos verán tus logros y tus razones para fallar.",
             "privacyTitle": "Privacidad Primero",
-            "privacyDesc": "Tú controlas lo que compartes. Permisos granulares para cada hábito."
-        }
+            "privacyDesc": "Tú controlas lo que compartes. Permisos granulares para cada hábito.",
+            "breakHabitsTitle": "Rompe Malos Hábitos",
+            "breakHabitsDesc": "Cronómetros de abstinencia que cuentan cada segundo sin recaída. Perfecto para dejar adicciones.",
+            "statsTitle": "Estadísticas Detalladas",
+            "statsDesc": "Visualiza tu progreso con gráficas, rachas y análisis semanal."
+        },
+        "howItWorks": "Cómo Funciona",
+        "step1Title": "Crea tus hábitos",
+        "step1Desc": "Define lo que quieres construir o dejar de hacer",
+        "step2Title": "Registra diario",
+        "step2Desc": "Marca tus hábitos como completos o registra por qué fallaste",
+        "step3Title": "Comparte con un partner",
+        "step3Desc": "Invita a alguien para que te mantenga responsable",
+        "ctaTitle": "¿Listo para transformar tu vida?",
+        "ctaDesc": "Únete a miles de personas construyendo mejores hábitos con Cronify."
     },
     "Navbar": {
         "dashboard": "Panel",
@@ -182,6 +197,11 @@
         "settings": "Configuración",
         "autoFailTitle": "Marcar días como fallados automáticamente",
         "autoFailDesc": "Si está activado, los días sin registro se marcarán como fallados. Si no, se mostrarán como pendientes.",
+        "notificationsTitle": "Recordatorios diarios",
+        "notificationsDesc": "Recibe una notificación del navegador para recordarte registrar tus hábitos.",
+        "notificationsEnabled": "Notificaciones activadas",
+        "notificationsDisabled": "Notificaciones desactivadas",
+        "notificationsBlocked": "Las notificaciones están bloqueadas. Por favor actívalas en la configuración de tu navegador.",
         "logout": "Cerrar sesión",
         "logoutConfirmTitle": "¿Cerrar sesión?",
         "logoutConfirmDesc": "Tendrás que volver a iniciar sesión para acceder a tus hábitos.",
@@ -199,6 +219,8 @@
     "Stats": {
         "title": "Estadísticas",
         "subtitle": "Visualiza tu progreso a lo largo del tiempo",
+        "exportCSV": "Exportar a CSV",
+        "exportSuccess": "Datos exportados exitosamente",
         "overview": "Resumen general",
         "totalDays": "Días totales",
         "completedDays": "Días completados",
@@ -229,5 +251,26 @@
         "markAll": "Marcar todos",
         "allCompleted": "Todos completados",
         "allFailed": "Todos fallados"
+    },
+    "Support": {
+        "title": "Apoya a Cronify",
+        "subtitle": "Ayúdanos a mantener Cronify gratis y mejorarlo",
+        "description": "Cronify es un proyecto gratuito. Si te ayuda a construir mejores hábitos, considera apoyar el desarrollo con una pequeña donación.",
+        "donateButton": "Apoyar con PayPal",
+        "thanks": "¡Gracias por tu apoyo!"
+    },
+    "Onboarding": {
+        "welcome": "¡Bienvenido a Cronify!",
+        "welcomeDesc": "Te mostraremos rápidamente cómo sacar el máximo provecho del seguimiento de tus hábitos.",
+        "step1Title": "Dos Tipos de Hábitos",
+        "step1Desc": "Los hábitos Build son cosas que quieres hacer diario (ejercicio, leer). Los hábitos Break tienen cronómetros para rastrear cuánto tiempo llevas sin algo (dejar de fumar, sin redes sociales).",
+        "step2Title": "Rastrea tu Progreso",
+        "step2Desc": "Cada día, marca tus hábitos como completados o fallados. Si fallas, puedes agregar una razón para identificar patrones después.",
+        "step3Title": "Partners de Accountability",
+        "step3Desc": "Invita a un amigo o familiar para que vea tu progreso. Los estudios muestran que tienes 2x más probabilidades de éxito con accountability.",
+        "next": "Siguiente",
+        "back": "Atrás",
+        "getStarted": "¡Empezar!",
+        "skip": "Saltar tour"
     }
 }

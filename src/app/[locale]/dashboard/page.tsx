@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar"
 import { GlassCard } from "@/components/ui/glass-card"
 import { GlobalCalendar, DayHabitsModal, TimerCard } from "@/components/habits"
 import { AddHabitDialog } from "@/components/add-habit-dialog"
+import { OnboardingModal } from "@/components/onboarding-modal"
 import { createClient } from "@/lib/supabase/client"
 import { useTranslations, useLocale } from "next-intl"
 import { toast } from "sonner"
@@ -322,6 +323,9 @@ export default function DashboardPage() {
                 onOpenChange={setAddDialogOpen}
                 onHabitCreated={handleHabitCreated}
             />
+
+            {/* Onboarding Modal - shows on first visit */}
+            <OnboardingModal />
         </div>
     )
 }

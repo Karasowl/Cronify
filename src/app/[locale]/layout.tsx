@@ -7,6 +7,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Toaster } from "@/components/ui/sonner";
+import { ServiceWorkerRegister } from "@/components/service-worker-register";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,6 +22,23 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Cronify - Master Your Habits",
   description: "A glossy, modern habit tracker with shared accountability.",
+  manifest: "/manifest.json",
+  themeColor: "#7c3aed",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Cronify",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+  icons: {
+    icon: "/icons/icon-192.svg",
+    apple: "/icons/icon-192.svg",
+  },
 };
 
 export default async function RootLayout({
@@ -55,6 +73,7 @@ export default async function RootLayout({
           >
             {children}
             <Toaster richColors position="top-center" />
+            <ServiceWorkerRegister />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { User, LogOut, Trash2, Loader2, Settings, Mail, Calendar } from "lucide-react"
+import { User, LogOut, Trash2, Loader2, Settings, Mail, Calendar, Heart, Bell } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { Navbar } from "@/components/navbar"
 import { Button } from "@/components/ui/button"
@@ -32,12 +32,14 @@ export default function AccountPage() {
     const supabase = createClient()
     const t = useTranslations("Account")
     const tCommon = useTranslations("Common")
+    const tSupport = useTranslations("Support")
 
     const [user, setUser] = useState<{ email: string; created_at: string } | null>(null)
     const [settings, setSettings] = useState<UserSettings>({ auto_fail_enabled: false })
     const [isLoading, setIsLoading] = useState(true)
     const [isSaving, setIsSaving] = useState(false)
     const [isDeleting, setIsDeleting] = useState(false)
+    const [notificationPermission, setNotificationPermission] = useState<NotificationPermission>("default")
 
     useEffect(() => {
         async function fetchData() {
@@ -65,7 +67,52 @@ export default function AccountPage() {
             setIsLoading(false)
         }
         fetchData()
+
+        // Check notification permission
+        if ("Notification" in window) {
+            setNotificationPermission(Notification.permission)
+        }
     }, [supabase])
+
+    async function handleNotificationToggle() {
+        if (!("Notification" in window)) {
+            toast.error("Notifications are not supported in this browser")
+            return
+        }
+
+        if (Notification.permission === "granted") {
+            // Already granted, show confirmation
+            toast.success(t("notificationsEnabled"))
+            scheduleNotification()
+        } else if (Notification.permission === "denied") {
+            toast.error(t("notificationsBlocked"))
+        } else {
+            // Request permission
+            const permission = await Notification.requestPermission()
+            setNotificationPermission(permission)
+
+            if (permission === "granted") {
+                toast.success(t("notificationsEnabled"))
+                scheduleNotification()
+            } else {
+                toast.error(t("notificationsDisabled"))
+            }
+        }
+    }
+
+    function scheduleNotification() {
+        // Schedule a test notification
+        if (Notification.permission === "granted") {
+            // Store preference in localStorage
+            localStorage.setItem("cronify_notifications", "enabled")
+
+            // Show a test notification
+            new Notification("Cronify", {
+                body: "Daily reminders are now enabled!",
+                icon: "/icons/icon-192.svg",
+            })
+        }
+    }
 
     async function handleAutoFailChange(enabled: boolean) {
         setIsSaving(true)
@@ -193,6 +240,48 @@ export default function AccountPage() {
                         disabled={isSaving}
                     />
                 </div>
+
+                <div className="h-px bg-border my-4" />
+
+                <div className="flex items-center justify-between">
+                    <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                            <Bell className="w-4 h-4 text-muted-foreground" />
+                            <Label>{t("notificationsTitle")}</Label>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                            {t("notificationsDesc")}
+                        </p>
+                    </div>
+                    <Button
+                        variant={notificationPermission === "granted" ? "secondary" : "outline"}
+                        size="sm"
+                        onClick={handleNotificationToggle}
+                        className="gap-2"
+                    >
+                        <Bell className="w-4 h-4" />
+                        {notificationPermission === "granted" ? t("notificationsEnabled").split(" ")[0] : "Enable"}
+                    </Button>
+                </div>
+            </GlassCard>
+
+            {/* Support / Donations */}
+            <GlassCard className="border-pink-500/30 bg-gradient-to-br from-pink-500/5 to-purple-500/5">
+                <div className="flex items-center gap-2 mb-4">
+                    <Heart className="w-5 h-5 text-pink-500" />
+                    <h2 className="font-semibold">{tSupport("title")}</h2>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4">
+                    {tSupport("description")}
+                </p>
+                <Button
+                    variant="outline"
+                    className="w-full gap-2 border-pink-500/30 hover:bg-pink-500/10 hover:text-pink-500"
+                    onClick={() => window.open("https://paypal.me/miguelitoism", "_blank")}
+                >
+                    <Heart className="w-4 h-4" />
+                    {tSupport("donateButton")}
+                </Button>
             </GlassCard>
 
             {/* Logout */}

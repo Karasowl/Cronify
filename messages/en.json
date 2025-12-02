@@ -2,16 +2,31 @@
     "HomePage": {
         "title": "Master Your Habits",
         "subtitle": "Build the life you want with Cronify.",
-        "getStarted": "Get Started",
+        "getStarted": "Get Started - It's Free",
         "login": "Login",
+        "freeForever": "100% Free",
+        "freeForeverDesc": "No limits, no premium plans, no tricks. Cronify is completely free.",
         "features": {
             "trackingTitle": "Habit Tracking Reimagined",
             "trackingDesc": "Track your daily goals with a beautiful, intuitive interface. Mark habits as complete, or log reasons for misses.",
             "accountabilityTitle": "Shared Accountability",
             "accountabilityDesc": "Share your progress with a partner. They see your wins and your reasons for misses.",
             "privacyTitle": "Privacy First",
-            "privacyDesc": "You control what you share. Granular permissions for every habit."
-        }
+            "privacyDesc": "You control what you share. Granular permissions for every habit.",
+            "breakHabitsTitle": "Break Bad Habits",
+            "breakHabitsDesc": "Abstinence timers that count every second without relapse. Perfect for quitting addictions.",
+            "statsTitle": "Detailed Statistics",
+            "statsDesc": "Visualize your progress with charts, streaks, and weekly analysis."
+        },
+        "howItWorks": "How It Works",
+        "step1Title": "Create your habits",
+        "step1Desc": "Define what you want to build or stop doing",
+        "step2Title": "Track daily",
+        "step2Desc": "Mark your habits as complete or log why you failed",
+        "step3Title": "Share with a partner",
+        "step3Desc": "Invite someone to keep you accountable",
+        "ctaTitle": "Ready to transform your life?",
+        "ctaDesc": "Join thousands of people building better habits with Cronify."
     },
     "Navbar": {
         "dashboard": "Dashboard",
@@ -182,6 +197,11 @@
         "settings": "Settings",
         "autoFailTitle": "Auto-mark days as failed",
         "autoFailDesc": "If enabled, days without any record will be marked as failed. Otherwise, they'll show as pending.",
+        "notificationsTitle": "Daily reminders",
+        "notificationsDesc": "Receive a browser notification to remind you to log your habits.",
+        "notificationsEnabled": "Notifications enabled",
+        "notificationsDisabled": "Notifications disabled",
+        "notificationsBlocked": "Notifications are blocked. Please enable them in your browser settings.",
         "logout": "Log out",
         "logoutConfirmTitle": "Log out?",
         "logoutConfirmDesc": "You'll need to sign in again to access your habits.",
@@ -199,6 +219,8 @@
     "Stats": {
         "title": "Statistics",
         "subtitle": "Visualize your progress over time",
+        "exportCSV": "Export to CSV",
+        "exportSuccess": "Data exported successfully",
         "overview": "Overview",
         "totalDays": "Total days",
         "completedDays": "Completed days",
@@ -229,5 +251,26 @@
         "markAll": "Mark all",
         "allCompleted": "All completed",
         "allFailed": "All failed"
+    },
+    "Support": {
+        "title": "Support Cronify",
+        "subtitle": "Help us keep Cronify free and improve it",
+        "description": "Cronify is a free project. If it helps you build better habits, consider supporting development with a small donation.",
+        "donateButton": "Support with PayPal",
+        "thanks": "Thank you for your support!"
+    },
+    "Onboarding": {
+        "welcome": "Welcome to Cronify!",
+        "welcomeDesc": "Let's quickly show you how to get the most out of tracking your habits.",
+        "step1Title": "Two Types of Habits",
+        "step1Desc": "Build habits are things you want to do daily (exercise, read). Break habits have timers to track how long you've abstained from something (quit smoking, no social media).",
+        "step2Title": "Track Your Progress",
+        "step2Desc": "Every day, mark your habits as complete or failed. If you fail, you can add a reason to identify patterns later.",
+        "step3Title": "Accountability Partners",
+        "step3Desc": "Invite a friend or family member to see your progress. Studies show you're 2x more likely to succeed with accountability.",
+        "next": "Next",
+        "back": "Back",
+        "getStarted": "Start Tracking!",
+        "skip": "Skip tour"
     }
 }
