@@ -230,7 +230,7 @@ export default function StatsPage() {
         let hasBreakHabitStreak7 = false
 
         for (const habit of breakHabits) {
-            const startDate = new Date(habit.last_relapse || habit.created_at)
+            const startDate = new Date(habit.last_reset || habit.created_at)
             const now = new Date()
             const daysSince = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24))
             if (daysSince >= 7) {
