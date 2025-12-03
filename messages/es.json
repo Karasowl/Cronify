@@ -67,11 +67,21 @@
     },
     "Dashboard": {
         "title": "Tus Hábitos",
+        "subtitle": "Sigue tu progreso y mantente constante.",
         "noHabits": "Sigue tu progreso y mantente constante.",
         "emptyTitle": "¡Comienza tu viaje!",
         "emptyDesc": "No tienes hábitos todavía. Crea tu primer hábito para empezar a trackear tu progreso.",
         "createFirst": "Crear mi primer hábito",
-        "errorLoading": "Error cargando datos"
+        "errorLoading": "Error cargando datos",
+        "today": "Hoy",
+        "thisWeek": "Esta semana",
+        "streak": "Racha",
+        "pending": "Pendientes",
+        "completed": "Completados",
+        "monthlyCalendar": "Calendario mensual",
+        "perfectDay": "Día perfecto",
+        "allDone": "¡Todos los hábitos completados!",
+        "greatWork": "Excelente trabajo hoy"
     },
     "HabitTracker": {
         "todaysHabits": "Hábitos de Hoy",
@@ -129,7 +139,8 @@
         "edit": "Editar",
         "error": "Algo salió mal",
         "saving": "Guardando...",
-        "sessionExpired": "Tu sesión ha expirado. Redirigiendo al login..."
+        "sessionExpired": "Tu sesión ha expirado. Redirigiendo al login...",
+        "add": "Nuevo"
     },
     "HabitLog": {
         "title": "Registrar hábito",

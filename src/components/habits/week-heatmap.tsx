@@ -16,7 +16,7 @@ interface WeekHeatmapProps {
     onDayClick?: (date: string) => void
 }
 
-const DAY_NAMES_SHORT = ["L", "M", "X", "J", "V", "S", "D"]
+const DAY_NAMES_SHORT = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"]
 
 export function WeekHeatmap({ habits, logs, onDayClick }: WeekHeatmapProps) {
     // Get last 7 days including today
@@ -164,8 +164,8 @@ export function WeekHeatmap({ habits, logs, onDayClick }: WeekHeatmapProps) {
                                         {getDayName(date)}
                                     </span>
                                     <span className="text-sm sm:text-base font-bold">
-                                        {stats.total > 0 && !future ? (
-                                            stats.rate === 100 ? "✓" : `${stats.rate}`
+                                        {stats.total > 0 && !future && stats.rate === 100 ? (
+                                            "✓"
                                         ) : (
                                             date.getDate()
                                         )}

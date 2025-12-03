@@ -67,11 +67,21 @@
     },
     "Dashboard": {
         "title": "Your Habits",
+        "subtitle": "Track your progress and stay consistent.",
         "noHabits": "Track your progress and stay consistent.",
         "emptyTitle": "Start your journey!",
         "emptyDesc": "You don't have any habits yet. Create your first habit to start tracking your progress.",
         "createFirst": "Create my first habit",
-        "errorLoading": "Error loading data"
+        "errorLoading": "Error loading data",
+        "today": "Today",
+        "thisWeek": "This week",
+        "streak": "Streak",
+        "pending": "Pending",
+        "completed": "Completed",
+        "monthlyCalendar": "Monthly calendar",
+        "perfectDay": "Perfect day",
+        "allDone": "All habits completed!",
+        "greatWork": "Great work today"
     },
     "HabitTracker": {
         "todaysHabits": "Today's Habits",
@@ -129,7 +139,8 @@
         "edit": "Edit",
         "error": "Something went wrong",
         "saving": "Saving...",
-        "sessionExpired": "Your session has expired. Redirecting to login..."
+        "sessionExpired": "Your session has expired. Redirecting to login...",
+        "add": "New"
     },
     "HabitLog": {
         "title": "Log habit",
